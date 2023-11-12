@@ -28,22 +28,6 @@ async function getOneUser(req, res) {
     }
 }
 
-async function getUserDifunto(req, res) {
-    try {
-        const user = await User.findByPk(req.params.id)
-        
-            const deceased = await user.getDeceaseds()
-        
-        if (user) {
-            return res.status(200).json(deceased)
-        } else {
-            return res.status(200).send('No deceased found in this user')
-        }
-    } catch (error) {
-        res.status(500).send(error.message)
-    }
-}
-
 async function createUser(req, res) {
     try {
         const user = await User.create(req.body)
@@ -79,5 +63,4 @@ module.exports = {
     createUser,
     updateUser,
     deleteUser,
-    getUserDifunto
 }
