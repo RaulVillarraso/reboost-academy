@@ -1,4 +1,6 @@
-const Classroom = require('../models/clase.model') 
+const Clase = require('../models/clase.model')
+const Classroom = require('../models/classroom.model') 
+const Teacher = require('../models/teacher.model')
 
 
 async function getAllClassrooms(req, res){
@@ -54,4 +56,37 @@ async function deleteClassroom(req, res){
     }
 }
 
-module.exports = { getAllClassrooms, getOneClassroom, createClassroom, updateClassroom, deleteClassroom,}
+async function getOneClassroom_Clase_Teacher(req, res) {
+    console.log({ body: req.body, params: req.params, query: req.query });
+    try {
+      const classroom = await Classroom.findAll({
+        where: { id: req.params.id },
+        include: [
+          {
+            model: Clase,
+            attributes: ['classname'],
+            include: [
+              {
+                model: Teacher,
+                attributes: ['firstName', 'lastName'],
+                
+              },
+            ],
+          },
+        ],
+      });
+  
+      if (!classroom) {
+        return res.status(404).send("Clase no encontrado"); // Cambiado a código de estado 404 para un recurso no encontrado.
+      }
+  
+      res.status(200).json(classroom);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  }
+  
+
+
+
+module.exports = { getOneClassroom_Clase_Teacher,getAllClassrooms, getOneClassroom, createClassroom, updateClassroom, deleteClassroom,}
