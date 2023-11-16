@@ -1,4 +1,6 @@
+const { Op } = require('sequelize')
 const Clase = require('../models/clase.model')
+const Teacher = require('../models/teacher.model')
 
 
 
@@ -57,7 +59,30 @@ async function deleteClases(req, res) {
     }
 }
 
+async function countClases(req, res) {
+    try {
+        
+      const clase = await Clase.findByPk(req.params.id);
+      const count = await Teacher.count({
+        include: [
+          {
+            model: Clase,
+            where: { id: req.params.id },
+          },
+        ],
+      });
+  
+      res.status(200).json({
+        clase,
+        teacherCount: count,
+      });
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  }
+
 module.exports = {
+    countClases,
     getAllClases,
     getOneClases,
     createClases,

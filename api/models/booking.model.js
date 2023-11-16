@@ -4,8 +4,12 @@ const { DataTypes } = require('sequelize')
 const Booking = sequelize.define('booking', {  
 
     bookingDate: {
-        type: DataTypes.DATE,
-        unique: true
+        type: DataTypes.DATEONLY,
+        
+    },
+    bookingHour: {
+        type: DataTypes.TIME,
+        
     }
 },
     { //opciones

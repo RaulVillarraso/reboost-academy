@@ -1,4 +1,8 @@
+const { Op } = require('sequelize')
 const Booking = require('../models/booking.model')
+const Clase = require('../models/clase.model')
+const Teacher = require('../models/teacher.model')
+const Classroom = require('../models/classroom.model')
 
 //CRUD
 
@@ -56,8 +60,54 @@ async function deleteBooking(req, res) {
         res.status(500).send(error.message)
     }
 }
+async function getClassesAndTeachersForBookingDate(req, res) {
+    try {
+      const bookingDate = req.params.bookingDate;
+  
+      // Obtén todas las reservas que coinciden con la fecha
+      const bookings = await Booking.findAll({
+        where: {
+          bookingDate: {
+            [Op.eq]: bookingDate,
+          },
+        },
+        include: [
+          {
+            model: Clase,
+            include: [
+                {
+                    model: Classroom,
+                  },
+              {
+                model: Teacher,
+              },
+
+            ],
+          },
+        ],
+      });
+  
+      // Obtén el conteo de reservas para la fecha específica
+      const bookingCount = await Booking.count({
+        where: {
+          bookingDate: {
+            [Op.eq]: bookingDate,
+          },
+        },
+      });
+  
+      res.status(200).json({
+        bookingDate,
+        bookingCount,
+        bookings,
+      });
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  }
 
 module.exports = {
+    getClassesAndTeachersForBookingDate,
     getAllBookings,
     getOneBooking,
     createBooking,
