@@ -1,9 +1,12 @@
 import "./App.css"
 
+import { RouterProvider } from "react-router-dom"
+import router from "./router/index"
+
 function App() {
     return (
         <>
-            <h1>Hello, World!</h1>
+            <RouterProvider router={router}/>
         </>
     )
 }

@@ -1,0 +1,46 @@
+.header{
+    background-color: #444444;
+    width: 100vw;
+    height: 6em;
+    display: flex;
+    position: absolute;
+    top: 0;
+    justify-content: space-between;
+}
+
+.logoAndButtons{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30em;
+}
+
+.logoAndButtons > button {
+    height: 36px;
+    background-color: #FCB900;
+    color: black;
+}
+
+.logoAndButtons>button:hover{
+    background-color: #b38300
+}
+
+.logoAndButtons > .logo{
+    display: flex;
+    width: 76px;
+    height: 76px;
+    margin: 8px;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.register{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 13em;
+}
