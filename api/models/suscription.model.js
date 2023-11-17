@@ -14,6 +14,7 @@ const Suscription = sequelize.define(
     },
     {
         updatedAt: false,
+        timestamps: false
     }
 )
 
