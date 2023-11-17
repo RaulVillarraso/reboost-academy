@@ -4,7 +4,7 @@ const { getAllSuscriptions, getOneSuscription, createSuscription, updateSuscript
 
 const router = require('express').Router() 
 
-
+router.get('/:id', getOneSuscription)
 router.get('/', getAllSuscriptions) 
 router.post('/', createSuscription) 
 router.put('/:id', updateSuscription) 
