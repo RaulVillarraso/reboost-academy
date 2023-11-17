@@ -1,12 +1,13 @@
 const router = require('express').Router()
 const { getClassesAndTeachersForBookingDate,getAllBookings, getOneBooking, createBooking, updateBooking, deleteBooking } = require('../controllers/booking.controller')
+const { checkAuth, checkAdmin } = require('../middleware')
 
-router.get('/', getAllBookings)
-router.get('/:id', getOneBooking)
-router.get('/clase/:bookingDate', getClassesAndTeachersForBookingDate)
-router.post('/', createBooking)
-router.put('/:id',updateBooking)
-router.delete('/:id', deleteBooking)
+router.get('/', checkAuth, checkAdmin, getAllBookings)
+router.get("/:id", checkAuth, checkAdmin, getOneBooking);
+router.get('/clase/:bookingDate', checkAdmin, checkAuth, getClassesAndTeachersForBookingDate)
+router.post("/", checkAuth, checkAdmin, createBooking);
+router.put("/:id", checkAuth, checkAdmin, updateBooking);
+router.delete("/:id", checkAuth, checkAdmin, deleteBooking);
 
 
 module.exports = router
