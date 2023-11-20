@@ -8,14 +8,12 @@ import {
     Paper,
     Toolbar,
     Typography,
-    styled,
     useTheme,
     ListItem,
     ListItemButton,
     ListItemIcon,
     ListItemText,
 } from "@mui/material"
-import MuiAppBar from "@mui/material/AppBar"
 import MenuIcon from "@mui/icons-material/Menu"
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
 import ChevronRightIcon from "@mui/icons-material/ChevronRight"
@@ -25,45 +23,10 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn"
 import LoginIcon from "@mui/icons-material/Login"
 import PersonAddIcon from "@mui/icons-material/PersonAdd"
 import "./Header.css"
+import { Link } from "react-router-dom"
 import { useState } from "react"
 
 const drawerWidth = 240
-
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-    ({ theme, open }) => ({
-        flexGrow: 1,
-        padding: theme.spacing(3),
-        transition: theme.transitions.create("margin", {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        marginLeft: `-${drawerWidth}px`,
-        ...(open && {
-            transition: theme.transitions.create("margin", {
-                easing: theme.transitions.easing.easeOut,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-            marginLeft: 0,
-        }),
-    })
-)
-
-const AppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-    transition: theme.transitions.create(["margin", "width"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-    }),
-    ...(open && {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: `${drawerWidth}px`,
-        transition: theme.transitions.create(["margin", "width"], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    }),
-}))
 
 function Header() {
     
@@ -108,7 +71,7 @@ function Header() {
                         edge="start"
                         sx={{ mr: 2, ...(open && { display: "none" }) }}
                     >
-                        <MenuIcon sx={{color: "white"}} />
+                        <MenuIcon sx={{ color: "white" }} />
                     </IconButton>
                 </Toolbar>
                 <Drawer
@@ -144,9 +107,7 @@ function Header() {
                             <ListItem key={index} disablePadding>
                                 <ListItemButton>
                                     <ListItemIcon>
-                                        
-                                            {switchStatement(text)}
-                                        
+                                        {switchStatement(text)}
                                     </ListItemIcon>
                                     <ListItemText primary={text} />
                                 </ListItemButton>
@@ -163,12 +124,16 @@ function Header() {
                 <Button variant="contained">Staff</Button>
                 <Button variant="contained">Suscription</Button>
             </Box>
-            <Box className="title">
-                <Typography variant="h3">Reboost Academy</Typography>
-            </Box>
+            <Link to="/" style={{textDecoration: "none", alignSelf: "center"}}>
+                <Box className="title">
+                    <Typography variant="h3">Reboost Academy</Typography>
+                </Box>
+            </Link>
             <Box className="register">
                 <Button variant="contained">Login</Button>
-                <Button variant="contained">Signup</Button>
+                <Link to="/signup">
+                    <Button variant="contained">Signup</Button>
+                </Link>
             </Box>
         </Box>
     )

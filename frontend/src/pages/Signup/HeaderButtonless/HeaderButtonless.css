@@ -1,0 +1,16 @@
+.headerButtonless{
+    background-color: #444444;
+    width: 100vw;
+    height: 6em;
+    display: flex;
+    position: absolute;
+    top: 0;
+    justify-content: center;
+}
+
+.titleButtonless{
+    display: flex;
+    align-items: center;
+    color: white;
+}
+

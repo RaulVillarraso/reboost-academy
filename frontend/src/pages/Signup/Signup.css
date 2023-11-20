@@ -1,0 +1,68 @@
+#mainView {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bodySignup {
+    width: 100vw;
+    height: 33em;
+    background-color: #444444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signupForm{
+    width: 33em;
+    height: 400px;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signupTitle{
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signupFields{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    margin: 8px;
+}
+
+.signupButtons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signupButtons > *{
+    margin: 4px;
+}
+
+#signupButton{
+    background-color: #00a077;
+    border-radius: 15px;
+}
+
+.socialMedia{
+    display: flex;
+    justify-content: space-evenly;
+    width: 8em;
+}
+
+.socialMedia > img{
+    width: 26px;
+    height: 26px;
+}
