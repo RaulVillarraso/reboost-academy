@@ -19,8 +19,11 @@ import MuiAppBar from "@mui/material/AppBar"
 import MenuIcon from "@mui/icons-material/Menu"
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
 import ChevronRightIcon from "@mui/icons-material/ChevronRight"
-import InboxIcon from "@mui/icons-material/MoveToInbox"
-import MailIcon from "@mui/icons-material/Mail"
+import ClassIcon from "@mui/icons-material/Class"
+import GroupIcon from "@mui/icons-material/Group"
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn"
+import LoginIcon from "@mui/icons-material/Login"
+import PersonAddIcon from "@mui/icons-material/PersonAdd"
 import "./Header.css"
 import { useState } from "react"
 
@@ -75,20 +78,39 @@ function Header() {
         setOpen(false)
     }
 
+    const switchStatement = (text) => {
+        switch(text){
+            case "Classes":
+                return <ClassIcon />
+                
+            case "Staff":
+                return <GroupIcon />
+                
+            case "Suscriptions":
+                return <MonetizationOnIcon />
+
+            case "Login":
+                return <LoginIcon />
+
+            case "Signup":
+                return <PersonAddIcon />
+        }
+    }
+
     return (
         <Box className="header">
             <Box className="menuIcon">
-                    <Toolbar >
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={handleDrawerOpen}
-                            edge="start"
-                            sx={{ mr: 2, ...(open && { display: "none" }) }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                    </Toolbar>
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerOpen}
+                        edge="start"
+                        sx={{ mr: 2, ...(open && { display: "none" }) }}
+                    >
+                        <MenuIcon sx={{color: "white"}} />
+                    </IconButton>
+                </Toolbar>
                 <Drawer
                     sx={{
                         width: drawerWidth,
@@ -112,22 +134,24 @@ function Header() {
 
                     <Divider />
                     <List>
-                        {["Classes", "Staff", "Suscriptions", "Login", "Signup"].map(
-                            (text, index) => (
-                                <ListItem key={text} disablePadding>
-                                    <ListItemButton>
-                                        <ListItemIcon>
-                                            {index % 2 === 0 ? (
-                                                <InboxIcon />
-                                            ) : (
-                                                <MailIcon />
-                                            )}
-                                        </ListItemIcon>
-                                        <ListItemText primary={text} />
-                                    </ListItemButton>
-                                </ListItem>
-                            )
-                        )}
+                        {[
+                            "Classes",
+                            "Staff",
+                            "Suscriptions",
+                            "Login",
+                            "Signup",
+                        ].map((text, index) => (
+                            <ListItem key={index} disablePadding>
+                                <ListItemButton>
+                                    <ListItemIcon>
+                                        
+                                            {switchStatement(text)}
+                                        
+                                    </ListItemIcon>
+                                    <ListItemText primary={text} />
+                                </ListItemButton>
+                            </ListItem>
+                        ))}
                     </List>
                 </Drawer>
             </Box>
