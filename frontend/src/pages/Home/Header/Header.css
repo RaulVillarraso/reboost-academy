@@ -61,3 +61,20 @@
 .register > button:nth-child(1):hover{
     background-color: #b38300;
 }
+
+.menuIcon{
+    display: none;
+}
+
+@media (max-width: 1200px){
+    .title{ display: none;}
+    .logoAndButtons{ display: none; }
+    .register { display: none; }
+    .menuIcon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        margin-left: 16px;
+    }
+}
