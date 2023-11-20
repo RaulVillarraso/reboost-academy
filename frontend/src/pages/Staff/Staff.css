@@ -1,0 +1,9 @@
+.msg {
+    position: relative;
+    display: flex;
+    
+}
+
+.p {
+    position: absolute;
+}
