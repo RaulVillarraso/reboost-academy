@@ -44,3 +44,20 @@
     align-items: center;
     width: 13em;
 }
+
+.register > button:nth-child(2){
+    background-color: #00A077;
+}
+
+.register > button:nth-child(2):hover{
+    background-color: #007255;
+}
+
+.register > button:nth-child(1){
+    background-color: #FCB900;
+    color: black;
+}
+
+.register > button:nth-child(1):hover{
+    background-color: #b38300;
+}
