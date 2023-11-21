@@ -1,5 +1,14 @@
 
-.staff {
+.eachElement.hovered {
+    transform: scaleY(6);
+    transition: transform 0.3s ease;
+    border: 1px solid #444444;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.clase {
     background-color: #444444;
     width: 100vw;
     height: 720px;
@@ -8,15 +17,15 @@
     top: 150px;
 }
 
-.staff1 {
+.clase1 {
     background-color: #444444;
     display: flex;
     position: relative;
     top: 16px;
-    left: 12vw;
+    left: 15vw;
 }
 
-.staff2 {
+.clase2 {
     background-color: #444444;
     display: flex;
 }

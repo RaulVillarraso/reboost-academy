@@ -1,10 +1,9 @@
-import { Box, Container, Grid, Typography } from "@mui/material"
+import { Box, Container, Grid } from "@mui/material"
 import "./Staff.css"
 
 import { useEffect, useState } from "react"
 import { getAllTeachers } from "../../services/teacher"
 import Header from "../Home/Header/Header"
-import Footer from "../../components/footer/Footer"
 
 import ImageList from "@mui/material/ImageList"
 import ImageListItem from "@mui/material/ImageListItem"
@@ -24,73 +23,67 @@ function TitlebarImageList() {
     }
 
     return (
-        <>
-            <div className="staff">
-                <Grid container spacing={2} className="staff1">
-                    <Grid item xs={6}>
-                        <ImageList
-                            sx={{
-                                height: 670,
-                            }}
-                        >
-                            <ImageListItem key="Subheader" cols={2}>
-                                <ListSubheader
-                                    sx={{
-                                        textAlign: "center",
-                                        backgroundColor: "#444444",
-                                        color: "#FFFFFF",
-                                    }}
-                                    component="div"
-                                >
-                                    WE STAFF !!
-                                </ListSubheader>
-                            </ImageListItem>
-                            {itemData.map((item, index) => (
-                                <ImageListItem
-                                    key={index}
-                                    onMouseEnter={() => handleMouseEnter(index)}
-                                    onMouseLeave={handleMouseLeave}
-                                >
-                                    <img
-                                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                        src={`${item.img}?w=248&fit=crop&auto=format`}
-                                        alt={item.title}
-                                        loading="lazy"
-                                    />
-                                    <ImageListItemBar
-                                        className={`eachElement ${
-                                            hoveredItem === index
-                                                ? "hovered"
-                                                : ""
-                                        }`}
-                                        title={
-                                            hoveredItem !== index
-                                                ? item.title
-                                                : `${item.specialization}`
-                                        }
-                                        subtitle={
-                                            hoveredItem !== index
-                                                ? item.author
-                                                : ""
-                                        }
-                                    />
-                                </ImageListItem>
-                            ))}
-                        </ImageList>
-                    </Grid>
-                    <Grid
-                        item
-                        xs={6}
-                        className="staff2"
+        <Box className="staff">
+            <Grid container spacing={2} className="staff1">
+                <Grid item xs={6}>
+                    <ImageList
                         sx={{
-                            height: 700,
+                            height: 670,
                         }}
                     >
-                        <img src="./src/assets/teachers/All2.jpg" />
-                    </Grid>
+                        <ImageListItem key="Subheader" cols={2}>
+                            <ListSubheader
+                                sx={{
+                                    textAlign: "center",
+                                    backgroundColor: "#444444",
+                                    color: "#FFFFFF",
+                                }}
+                                component="div"
+                            >
+                                WE STAFF !!
+                            </ListSubheader>
+                        </ImageListItem>
+                        {itemData.map((item, index) => (
+                            <ImageListItem
+                                key={index}
+                                onMouseEnter={() => handleMouseEnter(index)}
+                                onMouseLeave={handleMouseLeave}
+                            >
+                                <img
+                                    srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                    src={`${item.img}?w=248&fit=crop&auto=format`}
+                                    alt={item.title}
+                                    loading="lazy"
+                                />
+                                <ImageListItemBar
+                                    className={`eachElement ${
+                                        hoveredItem === index ? "hovered" : ""
+                                    }`}
+                                    title={
+                                        hoveredItem !== index
+                                            ? item.title
+                                            : `${item.specialization}`
+                                    }
+                                    subtitle={
+                                        hoveredItem !== index ? item.author : ""
+                                    }
+                                />
+                            </ImageListItem>
+                        ))}
+                    </ImageList>
                 </Grid>
-            </div>
-        </>
+                <Grid
+                    item
+                    xs={6}
+                    className="staff2"
+                    sx={{
+                        height: 700,
+                    }}
+                >
+                    <img src="./src/assets/teachers/All2.jpg" />
+                </Grid>
+            </Grid>
+        </Box>
     )
 }
 
@@ -100,9 +93,7 @@ const itemData = [
         title: "Iratze",
         author: "Eizaguirre",
         specialization: "Pilates",
-        rows: 2,
-        cols: 2,
-        featured: true,
+
     },
     {
         img: "./src/assets/teachers/2.jpg",
@@ -144,19 +135,19 @@ const itemData = [
         img: "./src/assets/teachers/8.jpg",
         title: "Aitana",
         author: "Bonmatí",
-        specialization: "Bailes",
+        specialization: "Body Pump",
     },
     {
         img: "./src/assets/teachers/9.jpg",
         title: "Nisa",
         author: "Santana",
-        specialization: "Bailes",
+        specialization: "Bailes latinos",
     },
     {
         img: "./src/assets/teachers/10.jpg",
         title: "Alvaro",
         author: "García",
-        specialization: "Bailes",
+        specialization: "Bailes de salón",
     },
 ]
 
