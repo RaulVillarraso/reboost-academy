@@ -53,10 +53,14 @@ function Header() {
                 return <MonetizationOnIcon />
 
             case "Login":
-                return <LoginIcon />
+                return (
+                        <LoginIcon />
+                )
 
             case "Signup":
-                return <PersonAddIcon />
+                return (
+                        <PersonAddIcon />
+                )
         }
     }
 
@@ -104,14 +108,16 @@ function Header() {
                             "Login",
                             "Signup",
                         ].map((text, index) => (
-                            <ListItem key={index} disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        {switchStatement(text)}
-                                    </ListItemIcon>
-                                    <ListItemText primary={text} />
-                                </ListItemButton>
-                            </ListItem>
+                            <Link key={index} to={`/${text.toLowerCase()}`} style={{textDecoration:"none", color: "black"}}>
+                                <ListItem  disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            {switchStatement(text)}
+                                        </ListItemIcon>
+                                        <ListItemText primary={text} />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
                         ))}
                     </List>
                 </Drawer>
@@ -124,15 +130,24 @@ function Header() {
                 <Button variant="contained">Staff</Button>
                 <Button variant="contained">Suscription</Button>
             </Box>
-            <Link to="/" style={{textDecoration: "none", alignSelf: "center"}}>
+            <Link
+                to="/"
+                style={{ textDecoration: "none", alignSelf: "center" }}
+            >
                 <Box className="title">
                     <Typography variant="h3">Reboost Academy</Typography>
                 </Box>
             </Link>
             <Box className="register">
-                <Button variant="contained">Login</Button>
+                <Link to="/login">
+                    <Button variant="contained" id="login">
+                        Login
+                    </Button>
+                </Link>
                 <Link to="/signup">
-                    <Button variant="contained">Signup</Button>
+                    <Button variant="contained" id="signup">
+                        Signup
+                    </Button>
                 </Link>
             </Box>
         </Box>

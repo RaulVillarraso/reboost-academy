@@ -45,20 +45,20 @@
     width: 13em;
 }
 
-.register > button:nth-child(2){
+#signup{
     background-color: #00A077;
 }
 
-.register > button:nth-child(2):hover{
+#signup:hover{
     background-color: #007255;
 }
 
-.register > button:nth-child(1){
+#login{
     background-color: #FCB900;
     color: black;
 }
 
-.register > button:nth-child(1):hover{
+#login:hover{
     background-color: #b38300;
 }
 
