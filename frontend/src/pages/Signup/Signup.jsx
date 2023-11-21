@@ -1,20 +1,38 @@
 import { Box, Button, IconButton, InputAdornment, TextField, Typography } from "@mui/material"
-import HeaderButtonless from "./HeaderButtonless/HeaderButtonless"
+import HeaderButtonless from "../../components/HeaderButtonless/HeaderButtonless"
 import Visibility from "@mui/icons-material/Visibility"
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
-import "./Signup.css"
 import { useState } from "react"
+import "./Signup.css"
+
+import { signup } from "../../services/authService"
+import { Link, useNavigate } from "react-router-dom"
 
 function Signup() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [repeatPassword, setRepeatPassword] = useState("")
     const [showPassword, setShowPassword] = useState(false)
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [phone, setPhone] = useState(0)
+    const [address, setAddress] = useState("")
+
+    const navigate = useNavigate()
 
     const handleClickShowPassword = () => setShowPassword((show) => !show)
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault()
+    }
+
+    async function onSignup(){
+        try {
+            const signupResponse = await signup({email: email, password: password, firstName: firstName, lastName: lastName, phone: phone, adress: address, role: "client",})
+            navigate("/")
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
     return (
@@ -33,10 +51,25 @@ function Signup() {
                     </Box>
                     <Box className="signupFields">
                         <TextField
+                            size="small"
+                            sx={{ margin: "4px", width: "17em" }}
+                            required
+                            label="First Name"
+                            onChange={(e) => setFirstName(e.target.value)}
+                        ></TextField>
+                        <TextField
+                            size="small"
+                            sx={{ margin: "4px", width: "17em" }}
+                            required
+                            label="Last Name"
+                            onChange={(e) => setLastName(e.target.value)}
+                        ></TextField>
+                        <TextField
                             sx={{ margin: "4px", width: "17em" }}
                             label="Email"
                             required
                             size="small"
+                            type="email"
                             onChange={(e) => setEmail(e.target.value)}
                         ></TextField>
                         <TextField
@@ -74,16 +107,31 @@ function Signup() {
                             onChange={(e) => setRepeatPassword(e.target.value)}
                             type="password"
                         ></TextField>
+                        <TextField
+                            size="small"
+                            sx={{ margin: "4px", width: "17em" }}
+                            label="Phone"
+                            onChange={(e) => setPhone(e.target.value)}
+                            type="number"
+                        ></TextField>
+                        <TextField
+                            size="small"
+                            sx={{ margin: "4px", width: "17em" }}
+                            label="Address"
+                            onChange={(e) => setAddress(e.target.value)}
+                        ></TextField>
                     </Box>
                     <Box className="signupButtons">
-                        <Button variant="contained" id="signupButton">
+                        <Button 
+                            variant="contained" 
+                            id="signupButton"
+                            onClick={() =>password !== repeatPassword ? alert("La contraseña no coincide") : onSignup()}>
                             Signup
                         </Button>
-                        <Typography>or</Typography>
-                        <Box className="socialMedia">
-                            <img src="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Google-256.png" />
-                            <img src="https://cdn3.iconfinder.com/data/icons/2018-social-media-logotypes/1000/2018_social_media_popular_app_logo_facebook-256.png" />
-                        </Box>
+                        <Typography sx={{marginTop: "8px"}}>
+                            Already have an account? 
+                            <Link>Click Here</Link>
+                        </Typography>
                     </Box>
                 </Box>
             </Box>

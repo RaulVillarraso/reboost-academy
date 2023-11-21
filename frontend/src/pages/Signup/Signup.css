@@ -7,16 +7,18 @@
 
 .bodySignup {
     width: 100vw;
-    height: 33em;
+    height: 40em;
     background-color: #444444;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .signupForm{
     width: 33em;
-    height: 400px;
+    height: 35em;
+    margin-left: 24px;
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -25,7 +27,7 @@
 }
 
 .signupTitle{
-    margin-top: 24px;
+    margin-top: 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,13 +58,16 @@
     border-radius: 15px;
 }
 
-.socialMedia{
-    display: flex;
-    justify-content: space-evenly;
-    width: 8em;
-}
+@media (max-width: 1200px){
+    .bodySignup{
+        height: 100%;
+    }
 
-.socialMedia > img{
-    width: 26px;
-    height: 26px;
+    .signupForm{
+        width:23em
+    }
+
+    .signupImage{
+        display: none;
+    }
 }
