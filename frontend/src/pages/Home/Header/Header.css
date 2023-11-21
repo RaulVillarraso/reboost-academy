@@ -66,9 +66,18 @@
     display: none;
 }
 
+.profilePic:hover{
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.profilePic:active{
+    box-shadow: 0 0 0 0 rgb(0, 0, 0);
+}
+
 @media (max-width: 1200px){
     .title{ display: none;}
     .logoAndButtons{ display: none; }
+    .profilePic{ display: none;}
     .register { display: none; }
     .menuIcon{
         display: flex;
