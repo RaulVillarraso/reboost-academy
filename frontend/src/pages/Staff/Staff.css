@@ -1,9 +1,25 @@
-.msg {
-    position: relative;
-    display: flex;
-    
+.headerList {
+    background-color: black;
 }
 
-.p {
+.hovered {
+    background-color: "#FFFFFF";
+    color: "#444444";
+}
+.staff {
+    background-color: #444444;
+    width: 100vw;
+}
+
+.staff1 {
+    background-color: #444444;
+    display: flex;
     position: absolute;
+    top:150px;
+    left: 100px;
+}
+
+.staff2 {
+    background-color: #444444;
+    display: flex;
 }

@@ -161,6 +161,7 @@ function Header() {
                 </Paper>
                 <Button variant="contained">Classes</Button>
                 <Button variant="contained">Staff</Button>
+                
                 <Button variant="contained">Suscription</Button>
             </Box>
             <Box className="title">
