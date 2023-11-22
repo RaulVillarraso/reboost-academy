@@ -1,0 +1,89 @@
+.header{
+    background-color: #444444;
+    width: 100vw;
+    height: 6em;
+    display: flex;
+    position: absolute;
+    top: 0;
+    justify-content: space-between;
+}
+
+.logoAndButtons{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30em;
+}
+
+.logoAndButtons > button {
+    height: 36px;
+    background-color: #FCB900;
+    color: black;
+}
+
+.logoAndButtons>button:hover{
+    background-color: #b38300
+}
+
+.logoAndButtons > .logo{
+    display: flex;
+    width: 76px;
+    height: 76px;
+    margin: 8px;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.register{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 13em;
+}
+
+#signup{
+    background-color: #00A077;
+}
+
+#signup:hover{
+    background-color: #007255;
+}
+
+#login{
+    background-color: #FCB900;
+    color: black;
+}
+
+#login:hover{
+    background-color: #b38300;
+}
+
+.menuIcon{
+    display: none;
+}
+
+.profilePic:hover{
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.profilePic:active{
+    box-shadow: 0 0 0 0 rgb(0, 0, 0);
+}
+
+@media (max-width: 1200px){
+    .title{ display: none;}
+    .logoAndButtons{ display: none; }
+    .profilePic{ display: none;}
+    .register { display: none; }
+    .menuIcon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        margin-left: 16px;
+    }
+}

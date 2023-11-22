@@ -11,7 +11,7 @@ const morgan = require('morgan')
 async function checkAndSyncSQL() {
     await checkConnection()
     addRelationsToModels()
-    await syncModels("alter")
+    await syncModels()
 }
 
 function initAndListen(){
