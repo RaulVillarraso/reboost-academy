@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from "@mui/material"
+import { Box, Container, Grid, Typography } from "@mui/material"
 import "./Classes.css"
 
 import { useEffect, useState } from "react"
@@ -25,11 +25,12 @@ function TitlebarImageList() {
     return (
         <>
             <div className="clase">
-                <Grid container spacing={2} className="clase1">
-                    <Grid item xs={6}>
+                <Grid container spacing={2} className="comp1">
+                    <Grid item xs={8} md={6}>
                         <ImageList
                             sx={{
                                 height: 670,
+                                
                             }}
                         >
                             <ImageListItem key="Subheader" cols={2}>
@@ -40,50 +41,68 @@ function TitlebarImageList() {
                                         backgroundColor: "#444444",
                                         color: "#FFFFFF",
                                     }}
-                                    component="div"
+                                    component="text"
                                 >
-                                    WE STAFF !!
+                                    WE CLASSES !!
                                 </ListSubheader>
                             </ImageListItem>
                             {itemData.map((item, index) => (
+                                
                                 <ImageListItem
+                                    className="contenedor"
                                     key={index}
                                     onMouseEnter={() => handleMouseEnter(index)}
                                     onMouseLeave={handleMouseLeave}
+                                    sx={{
+                                        '@media screen and (max-width: 600px)': {
+                                            width: '100%', 
+                                        },
+                                    }}
                                 >
                                     <img
+                                        className="imgClasses"
                                         srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                                         src={`${item.img}?w=248&fit=crop&auto=format`}
                                         alt={item.clase}
                                         loading="lazy"
                                     />
-                                    <ImageListItemBar
+{/*                                     <ImageListItemBar
                                         className={`eachElement ${
                                             hoveredItem === index
                                                 ? "hovered"
                                                 : ""
                                         }`}
                                         title={
-                                            hoveredItem !== index
-                                                ? item.clase
-                                                : <Typography>{item.description}</Typography>
+                                            hoveredItem !== index ? (
+                                                item.clase
+                                            ) : (
+                                                <Typography>
+                                                    {item.description}
+                                                </Typography>
+                                            )
                                         }
-                                    >
-                                    </ImageListItemBar>
-                                    
+                                    ></ImageListItemBar> */}
+                                    <Box className="capa">
+                                        <Box className='imgDescription'>
+                                        <h3 className="tittleCard">
+                                            {item.clase}
+                                        </h3>
+                                        <p>{item.description}</p>
+                                        </Box>
+                                    </Box>
                                 </ImageListItem>
                             ))}
                         </ImageList>
                     </Grid>
                     <Grid
+                        className="comp2"
                         item
                         xs={6}
-                        className="clase2"
                         sx={{
                             height: 700,
                         }}
                     >
-                        <img src="./src/assets/clases/All1.jpg" />
+                        <img className="imgClasses2" src="./src/assets/clases/primaryClases.jpg" />
                     </Grid>
                 </Grid>
             </div>
@@ -93,41 +112,53 @@ function TitlebarImageList() {
 
 const itemData = [
     {
-        img: "./src/assets/teachers/1.jpg",
+        img: "./src/assets/clases/pilates2.jpg",
         clase: "Pilates",
-        description: "Pilates concentrates on strengthening the body with an emphasis on your posture, balance, and flexibility. "
+        description:
+            "Pilates concentrates on strengthening the body with an emphasis on your posture, balance, and flexibility. ",
     },
     {
-        img: "./src/assets/teachers/1.jpg",
+        img: "./src/assets/clases/yoga.webp",
         clase: "Yoga",
-        description: "El yoga es una práctica que conecta el cuerpo, la respiración y la mente. Esta práctica utiliza posturas físicas, ejercicios de respiración y meditación para mejorar la salud general. "
+        description:
+            "El yoga es una práctica que conecta el cuerpo, la respiración y la mente. Esta práctica utiliza posturas físicas, ejercicios de respiración y meditación para mejorar la salud general. ",
     },
     {
-        img: "./src/assets/clases/1.jpg",
+        img: "./src/assets/clases/BP.jpg",
         clase: "Body Pump",
-        description: "El body pump es un programa de entrenamiento físico que combina las actividades propias del aeróbic con trabajo muscular mediante la realización de ejercicios de levantamiento de pesas. "
+        description:
+            "El body pump es un programa de entrenamiento físico que combina las actividades propias del aeróbic con trabajo muscular mediante la realización de ejercicios de levantamiento de pesas. ",
     },
     {
-        img: "./src/assets/teachers/1.jpg",
+        img: "./src/assets/clases/BC.jpeg",
         clase: "Body Combat",
-        description: "El body combat es un programa de ejercicios cardiovasculares que se realiza en grupo y consiste en realizar movimientos de diferentes artes marciales "
+        description:
+            "El body combat es un programa de ejercicios cardiovasculares que se realiza en grupo y consiste en realizar movimientos de diferentes artes marciales ",
     },
     {
-        img: "./src/assets/teachers/1.jpg",
+        img: "./src/assets/clases/BB2.jpg",
         clase: "Body Balance",
-        description: "Pilates concentrates on strengthening the body with an emphasis on your posture, balance, and flexibility. "
+        description:
+            "Pilates concentrates on strengthening the body with an emphasis on your posture, balance, and flexibility. ",
     },
     {
-        img: "./src/assets/teachers/1.jpg",
-        clase: "Bailes de salón",
-        description: "Pilates concentrates on strengthening the body with an emphasis on your posture, balance, and flexibility. "
+        img: "./src/assets/clases/CI.jpg",
+        clase: "Ciclo Indoor",
+        description:
+            "Pilates concentrates on strengthening the body with an emphasis on your posture, balance, and flexibility. ",
     },
     {
-        img: "./src/assets/teachers/1.jpg",
+        img: "./src/assets/clases/BS1.jpg",
         clase: "Bailes latinos",
-        description: "Pilates concentrates on strengthening the body with an emphasis on your posture, balance, and flexibility. "
+        description:
+            "Pilates concentrates on strengthening the body with an emphasis on your posture, balance, and flexibility. ",
     },
-
+    {
+        img: "./src/assets/clases/BL.jpg",
+        clase: "Bailes de salón",
+        description:
+            "Pilates concentrates on strengthening the body with an emphasis on your posture, balance, and flexibility. ",
+    },
 ]
 
 function Classes() {

@@ -23,9 +23,10 @@ function TitlebarImageList() {
     }
 
     return (
-        <Box className="staff">
-            <Grid container spacing={2} className="staff1">
-                <Grid item xs={6}>
+        <>
+        <div className="staff">
+            <Grid container spacing={2} className="comp1">
+                <Grid item xs={8} md={6}>
                     <ImageList
                         sx={{
                             height: 670,
@@ -34,28 +35,36 @@ function TitlebarImageList() {
                         <ImageListItem key="Subheader" cols={2}>
                             <ListSubheader
                                 sx={{
+                                    fontSize: 20,
                                     textAlign: "center",
                                     backgroundColor: "#444444",
                                     color: "#FFFFFF",
                                 }}
-                                component="div"
+                                component="text"
                             >
                                 WE STAFF !!
                             </ListSubheader>
                         </ImageListItem>
                         {itemData.map((item, index) => (
                             <ImageListItem
+                            className="contenedor"
                                 key={index}
                                 onMouseEnter={() => handleMouseEnter(index)}
                                 onMouseLeave={handleMouseLeave}
+                                sx={{
+                                    '@media screen and (max-width: 600px)': {
+                                        width: '100%', 
+                                    },
+                                }}
                             >
                                 <img
+                                    className="imgStaff"
                                     srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                                     src={`${item.img}?w=248&fit=crop&auto=format`}
                                     alt={item.title}
                                     loading="lazy"
                                 />
-                                <ImageListItemBar
+                                {/* <ImageListItemBar
                                     className={`eachElement ${
                                         hoveredItem === index ? "hovered" : ""
                                     }`}
@@ -67,7 +76,17 @@ function TitlebarImageList() {
                                     subtitle={
                                         hoveredItem !== index ? item.author : ""
                                     }
-                                />
+                                /> */}
+                                <Box className="capa">
+                                        <Box className='imgDescription'>
+                                        <h3 className="tittleCard">
+                                            {item.title} 
+                                            <br/>
+                                            {item.author}
+                                        </h3>
+                                        <p>{item.specialization}</p>
+                                        </Box>
+                                </Box>
                             </ImageListItem>
                         ))}
                     </ImageList>
@@ -75,15 +94,16 @@ function TitlebarImageList() {
                 <Grid
                     item
                     xs={6}
-                    className="staff2"
+                    className="comp2"
                     sx={{
                         height: 700,
                     }}
                 >
-                    <img src="./src/assets/teachers/All2.jpg" />
+                    <img className="imgStaff2" src="./src/assets/teachers/All2.jpg" />
                 </Grid>
             </Grid>
-        </Box>
+        </div>
+        </>
     )
 }
 

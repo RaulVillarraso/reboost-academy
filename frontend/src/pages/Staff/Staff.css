@@ -8,15 +8,17 @@
     top: 150px;
 }
 
-.staff1 {
-    background-color: #444444;
-    display: flex;
-    position: relative;
-    top: 16px;
-    left: 12vw;
+.imgStaff {
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0px 15px 25px;
+    cursor: pointer;
+    transition: all 2500ms ease-out;
 }
 
-.staff2 {
-    background-color: #444444;
-    display: flex;
+.imgStaff2 {
+    border-radius: 6px;
+    box-shadow: 0px 15px 25px;
 }
+
+
