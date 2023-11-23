@@ -97,7 +97,9 @@ function TitlebarImageList() {
                     className="comp2"
                     sx={{
                         height: 700,
-                    }}
+                        '@media screen and (max-width: 900px)': {
+                            display: 'none',
+                        }}}
                 >
                     <img className="imgStaff2" src="./src/assets/teachers/All2.jpg" />
                 </Grid>

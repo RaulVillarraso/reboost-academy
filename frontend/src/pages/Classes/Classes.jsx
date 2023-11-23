@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography } from "@mui/material"
+import { Box, Container, Grid } from "@mui/material"
 import "./Classes.css"
 
 import { useEffect, useState } from "react"
@@ -7,7 +7,7 @@ import Header from "../Home/Header/Header"
 import ImageList from "@mui/material/ImageList"
 import ImageListItem from "@mui/material/ImageListItem"
 
-import ImageListItemBar from "@mui/material/ImageListItemBar"
+
 import ListSubheader from "@mui/material/ListSubheader"
 import { getAllClases } from "../../services/clase"
 
@@ -100,6 +100,9 @@ function TitlebarImageList() {
                         xs={6}
                         sx={{
                             height: 700,
+                            '@media screen and (max-width: 900px)': {
+                                display: 'none',
+                            },
                         }}
                     >
                         <img className="imgClasses2" src="./src/assets/clases/primaryClases.jpg" />
