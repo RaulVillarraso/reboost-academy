@@ -1,7 +1,5 @@
-import { Logout } from "@mui/icons-material"
 import "./HeaderButtonless.css"
-import { Avatar, Box, List, ListItem, ListItemButton, ListItemText, Typography } from "@mui/material"
-import { useState } from "react"
+import { Avatar, Box, Typography } from "@mui/material"
 import { Link } from "react-router-dom"
 
 function HeaderButtonless() {
@@ -21,7 +19,6 @@ function HeaderButtonless() {
                 alt="profile pic"
                 src=""
                 sx={{ position: "absolute", alignSelf:"flex-end", marginRight:"32px" }}
-                onClick={() => setMenuDisplay(!menuDisplay)}
             />
             <Box
                 sx={{
