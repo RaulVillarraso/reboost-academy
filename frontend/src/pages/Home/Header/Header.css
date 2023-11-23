@@ -45,20 +45,20 @@
     width: 13em;
 }
 
-.register > button:nth-child(2){
+#signup{
     background-color: #00A077;
 }
 
-.register > button:nth-child(2):hover{
+#signup:hover{
     background-color: #007255;
 }
 
-.register > button:nth-child(1){
+#login{
     background-color: #FCB900;
     color: black;
 }
 
-.register > button:nth-child(1):hover{
+#login:hover{
     background-color: #b38300;
 }
 
@@ -66,9 +66,18 @@
     display: none;
 }
 
+.profilePic:hover{
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.profilePic:active{
+    box-shadow: 0 0 0 0 rgb(0, 0, 0);
+}
+
 @media (max-width: 1200px){
     .title{ display: none;}
     .logoAndButtons{ display: none; }
+    .profilePic{ display: none;}
     .register { display: none; }
     .menuIcon{
         display: flex;

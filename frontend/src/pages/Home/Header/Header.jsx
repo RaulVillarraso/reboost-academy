@@ -13,6 +13,7 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
+    Avatar,
 } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
@@ -22,6 +23,7 @@ import GroupIcon from "@mui/icons-material/Group"
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn"
 import LoginIcon from "@mui/icons-material/Login"
 import PersonAddIcon from "@mui/icons-material/PersonAdd"
+import LogoutIcon from "@mui/icons-material/Logout"
 import "./Header.css"
 import { Link } from "react-router-dom"
 import { useState } from "react"
@@ -29,9 +31,12 @@ import { useState } from "react"
 const drawerWidth = 240
 
 function Header() {
-    
     const theme = useTheme()
     const [open, setOpen] = useState(false)
+    const [menuDisplay, setMenuDisplay] = useState(true)
+    const guest = ["Classes", "Staff", "Suscriptions", "Login", "Signup",]
+    const account = ["Classes", "Staff", "Suscriptions", "Logout"]
+    const array = localStorage.token ? account : guest
 
     const handleDrawerOpen = () => {
         setOpen(true)
@@ -41,14 +46,20 @@ function Header() {
         setOpen(false)
     }
 
+    const logout = () => {
+        localStorage.removeItem("token")
+        localStorage.removeItem("rol")
+        window.location.reload(false)
+    }
+
     const switchStatement = (text) => {
-        switch(text){
+        switch (text) {
             case "Classes":
                 return <ClassIcon />
-                
+
             case "Staff":
                 return <GroupIcon />
-                
+
             case "Suscriptions":
                 return <MonetizationOnIcon />
 
@@ -57,6 +68,9 @@ function Header() {
 
             case "Signup":
                 return <PersonAddIcon />
+
+            case "Logout":
+                return <LogoutIcon />
         }
     }
 
@@ -97,21 +111,24 @@ function Header() {
 
                     <Divider />
                     <List>
-                        {[
-                            "Classes",
-                            "Staff",
-                            "Suscriptions",
-                            "Login",
-                            "Signup",
-                        ].map((text, index) => (
-                            <ListItem key={index} disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        {switchStatement(text)}
-                                    </ListItemIcon>
-                                    <ListItemText primary={text} />
-                                </ListItemButton>
-                            </ListItem>
+                        {array.map((text, index) => (
+                            <Link
+                                key={index}
+                                to={`/${text.toLowerCase()}`}
+                                style={{
+                                    textDecoration: "none",
+                                    color: "black",
+                                }}
+                            >
+                                <ListItem disablePadding onClick={text === "Logout" ? () => logout() : null}>
+                                    <ListItemButton>
+                                        <ListItemIcon>
+                                            {switchStatement(text)}
+                                        </ListItemIcon>
+                                        <ListItemText primary={text} />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
                         ))}
                     </List>
                 </Drawer>
@@ -125,17 +142,74 @@ function Header() {
                 
                 <Button variant="contained">Suscription</Button>
             </Box>
-            <Link to="/" style={{textDecoration: "none", alignSelf: "center"}}>
+            <Link
+                to="/"
+                style={{ textDecoration: "none", alignSelf: "center" }}
+            >
                 <Box className="title">
                     <Typography variant="h3">Reboost Academy</Typography>
                 </Box>
             </Link>
-            <Box className="register">
-                <Button variant="contained">Login</Button>
-                <Link to="/signup">
-                    <Button variant="contained">Signup</Button>
-                </Link>
-            </Box>
+            {!localStorage.token ? (
+                <Box className="register">
+                    <Link to="/login">
+                        <Button variant="contained" id="login">
+                            Login
+                        </Button>
+                    </Link>
+                    <Link to="/signup">
+                        <Button variant="contained" id="signup">
+                            Signup
+                        </Button>
+                    </Link>
+                </Box>
+            ) : (
+                <Box 
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "10em",
+                    }}>
+                    <Avatar 
+                        className= "profilePic"
+                        alt="profile pic"
+                        src=""
+                        sx={{ position: "absolute" }}
+                        onClick={() => setMenuDisplay(!menuDisplay)}
+                    />
+                    <Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                        }}
+                    >
+                        <List
+                            sx={{
+                                backgroundColor: "background.paper",
+                                borderRadius: "10px",
+                                marginTop: "10em",
+                                boxShadow: "2px 2px 2px 1px rgba(0, 0, 0, 0.2)",
+                                display: menuDisplay ? "none" : null,
+                            }}
+                        >
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <ListItemText primary="Profile" />
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem disablePadding>
+                                <ListItemButton>
+                                    <ListItemText
+                                        onClick={() => logout()}
+                                        primary="Logout"
+                                    />
+                                </ListItemButton>
+                            </ListItem>
+                        </List>
+                    </Box>
+                </Box>
+            )}
         </Box>
     )
 }
