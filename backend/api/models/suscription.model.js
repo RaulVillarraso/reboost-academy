@@ -10,6 +10,12 @@ const Suscription = sequelize.define(
         },
         cost: {
             type: DataTypes.INTEGER
+        },
+        suscription_Description: {
+            type: DataTypes.STRING
+        },
+        suscription_Img: {
+            type: DataTypes.STRING
         }
     },
     {

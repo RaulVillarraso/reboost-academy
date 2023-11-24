@@ -1,60 +1,158 @@
 import "./Suscription.css"
 
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
-import { Container, Grid } from "@mui/material";
-import Header from "../Home/Header/Header";
+import {
+    Box,
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    CardMedia,
+    Container,
+    Grid,
+    ImageList,
+    ImageListItem,
+    ListSubheader,
+    Typography,
+} from "@mui/material"
+import Header from "../Home/Header/Header"
+import { useEffect, useState } from "react"
+import { getAllSuscriptions } from "../../services/suscription"
+import { Link } from "react-router-dom"
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(10),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+function Method() {
+    const [suscriptions, setSuscriptions] = useState([])
 
-const item = [
-    {
-        img: "./src/assets/teachers/1.jpg",
-        title: "Iratze",
-        author: "Eizaguirre",
-        specialization: "Pilates",
+    async function getSuscriptions() {
+        try {
+            const result = await getAllSuscriptions()
+            setSuscriptions(result)
+            console.log(result)
+        } catch (error) {
+            console.error("Error fetching suscriptions:", error)
+        }
+    }
 
-    },
-    {
-        img: "./src/assets/teachers/2.jpg",
-        title: "Yeray",
-        author: "Peñate Gil",
-        specialization: "Body Pump",
-    },
-    {
-        img: "./src/assets/teachers/3.jpeg",
-        title: "Adrian",
-        author: "Suarez",
-        specialization: "Body Combat",
-    }]
+    useEffect(() => {
+        getSuscriptions()
+    }, [])
+    const [hoveredItem, setHoveredItem] = useState("")
 
-function BasicStack() {
-  return (
-    <>
-    <Box sx={{ width: '40%'}}>
-        <Grid><img src={item.img}/></Grid>
-        <Item>Item 2</Item>
-        <Item>Item 3</Item>  
-    </Box>
-    </>  
-  );
+    const handleMouseEnter = (index) => {
+        setHoveredItem(index)
+    }
+
+    const handleMouseLeave = () => {
+        setHoveredItem()
+    }
+
+    return (
+        <div className="suscriptionpag">
+            <Grid container spacing={2} className="comp1">
+                <Grid item xs={8} md={6}>
+                    <ImageList
+                        sx={{
+                            height: 670,
+                        }}
+                    >
+                        <ImageListItem key="Subheader" cols={2}>
+                            <ListSubheader
+                                sx={{
+                                    fontSize: 20,
+                                    textAlign: "center",
+                                    backgroundColor: "#444444",
+                                    color: "#FFFFFF",
+                                }}
+                                component="text"
+                            >
+                                WE SUSCRIPTIONS !!
+                            </ListSubheader>
+                        </ImageListItem>
+                        {suscriptions.map((suscription, index) => (
+                            <ImageListItem
+                                className="contenedor"
+                                key={index}
+                                onMouseEnter={() => handleMouseEnter(index)}
+                                onMouseLeave={handleMouseLeave}
+                                sx={{
+                                    "@media screen and (max-width: 600px)": {
+                                        width: "100%",
+                                    },
+                                }}
+                            >
+                                <img
+                                    className="imgSuscription"
+                                    srcSet={`${suscription.suscription_Img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                    src={`${suscription.suscription_Img}?w=248&fit=crop&auto=format`}
+                                    alt={suscription.suscription_Img}
+                                    loading="lazy"
+                                />
+                                <Box className="capa">
+                                    <Box className="imgDescription">
+                                        <h3 className="tittleCard">
+                                            {suscription.suscription_Type}
+                                        </h3>
+                                        <p>{suscription.suscription_Type}</p>
+                                        <Link to="https://buy.stripe.com/test_cN2cQF7gMfszfQY8wz">
+                                <Button variant="outlined">Buy now</Button>
+                            </Link>
+                                    </Box>
+                                </Box>
+                            </ImageListItem>
+                        ))}
+                    </ImageList>
+                </Grid>
+                <Grid
+                    item
+                    xs={6}
+                    className="comp2"
+                    sx={{
+                        height: 700,
+                        "@media screen and (max-width: 900px)": {
+                            display: "none",
+                        },
+                    }}
+                >
+                    <img
+                        className="imgSuscription2"
+                        src="./src/assets/suscriptions/All3.jpg"
+                    />
+                </Grid>
+            </Grid>
+            {/* {suscriptions.map((subscription) => (
+                <Card key={subscription.id} sx={{ maxWidth: 345 }}>
+                    <CardMedia
+                        sx={{ height: 140 }}
+                        image={subscription.suscription_Img}  
+                        title={subscription.suscription_Type}
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                        {subscription.suscription_Type}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            description
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small">Buy</Button>
+                    </CardActions>
+                </Card>
+            ))} */}
+        </div>
+    )
 }
-
-
-
 
 export default function Suscription() {
     return (
         <>
-        <Header/>
-        <Container id="suscription">{BasicStack()}</Container>
+            <Header />
+            <Container className="method">{Method()}</Container>
         </>
     )
 }
+
+/* 
+mensual: https://buy.stripe.com/test_bIYcQFeJe4NVeMUbIJ
+trimestral: https://buy.stripe.com/test_fZe6sh1Ws94b48g6oq
+anual: https://buy.stripe.com/test_cN2cQF7gMfszfQY8wz
+ */

@@ -1,5 +1,33 @@
-#suscription {
+.suscriptionB {
     display: flex;
     position: absolute;
     margin-top: 8em;
 }
+
+.buyButton {
+    color: #e20000;
+}
+
+.suscriptionpag {
+    background-color: #444444;
+    width: 100vw;
+    height: 720px;
+    position: absolute;
+    left: 0px;
+    top: 150px;
+}
+
+.imgSuscription {
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0px 15px 25px;
+    cursor: pointer;
+    transition: all 2500ms ease-out;
+}
+
+.imgSuscription2 {
+    border-radius: 6px;
+    box-shadow: 0px 15px 25px;
+}
+
+
