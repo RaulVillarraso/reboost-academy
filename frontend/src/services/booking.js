@@ -1,4 +1,4 @@
-import api from './config.js'
+import api from './index.js'
 
 export const getallBoocking = async () => {
   const { data } = await api.get('/booking')
@@ -6,6 +6,10 @@ export const getallBoocking = async () => {
 
 }
 
+export const getClassroomCapacity = async (id) => {
+  const data = await api.get(`booking/clase/classroom/${id}`)
+  return data
+}
 
 export const postBooking = async (bookingData) => {
   const data = await api.post("/booking",bookingData)
@@ -23,3 +27,4 @@ export const updateBooking = async (id,bookingData) => {
   console.log(id,bookingData)
   return data
 }
+

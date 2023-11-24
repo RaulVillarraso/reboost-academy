@@ -1,7 +1,17 @@
+
+
 #boton{
     padding-right: 61vw;
     padding-bottom: 2vh;
 }
+.fc-direction-ltr {
+ 
+    height: 75vh;
+    width: 70vw;}
+
+    #calendar2{
+    width: 40vw;}  
+    
 .pilates {
     background-color: grey;
     border: 2px solid red;

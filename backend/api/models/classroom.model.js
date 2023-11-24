@@ -8,6 +8,11 @@ const Classroom = sequelize.define('classroom', {
             
         },
         capacity: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+
+        targeted:{
             type: DataTypes.INTEGER
         },
 

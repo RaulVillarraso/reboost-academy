@@ -30,7 +30,10 @@ const { nameEvent ,dateStartEvent, dateEndEvent,classNameEvent } = props;
             Termina: {dateEndEvent}
             
             <br />
+            { localStorage.getItem("rol") === "Admin" && (
+            <Typography gutterBottom variant="h8" component="div">
             Clase : {classNameEvent}
+            </Typography>)}
           </Typography>
         </CardContent>
       </CardActionArea>

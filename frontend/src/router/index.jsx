@@ -4,7 +4,7 @@ import Home from "../pages/Home/Home";
 import Root from "../layouts/Root";
 import Signup from "../pages/Signup/Signup";
 import Login from "../pages/Login/Login";
-import Calendar from "../pages/Home/Calendar/Calendar";
+import Calendar from "../pages/Calendar/Calendar";
 import Profile from "../pages/Profile/Profile";
 
 const router = createBrowserRouter([
