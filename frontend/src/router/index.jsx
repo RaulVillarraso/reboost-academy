@@ -27,7 +27,7 @@ const router = createBrowserRouter([
             {
                 path: "/profile",
                 element: <Profile />
-            }
+            },
             {
                 path: "/calendar",
                 element: <Calendar />
