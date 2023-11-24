@@ -3,6 +3,7 @@
     width: 100vw;
     height: 6em;
     display: flex;
+    flex-direction: column;
     position: absolute;
     top: 0;
     justify-content: center;
@@ -13,4 +14,6 @@
     align-items: center;
     color: white;
 }
+
+
 
