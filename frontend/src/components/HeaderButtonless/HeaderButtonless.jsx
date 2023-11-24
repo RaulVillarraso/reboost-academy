@@ -1,8 +1,9 @@
 import "./HeaderButtonless.css"
 import { Avatar, Box, Typography } from "@mui/material"
 import { Link } from "react-router-dom"
+import { PropTypes } from "prop-types"
 
-function HeaderButtonless() {
+function HeaderButtonless({ profile }) {
 
     return (
         <Box className="headerButtonless">
@@ -14,12 +15,13 @@ function HeaderButtonless() {
                     <Typography variant="h3">Reboost Academy</Typography>
                 </Box>
             </Link>
-            <Avatar
+            {profile ? <Avatar
                 className="profilePic"
                 alt="profile pic"
-                src=""
+                src={profile.profileImg}
                 sx={{ position: "absolute", alignSelf:"flex-end", marginRight:"32px" }}
-            />
+            /> : null}
+            
             <Box
                 sx={{
                     display: "flex",
@@ -34,3 +36,7 @@ function HeaderButtonless() {
 }
 
 export default HeaderButtonless
+
+HeaderButtonless.propTypes = {
+    profile: PropTypes.objectm
+}

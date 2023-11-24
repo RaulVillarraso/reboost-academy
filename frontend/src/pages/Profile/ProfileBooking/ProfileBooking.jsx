@@ -8,7 +8,6 @@ import { getUserSuscription } from "../../../services/userService"
 function ProfileBooking({ bookings }) {
 
         const [suscription, setSuscription] = useState("")
-        const dense = useState(true)
 
         function generate() {
             if (bookings.bookings) {
@@ -55,7 +54,7 @@ function ProfileBooking({ bookings }) {
                                 ? suscription.suscription_Type
                                 : "You don't have an active suscription"}
                         </Typography>
-                        <List dense={dense}>
+                        <List>
                             {bookings.bookings ? generate() : null}
                         </List>
                     </Grid>
@@ -69,5 +68,4 @@ export default ProfileBooking
 
 ProfileBooking.propTypes = {
     bookings: PropTypes.object,
-    profile: PropTypes.object
 }

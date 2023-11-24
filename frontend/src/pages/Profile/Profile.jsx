@@ -36,7 +36,7 @@ function Profile() {
 
     return (
         <>
-            <HeaderButtonless />
+            <HeaderButtonless profile={profile}/>
             <Box className="profileContainer">
                 <Box className="profileWrapper">
                     <ProfileData profile={profile} onEdit={handleRefresh} />

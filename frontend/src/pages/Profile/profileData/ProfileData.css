@@ -29,7 +29,7 @@
 
 .profileInfo {
     width: 20em;
-    height: 15em;
+    height: 20em;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
