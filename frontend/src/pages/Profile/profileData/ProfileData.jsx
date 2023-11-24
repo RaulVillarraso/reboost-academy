@@ -184,4 +184,5 @@ export default ProfileData
 
 ProfileData.propTypes = {
     profile: PropTypes.object,
+    onEdit: PropTypes.func
 }
