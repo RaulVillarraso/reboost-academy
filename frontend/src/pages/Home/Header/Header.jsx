@@ -120,7 +120,14 @@ function Header() {
                                     color: "black",
                                 }}
                             >
-                                <ListItem disablePadding onClick={text === "Logout" ? () => logout() : null}>
+                                <ListItem
+                                    disablePadding
+                                    onClick={
+                                        text === "Logout"
+                                            ? () => logout()
+                                            : null
+                                    }
+                                >
                                     <ListItemButton>
                                         <ListItemIcon>
                                             {switchStatement(text)}
@@ -163,15 +170,16 @@ function Header() {
                     </Link>
                 </Box>
             ) : (
-                <Box 
+                <Box
                     sx={{
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
                         width: "10em",
-                    }}>
-                    <Avatar 
-                        className= "profilePic"
+                    }}
+                >
+                    <Avatar
+                        className="profilePic"
                         alt="profile pic"
                         src=""
                         sx={{ position: "absolute" }}
@@ -194,7 +202,15 @@ function Header() {
                         >
                             <ListItem disablePadding>
                                 <ListItemButton>
-                                    <ListItemText primary="Profile" />
+                                    <Link
+                                        to="/profile"
+                                        style={{
+                                            textDecoration: "none",
+                                            color: "black",
+                                        }}
+                                    >
+                                        <ListItemText primary="Profile" />
+                                    </Link>
                                 </ListItemButton>
                             </ListItem>
                             <ListItem disablePadding>
