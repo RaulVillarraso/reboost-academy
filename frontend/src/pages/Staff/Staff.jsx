@@ -176,9 +176,9 @@ const itemData = [
 function Staff() {
     const [teachers, setTeachers] = useState([])
     async function allTeachers() {
-        const x = await getAllTeachers()
-        setTeachers(x)
-        console.log(x)
+        const result = await getAllTeachers()
+        setTeachers(result)
+        console.log(result)
     }
 
     useEffect(() => {

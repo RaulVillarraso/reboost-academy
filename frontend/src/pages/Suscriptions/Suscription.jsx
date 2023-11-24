@@ -14,17 +14,40 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+const item = [
+    {
+        img: "./src/assets/teachers/1.jpg",
+        title: "Iratze",
+        author: "Eizaguirre",
+        specialization: "Pilates",
+
+    },
+    {
+        img: "./src/assets/teachers/2.jpg",
+        title: "Yeray",
+        author: "Peñate Gil",
+        specialization: "Body Pump",
+    },
+    {
+        img: "./src/assets/teachers/3.jpeg",
+        title: "Adrian",
+        author: "Suarez",
+        specialization: "Body Combat",
+    }]
+
 function BasicStack() {
   return (
     <>
     <Box sx={{ width: '40%'}}>
-        <Grid><img src="https://developer.mozilla.org/pimg/aHR0cHM6Ly9zLnprY2RuLm5ldC9BZHZlcnRpc2Vycy85YTJmZjZhZGY5ZDk0ZGE5OThjMjc5N2U5N2I4ZGQzZi5qcGc%3D.LyI%2B%2BL%2FItk0dM53FI2%2Bn%2FxeKyzO9opZdObAXH2PqT%2Fs%3D"/></Grid>
+        <Grid><img src={item.img}/></Grid>
         <Item>Item 2</Item>
         <Item>Item 3</Item>  
     </Box>
     </>  
   );
 }
+
+
 
 
 export default function Suscription() {
