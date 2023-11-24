@@ -2,6 +2,7 @@ const Booking = require('../models/booking.model')
 const Classroom = require('../models/classroom.model')
 const Clase = require('../models/clase.model')
 const User = require('../models/user.model')
+const Suscription = require('../models/suscription.model')
 
 //CRUD
 
@@ -67,7 +68,7 @@ async function getBookedClasses(req, res) {
             include: [
                 {
                     model: Booking,
-                    attributes: ['bookingDate'],
+                    attributes: ['start'],
                     include: [
                         {
                             model: Clase,
@@ -94,11 +95,35 @@ async function getBookedClasses(req, res) {
     }
 }
 
-module.exports = {
-    getAllUsers,
-    getOneUser,
-    createUser,
-    updateUser,
-    deleteUser,
-    getBookedClasses,
+async function getUserProfile(req, res) {
+    try {
+        const user = await User.findByPk(res.locals.user.id);
+        if (user) {
+        return res.status(200).json(user);
+        } else {
+        return res.status(200).send("No user found");
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 }
+
+async function getUserSuscription(req, res){
+    try {
+        const user = await User.findByPk(res.locals.user.id)
+        res.status(200).send( await user.getSuscription() )
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
+}
+
+module.exports = {
+  getAllUsers,
+  getOneUser,
+  createUser,
+  updateUser,
+  deleteUser,
+  getBookedClasses,
+  getUserProfile,
+  getUserSuscription,
+};
