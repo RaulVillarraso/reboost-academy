@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.11.2",
+    "@cloudinary/url-gen": "^1.13.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.8",
@@ -17,6 +19,7 @@
     "@mui/material": "^5.14.18",
     "@mui/x-data-grid": "^6.18.1",
     "axios": "^1.6.2",
+    "cloudinary": "^1.41.0",
     "dayjs": "^1.11.10",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

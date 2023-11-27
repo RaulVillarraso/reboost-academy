@@ -1,0 +1,24 @@
+
+.staff {
+    background-color: #444444;
+    width: 100vw;
+    height: 720px;
+    position: absolute;
+    left: 0px;
+    top: 150px;
+}
+
+.imgStaff {
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0px 15px 25px;
+    cursor: pointer;
+    transition: all 2500ms ease-out;
+}
+
+.imgStaff2 {
+    border-radius: 6px;
+    box-shadow: 0px 15px 25px;
+}
+
+

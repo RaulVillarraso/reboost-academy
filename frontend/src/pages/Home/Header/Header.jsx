@@ -24,9 +24,10 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn"
 import LoginIcon from "@mui/icons-material/Login"
 import PersonAddIcon from "@mui/icons-material/PersonAdd"
 import LogoutIcon from "@mui/icons-material/Logout"
+import {getUserProfile} from "../../../services/userService"
 import "./Header.css"
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const drawerWidth = 240
 
@@ -34,9 +35,15 @@ function Header() {
     const theme = useTheme()
     const [open, setOpen] = useState(false)
     const [menuDisplay, setMenuDisplay] = useState(true)
+    const [profile, setProfile] = useState({})
     const guest = ["Classes", "Staff", "Suscriptions", "Login", "Signup",]
     const account = ["Classes", "Staff", "Suscriptions", "Logout"]
     const array = localStorage.token ? account : guest
+    
+    async function getProfile() {
+        const result = await getUserProfile()
+        setProfile(result)
+    }
 
     const handleDrawerOpen = () => {
         setOpen(true)
@@ -73,6 +80,10 @@ function Header() {
                 return <LogoutIcon />
         }
     }
+
+    useEffect(() => {
+        getProfile()
+    },[])
 
     return (
         <Box className="header">
@@ -144,9 +155,15 @@ function Header() {
                 <Paper className="logo">
                     <img src="https://placehold.co/76x76" />
                 </Paper>
-                <Button variant="contained">Classes</Button>
-                <Button variant="contained">Staff</Button>
-                <Button variant="contained">Suscription</Button>
+                <Link to='/clase'>
+                <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Classes</Button>
+                </Link>
+                <Link to='/staff'>
+                <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Staff</Button>
+                </Link>
+                <Link to='/suscription'>
+                <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Suscription</Button>
+                </Link>
             </Box>
             <Link
                 to="/"
@@ -159,7 +176,7 @@ function Header() {
             {!localStorage.token ? (
                 <Box className="register">
                     <Link to="/login">
-                        <Button variant="contained" id="login">
+                        <Button  variant="contained" id="login">
                             Login
                         </Button>
                     </Link>
@@ -181,7 +198,7 @@ function Header() {
                     <Avatar
                         className="profilePic"
                         alt="profile pic"
-                        src=""
+                        src={profile.profileImg}
                         sx={{ position: "absolute" }}
                         onClick={() => setMenuDisplay(!menuDisplay)}
                     />

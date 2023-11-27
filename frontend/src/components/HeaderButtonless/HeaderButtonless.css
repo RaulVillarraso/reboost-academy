@@ -3,10 +3,9 @@
     width: 100vw;
     height: 6em;
     display: flex;
-    flex-direction: column;
     position: absolute;
+    justify-content: space-between;
     top: 0;
-    justify-content: center;
 }
 
 .titleButtonless{
@@ -14,6 +13,7 @@
     align-items: center;
     color: white;
 }
+
 
 
 
