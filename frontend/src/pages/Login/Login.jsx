@@ -18,6 +18,7 @@ function Login() {
     const [password, setPassword] = useState("")
     const [showPassword, setShowPassword] = useState(false)
 
+
     const navigate = useNavigate()
 
     const handleClickShowPassword = () => setShowPassword((show) => !show)
@@ -25,6 +26,7 @@ function Login() {
     const handleMouseDownPassword = (event) => {
         event.preventDefault()
     }
+
 
     async function onLogin() {
         try {
@@ -34,7 +36,7 @@ function Login() {
             })
             localStorage.setItem('token', loginResponse.token)
             localStorage.setItem('rol', loginResponse.role)
-            navigate('/')
+            navigate('/profile')
         } catch (error) {
             console.log(error.message)
         }

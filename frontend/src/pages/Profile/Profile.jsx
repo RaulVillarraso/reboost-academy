@@ -13,6 +13,7 @@ function Profile() {
     const [bookings, setBookings] = useState({})
     const [refresh, setRefresh] = useState(false)
     const [adminOption, setAdminOption] = useState("Profile")
+    const [token, setToken] = useState(localStorage.token)
 
     async function getProfile() {
         const result = await getUserProfile()
@@ -34,11 +35,12 @@ function Profile() {
 
     useEffect(() => {
         getProfile()
-    }, [refresh])
+    }, [refresh, token])
 
     useEffect(() => {
         getBookings(profile.id)
-    }, [profile])
+    }, [profile, token])
+
 
     return (
         <>
