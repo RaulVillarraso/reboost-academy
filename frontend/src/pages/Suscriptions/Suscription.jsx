@@ -93,8 +93,10 @@ function Method() {
                                         </h3>
                                         <p>{suscription.suscription_Type}</p>
                                         <Link to="https://buy.stripe.com/test_cN2cQF7gMfszfQY8wz">
-                                <Button variant="outlined">Buy now</Button>
-                            </Link>
+                                            <Button variant="outlined">
+                                                Buy now
+                                            </Button>
+                                        </Link>
                                     </Box>
                                 </Box>
                             </ImageListItem>
@@ -118,7 +120,7 @@ function Method() {
                     />
                 </Grid>
             </Grid>
-            {/* {suscriptions.map((subscription) => (
+{/*             {suscriptions.map((subscription) => (
                 <Card key={subscription.id} sx={{ maxWidth: 345 }}>
                     <CardMedia
                         sx={{ height: 140 }}
@@ -145,8 +147,8 @@ function Method() {
 export default function Suscription() {
     return (
         <>
-            <Header />
             <Container className="method">{Method()}</Container>
+            <Header />
         </>
     )
 }
