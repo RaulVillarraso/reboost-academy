@@ -11,7 +11,24 @@ import ImageListItem from "@mui/material/ImageListItem"
 import ListSubheader from "@mui/material/ListSubheader"
 import { getAllClases } from "../../services/clase"
 
-function TitlebarImageList() {
+
+
+function Classpag() {
+    const [classes, setClasses] = useState([])
+    async function getClasses() {
+        try {
+            const result = await getAllClases()
+            setClasses(result)
+            console.log(result)
+        } catch (error) {
+            console.error("Error fetching classes:", error)
+        }
+    }
+
+    useEffect(()=>{
+        getClasses()
+    }, [])
+    
     const [hoveredItem, setHoveredItem] = useState("")
 
     const handleMouseEnter = (index) => {
@@ -46,7 +63,7 @@ function TitlebarImageList() {
                                     WE CLASSES !!
                                 </ListSubheader>
                             </ImageListItem>
-                            {itemData.map((item, index) => (
+                            {classes.map((clase, index) => (
                                 
                                 <ImageListItem
                                     className="contenedor"
@@ -61,9 +78,9 @@ function TitlebarImageList() {
                                 >
                                     <img
                                         className="imgClasses"
-                                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                                        src={`${item.img}?w=248&fit=crop&auto=format`}
-                                        alt={item.clase}
+                                        srcSet={`${clase.class_Img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                                        src={`${clase.class_Img}?w=248&fit=crop&auto=format`}
+                                        alt={clase.class_Img}
                                         loading="lazy"
                                     />
 {/*                                     <ImageListItemBar
@@ -85,9 +102,9 @@ function TitlebarImageList() {
                                     <Box className="capa">
                                         <Box className='imgDescription'>
                                         <h3 className="tittleCard">
-                                            {item.clase}
+                                            {clase.classname}
                                         </h3>
-                                        <p>{item.description}</p>
+                                        <p>{clase.description}</p>
                                         </Box>
                                     </Box>
                                 </ImageListItem>
@@ -113,7 +130,7 @@ function TitlebarImageList() {
     )
 }
 
-const itemData = [
+/* const itemData = [
     {
         img: "./src/assets/clases/pilates2.jpg",
         clase: "Pilates",
@@ -163,24 +180,16 @@ const itemData = [
             "Pilates concentrates on strengthening the body with an emphasis on your posture, balance, and flexibility. ",
     },
 ]
+ */
+export default function Classes() {
 
-function Classes() {
-    const [classes, setClasses] = useState([])
-    async function allClasses() {
-        const x = await getAllClases()
-        setClasses(x)
-    }
-
-    useEffect(() => {
-        allClasses()
-    }, [])
 
     return (
         <>
+            <Container className="staffView">{Classpag()}</Container>
             <Header />
-            <Container className="staffView">{TitlebarImageList()}</Container>
         </>
     )
 }
 
-export default Classes
+

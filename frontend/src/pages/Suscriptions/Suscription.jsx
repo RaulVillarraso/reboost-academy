@@ -91,8 +91,8 @@ function Method() {
                                         <h3 className="tittleCard">
                                             {suscription.suscription_Type}
                                         </h3>
-                                        <p>{suscription.suscription_Type}</p>
-                                        <Link to="https://buy.stripe.com/test_cN2cQF7gMfszfQY8wz">
+                                        <p>{suscription.suscription_Description}</p>
+                                        <Link to={suscription.suscription_pay}>
                                             <Button variant="outlined">
                                                 Buy now
                                             </Button>
@@ -154,7 +154,9 @@ export default function Suscription() {
 }
 
 /* 
+Description: "Acceso a todas las clases disponibles durante todo el mes y además acceso a contenido multimedia"
 mensual: https://buy.stripe.com/test_bIYcQFeJe4NVeMUbIJ
 trimestral: https://buy.stripe.com/test_fZe6sh1Ws94b48g6oq
 anual: https://buy.stripe.com/test_cN2cQF7gMfszfQY8wz
+semestral: https://buy.stripe.com/test_fZe6sh1Ws94b48g6oq
  */

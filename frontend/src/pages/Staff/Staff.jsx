@@ -187,8 +187,8 @@ function Staff() {
 
     return (
         <>
-            <Header />
             <Container className="staffView">{TitlebarImageList()}</Container>
+            <Header />
         </>
     )
 }
