@@ -155,9 +155,15 @@ function Header() {
                 <Paper className="logo">
                     <img src="https://placehold.co/76x76" />
                 </Paper>
+                <Link to='/clase'>
                 <Button variant="contained">Classes</Button>
+                </Link>
+                <Link to='/staff'>
                 <Button variant="contained">Staff</Button>
+                </Link>
+                <Link to='/suscription'>
                 <Button variant="contained">Suscription</Button>
+                </Link>
             </Box>
             <Link
                 to="/"

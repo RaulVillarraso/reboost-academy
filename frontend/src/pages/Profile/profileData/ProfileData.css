@@ -61,22 +61,22 @@
 }
 
 #suscription {
-    background-color: #FCB900;
-    color: black
+    background-color: #444444;
+    color: #FFFFFF
 }
 
 #calendar {
-    background-color: #FCB900;
-    color: black
+    background-color: #636363;
+    color: #FFFFFF
 }
 
 #edit {
-    background-color: #FCB900;
-    color: rgb(0, 0, 0)
+    background-color: #444444;
+    color: #FFFFFF
 }
 
 #logout {
-    background-color: crimson;
+    background-color: #828282;
     color: #FFFFFF;
 }
 

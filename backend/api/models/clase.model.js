@@ -9,6 +9,9 @@ const Clase = sequelize.define('class', {
         description: {
             type: DataTypes.STRING
         },
+        class_Img: {
+            type: DataTypes.STRING
+        }
       
 },
 { //opciones
