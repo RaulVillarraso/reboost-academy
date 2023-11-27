@@ -12,10 +12,6 @@ const Classroom = sequelize.define('classroom', {
             allowNull: false,
         },
 
-        targeted:{
-            type: DataTypes.INTEGER
-        },
-
         equipments:{
             type: DataTypes.STRING,
             

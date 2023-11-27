@@ -21,6 +21,9 @@ const Booking = sequelize.define('booking', {
         type: DataTypes.STRING, 
         allowNull: false,
     },
+    targeted:{
+            type: DataTypes.INTEGER
+        },
 
 },
     { 

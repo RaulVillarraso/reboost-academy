@@ -6,7 +6,14 @@ export const getallBoocking = async () => {
 
 }
 
-export const getClassroomCapacity = async (id) => {
+export const getOneBooking = async (id) => {
+  const { data } = await api.get(`booking/${id}`)
+  return data
+
+}
+
+
+export const getClassroom = async (id) => {
   const data = await api.get(`booking/clase/classroom/${id}`)
   return data
 }
@@ -24,7 +31,7 @@ export const deleteBooking = async (id) => {
 
 export const updateBooking = async (id,bookingData) => {
   const data = await api.put(`/booking/${id}`,bookingData)
-  console.log(id,bookingData)
+ 
   return data
 }
 

@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useState } from "react"
+import { useRef, useEffect, useState } from "react"
 import { Calendar } from "@fullcalendar/core"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import interactionPlugin from "@fullcalendar/interaction"
 import bootstrap5Plugin from "@fullcalendar/bootstrap5"
 import "./Calendar.css"
 import listPlugin from "@fullcalendar/list"
-import { Link, useNavigate } from "react-router-dom"
+import { Await, useNavigate } from "react-router-dom"
 import {
     convertirFecha,
     convertirFechaInversa,
@@ -13,7 +13,8 @@ import {
 } from "../BookingDate/BookingDate"
 import {
     deleteBooking,
-    getClassroomCapacity,
+    getClassroom,
+    getOneBooking,
     postBooking,
     updateBooking,
 } from "../../services/booking"
@@ -32,15 +33,20 @@ import {
     DialogContentText,
     DialogTitle,
 } from "@mui/material"
-import { login } from "../../services/authService"
 
+import {
+    CreateUserBooking,
+    getUserProfile,
+    getallUserBooking,
+} from "../../services/userService"
+import { bool } from "prop-types"
+import { red } from "@mui/material/colors"
 
 const MyCalendar = () => {
     const calendarRef2 = useRef(null)
     const [confirmDelete, setConfirmDelete] = useState(false)
     const [eventid, setEventid] = useState("")
     const [dataeventen, setDataEventen] = useState([])
-    const [filterdata, setFilterdata] = useState([])
     const [clickedDate, setClickedDate] = useState("")
     const [eventTitle, setEventTitle] = useState("")
     const [startDateTime, setStartDateTime] = useState("")
@@ -54,15 +60,20 @@ const MyCalendar = () => {
     const [dateEndEvent, setDateEndEvent] = useState("")
     const [buscador, setbuscador] = useState("")
     const [classNameEvent, setClassNameEvent] = useState("")
-    const [id, setid] = useState("")
+    const [id, setid] = useState(null)
     const [updatedata, setupdatedata] = useState(false)
     const [refresh3, setRefresh3] = useState(false)
     const [refresh4, setRefresh4] = useState(false)
     const [refresh5, setRefresh5] = useState(false)
     const [classroomCapacity, setclassroomCapacity] = useState("")
     const [classroomTarget, setclassroomTarget] = useState("")
+    const [classid, setclassid] = useState("")
+    const [refresh6, setRefresh6] = useState(false)
+    const [offCanvasupdate, setOffCanvas] = useState(null)
+    const [userid, setuserid] = useState(null)
+    const [validate, setValidate] = useState(false)
+    const [datauserbooking, setdatauserbooking] = useState("")
     const calendarRef = useRef(null)
-    const navigate = useNavigate()
 
     const handleChange = (e) => {
         const selectedOption = e.target.value
@@ -82,6 +93,34 @@ const MyCalendar = () => {
         { label: "Bailes Latinos", value: "bailes_latinos", value2: "8" },
     ]
 
+    const handleBookingUserInfo = async () => {
+        if (userid !== null) {
+            const Apivalues = await getallUserBooking(userid)
+            setdatauserbooking(Apivalues)
+
+            for (let i = 0; i < datauserbooking.length; i++) {
+                if (datauserbooking[i].bookingId == id) {
+                    setValidate(true)
+                }
+            }
+        } else {
+            setdatauserbooking([])
+            setValidate(false)
+        }
+    }
+
+    async function LinkUserBookin() {
+        const body = { userId: userid, bookingId: id }
+
+        const response = await CreateUserBooking(body)
+    }
+
+    async function getProfile() {
+        const result = await getUserProfile()
+
+        setuserid(result.id)
+    }
+
     const handleConfirmDelete = () => {
         setConfirmDelete(true)
     }
@@ -91,49 +130,45 @@ const MyCalendar = () => {
     }
 
     const handleDelete = () => {
-        // Lógica para eliminar el evento
         setRefresh4(!refresh4)
-
-        // Cierra la ventana de confirmación después de la eliminación
+        offCanvasupdate.hide()
     }
 
-    async function onLogin() {
-        try {
-            const response = await login({ email, password })
-            localStorage.setItem("token", response.data.token)
-            localStorage.setItem("role", response.data.role)
-            navigate("/home")
-        } catch (error) {
-            //Handle the error
-        }
+    async function SendUpdatetarget() {
+        const update = { targeted: classroomTarget + 1 }
+        const response = await updateBooking(id, update)
+        await LinkUserBookin()
+        await handleBookingUserInfo()
+        offCanvasupdate.hide()
     }
 
     const handleApiInfo = async () => {
         const Apivalues = await handlebooking()
-
+        await getProfile()
+        await handleBookingUserInfo()
         setDataEventen(Apivalues)
     }
 
     const handleApiClassrooms = async () => {
-        const Apivalues = await getClassroomCapacity(id)
+        const Apivalues = await getClassroom(id)
         setclassroomCapacity(Apivalues.data.booking.class.classroom.capacity)
-        setclassroomTarget(Apivalues.data.booking.class.classroom.targeted)
-        console.log(Apivalues.data.booking.class.classroom.capacity)
+        setclassid(Apivalues.data.booking.class.classroom.id)
     }
 
-  
+    const handleOneBooking = async () => {
+        const Apivalues = await getOneBooking(id)
+        setclassroomTarget(Apivalues.targeted)
+    }
 
     async function PostApiInfo() {
         const index = dataeventen.length
         const lastEvent = dataeventen[index - 1]
-        console.log(lastEvent)
+
         const response = await postBooking(lastEvent)
         setRefresh2(!refresh2)
     }
-    
 
     async function UpdateApiInfo() {
-    
         if (eventTitle && startDateTime && endDateTime) {
             const newEvent = {
                 classId: eventid,
@@ -150,13 +185,17 @@ const MyCalendar = () => {
             setEndDateTime(null)
             setEventClassName("")
             setRefresh3(!refresh3)
+            offCanvasupdate.hide()
         }
     }
 
-    
     async function UpdateSend() {
         const response = await updateBooking(id, updatedata)
         setRefresh2(!refresh2)
+    }
+
+    async function Updating() {
+        setRefresh6(!refresh6)
     }
 
     async function Delete() {
@@ -172,7 +211,6 @@ const MyCalendar = () => {
     useEffect(() => {
         async function getdata() {
             await handleApiInfo()
-            filterEventsByClassName()
         }
 
         getdata()
@@ -186,18 +224,31 @@ const MyCalendar = () => {
         if (refresh3) {
             UpdateSend()
             handleApiInfo()
+            getProfile()
             handleApiClassrooms()
+            handleOneBooking()
             setRefresh3(false)
         }
         if (refresh4) {
             setConfirmDelete(false)
             SendDelete()
         }
+
         if (refresh5) {
             handleApiInfo()
+
             setRefresh5(false)
         }
-    }, [refresh || refresh3 || refresh4 || refresh5])
+
+        if (refresh6) {
+            handleApiInfo()
+
+            SendUpdatetarget()
+            handleApiInfo()
+
+            setRefresh6(false)
+        }
+    }, [refresh || refresh3 || refresh4 || refresh5 || refresh6])
 
     const refreshfilter2 = () => {
         setRefresh5(!refresh5)
@@ -300,13 +351,14 @@ const MyCalendar = () => {
         const offCanvas = new bootstrap.Offcanvas(
             document.getElementById("offcanvasWithBothOptions")
         )
+        setOffCanvas(offCanvas)
         offCanvas.show()
     }
-    
 
     const evento = (arg) => {
-      setRefresh3(true)
+        setRefresh3(true)
         setshowinput("false")
+        setValidate(false)
         const offCanvas = new bootstrap.Offcanvas(
             document.getElementById("offcanvasWithBothOptions")
         )
@@ -327,7 +379,7 @@ const MyCalendar = () => {
         setNameEvent(title)
         setDateStartEvent(start)
         setDateEndEvent(end)
-        
+        setOffCanvas(offCanvas)
     }
 
     const handleAddEvent = () => {
@@ -347,6 +399,7 @@ const MyCalendar = () => {
             setEndDateTime(null)
             setEventClassName("")
             setRefresh(true)
+            offCanvasupdate.hide()
         }
     }
 
@@ -641,10 +694,25 @@ const MyCalendar = () => {
                                         <Button
                                             variant="contained"
                                             sx={{}}
-                                            onClick={handleConfirmDelete}
+                                            onClick={Updating}
+                                            disabled={
+                                                classroomTarget ===
+                                                    classroomCapacity ||
+                                                validate === true
+                                            }
                                         >
                                             Apuntarse a la clase
                                         </Button>
+                                    </Grid>
+                                )}
+
+                                {validate === true && (
+                                    <Grid item sm={12}>
+                                        <Typography 
+                                            sx={{ color: "warning.main" }}
+                                        >
+                                            Usted ya está apuntado a esta clase
+                                        </Typography>
                                     </Grid>
                                 )}
 
