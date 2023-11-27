@@ -9,12 +9,25 @@ import "./EditTeacher.css"
 import PropTypes from "prop-types"
 import { useState } from "react"
 
-function EditTeacher({ value, onConfirm, onCreate }) {
+function EditTeacher({ value, onConfirm, onCreate, onComplete }) {
     const [firstName, setFirstName] = useState(value.firstName)
     const [lastName, setLastName] = useState(value.lastName)
     const [email, setEmail] = useState(value.email)
     const [phone, setPhone] = useState(value.phone)
     const [specialization, setSpecialization] = useState(value.specialization)
+
+    function handleData(){
+        value.id
+            ? onConfirm(firstName, lastName, email, specialization, phone)
+            : onCreate({
+                    firstName,
+                    lastName,
+                    email,
+                    specialization,
+                    phone,
+                })
+            onComplete()
+    }
 
     return (
         <Card sx={{ minWidth: 275, zIndex: 2 }}>
@@ -68,23 +81,7 @@ function EditTeacher({ value, onConfirm, onCreate }) {
             </CardContent>
             <CardActions>
                 <Button
-                    onClick={() =>
-                        value.id
-                            ? onConfirm(
-                                  firstName,
-                                  lastName,
-                                  email,
-                                  specialization,
-                                  phone
-                              )
-                            : onCreate({
-                                  firstName,
-                                  lastName,
-                                  email,
-                                  specialization,
-                                  phone,
-                              })
-                    }
+                    onClick={() => handleData()}
                     variant="contained"
                     size="small"
                 >
@@ -101,4 +98,5 @@ EditTeacher.propTypes = {
     value: PropTypes.object,
     onConfirm: PropTypes.func,
     onCreate: PropTypes.func,
+    onComplete: PropTypes.func,
 }

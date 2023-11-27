@@ -17,15 +17,18 @@ import { getUserSuscription } from "../../../services/userService"
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
 import { deleteTeacher, getTeacher, getTeachers, postTeacher, updateTeacher } from "../../../services/teacherService"
-import { getAllSuscriptions, updateSuscription } from "../../../services/suscriptionService"
+import { deleteSuscription, getAllSuscriptions, getSuscriptionById, postSuscription, updateSuscription } from "../../../services/suscriptionService"
 import EditTeacher from "./EditTeacher/EditTeacher"
+import EditSuscription from "./EditSuscription/EditSuscription"
 
 function ProfileBooking({ bookings, adminOption }) {
     const [suscription, setSuscription] = useState("")
     const [suscriptionList, setSuscriptionList] = useState([])
+    const [suscriptionSelec, setSuscriptionSelec] = useState({})
     const [teachers, setTeachers] = useState([])
     const [teacher, setTeacher] = useState({})
     const [edit, setEdit] = useState(false)
+    const [editSus, setEditSus] = useState(false)
     const [refresh, setRefresh] = useState(true)
 
     function generate(adminOption) {
@@ -97,14 +100,18 @@ function ProfileBooking({ bookings, adminOption }) {
                     <Grid item xs={12}>
                         <ListItem
                             secondaryAction={
-                                <IconButton edge="end" aria-label="delete">
+                                <IconButton
+                                    onClick={() => removeSuscription(value.id)}
+                                    edge="end"
+                                    aria-label="delete"
+                                >
                                     <DeleteIcon />
                                 </IconButton>
                             }
                         >
                             <ListItemAvatar>
                                 <IconButton
-                                    onClick={() => setEdit(!edit)}
+                                    onClick={() => getOneSuscription(value.id)}
                                     edge="start"
                                     aria-label="edit"
                                 >
@@ -199,13 +206,43 @@ function ProfileBooking({ bookings, adminOption }) {
         }
     }
 
-    async function editSuscription(id) {
+    async function getOneSuscription(id){
         try {
-            await updateSuscription(id)
+            const result = await getSuscriptionById(id)
+            setSuscriptionSelec(result)
+            setEditSus(!edit)
         } catch (error) {
             console.log(error)
         }
-        
+    }
+
+    async function editSuscription(id, body) {
+        try {
+            await updateSuscription(id, body)
+            setEditSus(!editSus)
+            setRefresh(!refresh)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async function createSuscription(body) {
+        try {
+            await postSuscription(body)
+            setEditSus(!editSus)
+            setRefresh(!refresh)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async function removeSuscription(id){
+        try {
+            await deleteSuscription(id)
+            setRefresh(!refresh)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     useEffect(() => {
@@ -216,6 +253,7 @@ function ProfileBooking({ bookings, adminOption }) {
 
     useEffect(() => {
         getTeacherList()
+        getSuscriptionList()
     },[refresh])
 
     return (
@@ -238,6 +276,7 @@ function ProfileBooking({ bookings, adminOption }) {
                             {edit ? (
                                 <EditTeacher
                                     value={teacher}
+                                    onComplete={() => setTeacher("")}
                                     onConfirm={(
                                         firstName,
                                         lastName,
@@ -256,6 +295,15 @@ function ProfileBooking({ bookings, adminOption }) {
                                     }
                                     onCreate={(body) => createTeacher(body)}
                                 />
+                            ) : editSus ? (
+                                <EditSuscription
+                                    value={suscriptionSelec}
+                                    onComplete={() => setSuscriptionSelec("")}
+                                    onConfirm={(id, body) =>
+                                        editSuscription(id, body)
+                                    }
+                                    onCreate={(body) => createSuscription(body)}
+                                />
                             ) : bookings.bookings ? (
                                 generate(adminOption)
                             ) : null}
@@ -265,9 +313,16 @@ function ProfileBooking({ bookings, adminOption }) {
                                 onClick={() => setEdit(!edit)}
                                 variant="contained"
                             >
-                                Add Teacher
+                                {edit ? "Cancel" : "Add Teacher"}
                             </Button>
-                        ) : null}
+                        ) : adminOption === "Suscriptions" ? (
+                            <Button
+                                onClick={() => setEditSus(!editSus)}
+                                variant="contained"
+                            >
+                                {editSus ? "Cancel" : "Add Suscription"}
+                            </Button>
+                        ):null}
                     </Grid>
                 </Grid>
             </Box>
