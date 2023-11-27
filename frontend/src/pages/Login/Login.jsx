@@ -34,7 +34,7 @@ function Login() {
             })
             localStorage.setItem('token', loginResponse.token)
             localStorage.setItem('rol', loginResponse.role)
-            navigate('/')
+            navigate('/profile')
         } catch (error) {
             console.log(error.message)
         }

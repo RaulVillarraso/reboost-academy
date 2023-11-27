@@ -34,11 +34,11 @@ function Profile() {
 
     useEffect(() => {
         getProfile()
-    }, [refresh])
+    }, [refresh, localStorage.token])
 
     useEffect(() => {
         getBookings(profile.id)
-    }, [profile])
+    }, [profile, localStorage.token])
 
     return (
         <>
