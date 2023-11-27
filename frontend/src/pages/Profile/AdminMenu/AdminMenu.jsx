@@ -1,8 +1,9 @@
 import { useState } from "react"
+import PropTypes from "prop-types"
 import "./AdminMenu.css"
 import { Button, Fade, Menu, MenuItem } from "@mui/material"
 
-function AdminMenu() {
+function AdminMenu({ onAdminOptions }) {
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
 
@@ -16,7 +17,7 @@ function AdminMenu() {
 
     return (
         <div id="adminMenu">
-            <Button 
+            <Button
                 id="fade-button"
                 aria-controls={open ? "fade-menu" : undefined}
                 aria-haspopup="true"
@@ -35,11 +36,16 @@ function AdminMenu() {
                 onClose={handleClose}
                 TransitionComponent={Fade}
             >
-                <MenuItem onClick={handleClose}>Teachers</MenuItem>
-                <MenuItem onClick={handleClose}>Suscriptions</MenuItem>
+                <MenuItem value="Profile" onClick={onAdminOptions}>Profile</MenuItem>
+                <MenuItem value="Teachers" onClick={onAdminOptions}>Teachers</MenuItem>
+                <MenuItem value="Suscriptions" onClick={onAdminOptions}>Suscriptions</MenuItem>
             </Menu>
         </div>
     )
 }
 
 export default AdminMenu
+
+AdminMenu.propTypes = {
+    onAdminOptions: PropTypes.func
+}

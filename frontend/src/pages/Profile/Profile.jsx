@@ -12,6 +12,7 @@ function Profile() {
     const [profile, setProfile] = useState({})
     const [bookings, setBookings] = useState({})
     const [refresh, setRefresh] = useState(false)
+    const [adminOption, setAdminOption] = useState("Profile")
 
     async function getProfile() {
         const result = await getUserProfile()
@@ -26,6 +27,10 @@ function Profile() {
     function handleRefresh(){
         setRefresh(!refresh)
     }
+    
+    function onAdminOptions(e){
+        setAdminOption(e.target.innerText)
+    }
 
     useEffect(() => {
         getProfile()
@@ -39,11 +44,21 @@ function Profile() {
         <>
             <HeaderButtonless profile={profile} />
             <Box className="profileContainer">
-                {localStorage.getItem("rol") === "Admin" && <AdminMenu />}
-                {localStorage.getItem("rol") === "Client" && <Box id="inv"></Box>}
+                {localStorage.getItem("rol") === "Admin" && (
+                    <AdminMenu onAdminOptions={onAdminOptions} />
+                )}
+                {localStorage.getItem("rol") === "Client" && (
+                    <Box id="inv"></Box>
+                )}
                 <Box className="profileWrapper">
-                    <ProfileData profile={profile} onEdit={handleRefresh} />
-                    <ProfileBooking bookings={bookings} />
+                    <ProfileData 
+                        profile={profile} 
+                        onEdit={handleRefresh} 
+                    />
+                    <ProfileBooking
+                        bookings={bookings}
+                        adminOption={adminOption}
+                    />
                 </Box>
             </Box>
         </>
