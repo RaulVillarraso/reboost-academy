@@ -62,49 +62,35 @@ async function deleteBooking(req, res) {
 }
 async function getClassesAndTeachersForBookingDate(req, res) {
     try {
-      const bookingDate = req.params.bookingDate;
+      const bookingId = req.params.id;
   
-      // Obtén todas las reservas que coinciden con la fecha
-      const bookings = await Booking.findAll({
-        where: {
-          bookingDate: {
-            [Op.eq]: bookingDate,
-          },
-        },
+
+      const booking = await Booking.findByPk(bookingId, {
         include: [
           {
             model: Clase,
             include: [
-                {
-                    model: Classroom,
-                  },
+              {
+                model: Classroom,
+              },
               {
                 model: Teacher,
               },
-
             ],
           },
         ],
       });
   
-      // Obtén el conteo de reservas para la fecha específica
-      const bookingCount = await Booking.count({
-        where: {
-          bookingDate: {
-            [Op.eq]: bookingDate,
-          },
-        },
-      });
+      if (!booking) {
+        return res.status(404).json({ error: 'Booking not found' });
+      }
   
       res.status(200).json({
-        bookingDate,
-        bookingCount,
-        bookings,
+        booking,
       });
     } catch (error) {
       res.status(500).send(error.message);
-    }
-  }
+    }}
 
 module.exports = {
     getClassesAndTeachersForBookingDate,
