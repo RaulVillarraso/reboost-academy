@@ -1,5 +1,5 @@
 import "./HeaderButtonless.css"
-import { Box, Typography, Grid } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 import ProfileMenu from "./ProfileMenu/ProfileMenu"
 import { Link } from "react-router-dom"
 import { PropTypes } from "prop-types"
