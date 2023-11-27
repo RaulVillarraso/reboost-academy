@@ -11,7 +11,7 @@ function Home() {
                     <Grid container spacing={0}>
                         <Grid item xs={12} lg={8}>
                             <Box className="portraitImage">
-                                <img src="https://placehold.co/700x400" />
+                                <img src="./src/assets/home/inicio.jpg" />
                             </Box>
                         </Grid>
                         <Grid item xs={12} lg={4}>

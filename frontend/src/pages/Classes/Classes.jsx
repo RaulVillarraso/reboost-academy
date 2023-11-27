@@ -7,14 +7,12 @@ import Header from "../Home/Header/Header"
 import ImageList from "@mui/material/ImageList"
 import ImageListItem from "@mui/material/ImageListItem"
 
-
 import ListSubheader from "@mui/material/ListSubheader"
 import { getAllClases } from "../../services/clase"
 
-
-
 function Classpag() {
     const [classes, setClasses] = useState([])
+
     async function getClasses() {
         try {
             const result = await getAllClases()
@@ -25,10 +23,10 @@ function Classpag() {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getClasses()
     }, [])
-    
+
     const [hoveredItem, setHoveredItem] = useState("")
 
     const handleMouseEnter = (index) => {
@@ -47,7 +45,6 @@ function Classpag() {
                         <ImageList
                             sx={{
                                 height: 670,
-                                
                             }}
                         >
                             <ImageListItem key="Subheader" cols={2}>
@@ -58,22 +55,22 @@ function Classpag() {
                                         backgroundColor: "#444444",
                                         color: "#FFFFFF",
                                     }}
-                                    component="text"
+                                    
                                 >
                                     WE CLASSES !!
                                 </ListSubheader>
                             </ImageListItem>
                             {classes.map((clase, index) => (
-                                
                                 <ImageListItem
                                     className="contenedor"
                                     key={index}
                                     onMouseEnter={() => handleMouseEnter(index)}
                                     onMouseLeave={handleMouseLeave}
                                     sx={{
-                                        '@media screen and (max-width: 600px)': {
-                                            width: '100%', 
-                                        },
+                                        "@media screen and (max-width: 600px)":
+                                            {
+                                                width: "100%",
+                                            },
                                     }}
                                 >
                                     <img
@@ -83,28 +80,12 @@ function Classpag() {
                                         alt={clase.class_Img}
                                         loading="lazy"
                                     />
-{/*                                     <ImageListItemBar
-                                        className={`eachElement ${
-                                            hoveredItem === index
-                                                ? "hovered"
-                                                : ""
-                                        }`}
-                                        title={
-                                            hoveredItem !== index ? (
-                                                item.clase
-                                            ) : (
-                                                <Typography>
-                                                    {item.description}
-                                                </Typography>
-                                            )
-                                        }
-                                    ></ImageListItemBar> */}
                                     <Box className="capa">
-                                        <Box className='imgDescription'>
-                                        <h3 className="tittleCard">
-                                            {clase.classname}
-                                        </h3>
-                                        <p>{clase.description}</p>
+                                        <Box className="imgDescription">
+                                            <h3 className="tittleCard">
+                                                {clase.classname}
+                                            </h3>
+                                            <p>{clase.description}</p>
                                         </Box>
                                     </Box>
                                 </ImageListItem>
@@ -117,12 +98,15 @@ function Classpag() {
                         xs={6}
                         sx={{
                             height: 700,
-                            '@media screen and (max-width: 900px)': {
-                                display: 'none',
+                            "@media screen and (max-width: 900px)": {
+                                display: "none",
                             },
                         }}
                     >
-                        <img className="imgClasses2" src="./src/assets/clases/primaryClases.jpg" />
+                        <img
+                            className="imgClasses2"
+                            src="./src/assets/clases/primaryClases.jpg"
+                        />
                     </Grid>
                 </Grid>
             </div>
@@ -182,8 +166,6 @@ function Classpag() {
 ]
  */
 export default function Classes() {
-
-
     return (
         <>
             <Container className="staffView">{Classpag()}</Container>
@@ -191,5 +173,3 @@ export default function Classes() {
         </>
     )
 }
-
-

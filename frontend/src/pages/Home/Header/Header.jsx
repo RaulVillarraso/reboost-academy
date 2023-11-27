@@ -145,13 +145,13 @@ function Header() {
                     <img src="https://placehold.co/76x76" />
                 </Paper>
                 <Link to='/clase'>
-                <Button variant="contained">Classes</Button>
+                <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Classes</Button>
                 </Link>
                 <Link to='/staff'>
-                <Button variant="contained">Staff</Button>
+                <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Staff</Button>
                 </Link>
                 <Link to='/suscription'>
-                <Button variant="contained">Suscription</Button>
+                <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Suscription</Button>
                 </Link>
             </Box>
             <Link
@@ -165,7 +165,7 @@ function Header() {
             {!localStorage.token ? (
                 <Box className="register">
                     <Link to="/login">
-                        <Button variant="contained" id="login">
+                        <Button  variant="contained" id="login">
                             Login
                         </Button>
                     </Link>

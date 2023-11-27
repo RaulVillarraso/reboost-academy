@@ -62,7 +62,7 @@ function Method() {
                                     backgroundColor: "#444444",
                                     color: "#FFFFFF",
                                 }}
-                                component="text"
+                                component=""
                             >
                                 WE SUSCRIPTIONS !!
                             </ListSubheader>
