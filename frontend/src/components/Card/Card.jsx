@@ -7,15 +7,16 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 
 export default function MultiActionAreaCard(props) {
     
-const { nameEvent ,dateStartEvent, dateEndEvent,classNameEvent } = props;
+const { nameEvent ,dateStartEvent, dateEndEvent,classNameEvent,imageclass} = props;
 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="290"
-          image="/static/images/cards/contemplative-reptile.jpg"
+          height="330"
+          image={imageclass}
+          style={{ width: '100%', objectFit: 'contain' }}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

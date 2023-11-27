@@ -73,6 +73,7 @@ const MyCalendar = () => {
     const [userid, setuserid] = useState(null)
     const [validate, setValidate] = useState(false)
     const [datauserbooking, setdatauserbooking] = useState("")
+    const [imageclass, setimageclass] = useState("")
     const calendarRef = useRef(null)
 
     const handleChange = (e) => {
@@ -92,7 +93,7 @@ const MyCalendar = () => {
         { label: "Bailes De Salón", value: "bailes_salon", value2: "7" },
         { label: "Bailes Latinos", value: "bailes_latinos", value2: "8" },
     ]
-
+console.log(dataeventen)
     const handleBookingUserInfo = async () => {
         if (userid !== null) {
             const Apivalues = await getallUserBooking(userid)
@@ -153,6 +154,7 @@ const MyCalendar = () => {
         const Apivalues = await getClassroom(id)
         setclassroomCapacity(Apivalues.data.booking.class.classroom.capacity)
         setclassid(Apivalues.data.booking.class.classroom.id)
+        setimageclass(Apivalues.data.booking.class.class_Img)
     }
 
     const handleOneBooking = async () => {
@@ -222,12 +224,14 @@ const MyCalendar = () => {
             setRefresh(false)
         }
         if (refresh3) {
+            setRefresh3(false)
             UpdateSend()
+        
             handleApiInfo()
             getProfile()
             handleApiClassrooms()
             handleOneBooking()
-            setRefresh3(false)
+            
         }
         if (refresh4) {
             setConfirmDelete(false)
@@ -257,7 +261,7 @@ const MyCalendar = () => {
     const refreshfilter = () => {
         setRefresh2(!refresh2)
     }
-
+console.log(refresh3)
     const prueba = () => {
         if (!buscador || buscador.length === 0) {
             return dataeventen
@@ -356,7 +360,7 @@ const MyCalendar = () => {
     }
 
     const evento = (arg) => {
-        setRefresh3(true)
+        setRefresh2(true)
         setshowinput("false")
         setValidate(false)
         const offCanvas = new bootstrap.Offcanvas(
@@ -590,6 +594,7 @@ const MyCalendar = () => {
                                         dateStartEvent={dateStartEvent}
                                         dateEndEvent={dateEndEvent}
                                         classNameEvent={classNameEvent}
+                                        imageclass={imageclass}
                                     />
                                     <br />
                                 </Grid>
