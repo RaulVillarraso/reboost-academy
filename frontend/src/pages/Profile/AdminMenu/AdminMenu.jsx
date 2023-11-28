@@ -23,6 +23,7 @@ function AdminMenu({ onAdminOptions }) {
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
+                variant="contained"
             >
                 Admin Options
             </Button>
