@@ -120,6 +120,7 @@ function Header() {
                     </IconButton>
 
                     <Divider />
+                    <Box id="drawerLogo"></Box>
                     <List>
                         {array.map((text, index) => (
                             <Link
