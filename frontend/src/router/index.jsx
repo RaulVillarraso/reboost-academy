@@ -8,8 +8,6 @@ import Login from "../pages/Login/Login"
 import Calendar from "../pages/Calendar/Calendar";
 import Profile from "../pages/Profile/Profile"
 import Classes from "../pages/Classes/Classes"
-import SkeletonChildren from "../pages/Suscriptions/Suscription"
-import BasicStack from "../pages/Suscriptions/Suscription"
 import Suscription from "../pages/Suscriptions/Suscription"
 
 const router = createBrowserRouter([

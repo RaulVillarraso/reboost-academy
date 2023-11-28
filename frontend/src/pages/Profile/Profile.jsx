@@ -7,6 +7,7 @@ import ProfileData from "./profileData/ProfileData"
 import ProfileBooking from "./ProfileBooking/ProfileBooking"
 import { Box } from "@mui/material"
 import AdminMenu from "./AdminMenu/AdminMenu"
+import PropTypes from "prop-types"
 
 function Profile() {
     const [profile, setProfile] = useState({})
@@ -24,12 +25,12 @@ function Profile() {
         const result = await getUserBookings(id)
         setBookings(result)
     }
-    
-    function handleRefresh(){
+
+    function handleRefresh() {
         setRefresh(!refresh)
     }
-    
-    function onAdminOptions(e){
+
+    function onAdminOptions(e) {
         setAdminOption(e.target.innerText)
     }
 
@@ -52,10 +53,7 @@ function Profile() {
                     <Box id="inv"></Box>
                 )}
                 <Box className="profileWrapper">
-                    <ProfileData 
-                        profile={profile} 
-                        onEdit={handleRefresh} 
-                    />
+                    <ProfileData profile={profile} onEdit={handleRefresh} />
                     <ProfileBooking
                         bookings={bookings}
                         adminOption={adminOption}
@@ -67,3 +65,7 @@ function Profile() {
 }
 
 export default Profile
+
+Profile.propTypes = {
+    token: PropTypes.bool,
+}

@@ -13,6 +13,7 @@ import { login } from "../../services/authService"
 import { useState } from "react"
 import { Visibility, VisibilityOff } from "@mui/icons-material"
 
+
 function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -26,6 +27,7 @@ function Login() {
         event.preventDefault()
     }
 
+
     async function onLogin() {
         try {
             const loginResponse = await login({
@@ -35,10 +37,12 @@ function Login() {
             localStorage.setItem('token', loginResponse.token)
             localStorage.setItem('rol', loginResponse.role)
             navigate('/profile')
+            
         } catch (error) {
             console.log(error.message)
         }
     }
+
 
     return (
         <Box id="loginMain">
