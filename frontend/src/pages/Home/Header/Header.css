@@ -8,6 +8,10 @@
     justify-content: space-between;
 }
 
+.logoImg {
+    border-radius: 4px;
+}
+
 .logoAndButtons{
     display: flex;
     justify-content: space-evenly;
@@ -35,18 +39,21 @@
 .title{
     display: flex;
     align-items: center;
+    justify-content: center;
     color: white;
+    width: 30em;
 }
 
 .register{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     align-items: center;
-    width: 13em;
+    width: 30em;
 }
 
 #signup{
     background-color: #00A077;
+    margin-right:16px; 
 }
 
 #signup:hover{
@@ -56,10 +63,20 @@
 #login{
     background-color: #FCB900;
     color: black;
+    margin-right:8px; 
 }
 
 #login:hover{
     background-color: #b38300;
+}
+
+#drawerLogo{
+    height: 100px;
+    width: 100px;
+    background-image: url("../../../assets/home/Logo2.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 8px auto;
 }
 
 .menuIcon{

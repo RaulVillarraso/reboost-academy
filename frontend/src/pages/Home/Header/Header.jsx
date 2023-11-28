@@ -13,7 +13,6 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    Avatar,
 } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
@@ -28,13 +27,13 @@ import {getUserProfile} from "../../../services/userService"
 import "./Header.css"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
+import ProfileMenu from "../../../components/HeaderButtonless/ProfileMenu/ProfileMenu"
 
 const drawerWidth = 240
 
 function Header() {
     const theme = useTheme()
     const [open, setOpen] = useState(false)
-    const [menuDisplay, setMenuDisplay] = useState(true)
     const [profile, setProfile] = useState({})
     const guest = ["Classes", "Staff", "Suscriptions", "Login", "Signup",]
     const account = ["Classes", "Staff", "Suscriptions", "Logout"]
@@ -121,6 +120,7 @@ function Header() {
                     </IconButton>
 
                     <Divider />
+                    <Box id="drawerLogo"></Box>
                     <List>
                         {array.map((text, index) => (
                             <Link
@@ -153,7 +153,7 @@ function Header() {
             </Box>
             <Box className="logoAndButtons">
                 <Paper className="logo">
-                    <img src="https://placehold.co/76x76" />
+                    <img className="logoImg" src="./src/assets/home/Logo2.jpg" />
                 </Paper>
                 <Link to='/clase'>
                 <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Classes</Button>
@@ -195,51 +195,7 @@ function Header() {
                         width: "10em",
                     }}
                 >
-                    <Avatar
-                        className="profilePic"
-                        alt="profile pic"
-                        src={profile.profileImg}
-                        sx={{ position: "absolute" }}
-                        onClick={() => setMenuDisplay(!menuDisplay)}
-                    />
-                    <Box
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                        }}
-                    >
-                        <List
-                            sx={{
-                                backgroundColor: "background.paper",
-                                borderRadius: "10px",
-                                marginTop: "10em",
-                                boxShadow: "2px 2px 2px 1px rgba(0, 0, 0, 0.2)",
-                                display: menuDisplay ? "none" : null,
-                            }}
-                        >
-                            <ListItem disablePadding>
-                                <ListItemButton>
-                                    <Link
-                                        to="/profile"
-                                        style={{
-                                            textDecoration: "none",
-                                            color: "black",
-                                        }}
-                                    >
-                                        <ListItemText primary="Profile" />
-                                    </Link>
-                                </ListItemButton>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemButton>
-                                    <ListItemText
-                                        onClick={() => logout()}
-                                        primary="Logout"
-                                    />
-                                </ListItemButton>
-                            </ListItem>
-                        </List>
-                    </Box>
+                    <ProfileMenu profile={profile}/>
                 </Box>
             )}
         </Box>

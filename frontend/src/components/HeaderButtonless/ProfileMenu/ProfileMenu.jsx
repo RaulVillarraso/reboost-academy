@@ -4,16 +4,18 @@ import Avatar from "@mui/material/Avatar"
 import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
 import ListItemIcon from "@mui/material/ListItemIcon"
-import Divider from "@mui/material/Divider"
 import IconButton from "@mui/material/IconButton"
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import Tooltip from "@mui/material/Tooltip"
-import PersonAdd from "@mui/icons-material/PersonAdd"
-import Settings from "@mui/icons-material/Settings"
 import Logout from "@mui/icons-material/Logout"
 import { useState } from "react"
 import PropTypes from "prop-types"
+import { useNavigate } from "react-router-dom"
 
 function ProfileMenu({ profile }) {
+    const navigate = useNavigate()
+
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
     const handleClick = (event) => {
@@ -21,6 +23,12 @@ function ProfileMenu({ profile }) {
     }
     const handleClose = () => {
         setAnchorEl(null)
+    }
+
+    function handleLogout(){
+        localStorage.removeItem("token")
+        localStorage.removeItem("rol")
+        navigate("/")
     }
 
     return (
@@ -42,7 +50,10 @@ function ProfileMenu({ profile }) {
                         aria-haspopup="true"
                         aria-expanded={open ? "true" : undefined}
                     >
-                        <Avatar sx={{ width: 32, height: 32 }} src={profile.profileImg}></Avatar>
+                        <Avatar
+                            sx={{ width: 32, height: 32 }}
+                            src={profile.profileImg}
+                        ></Avatar>
                     </IconButton>
                 </Tooltip>
             </Box>
@@ -81,26 +92,19 @@ function ProfileMenu({ profile }) {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-                <MenuItem onClick={handleClose}>
-                    <Avatar /> Profile
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                    <Avatar /> My account
-                </MenuItem>
-                <Divider />
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={() => navigate("/profile")}>
                     <ListItemIcon>
-                        <PersonAdd fontSize="small" />
+                        <AccountCircleIcon fontSize="small" />
                     </ListItemIcon>
-                    Add another account
+                    Profile
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={() => navigate("/calendar")}>
                     <ListItemIcon>
-                        <Settings fontSize="small" />
+                        <CalendarMonthIcon fontSize="small" />
                     </ListItemIcon>
-                    Settings
+                    Calendar
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
                         <Logout fontSize="small" />
                     </ListItemIcon>

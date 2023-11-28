@@ -4,7 +4,7 @@ import "./ProfileData.css"
 import { useState } from "react"
 import { updateUser } from "../../../services/userService"
 import axios from "axios"
-
+import {useNavigate} from "react-router-dom"
 function ProfileData({ profile, onEdit }) {
     const [edit, setEdit] = useState(false)
     const [firstName, setFirstName] = useState(profile.firstName)
@@ -15,6 +15,14 @@ function ProfileData({ profile, onEdit }) {
     const [profilePic, setProfilePic] = useState(profile.profileImg)
     const preset_key = "ml_default"
     const cloud_name = "dhxdgkspl"
+
+    const navigate = useNavigate()
+
+    function handleLogout(){
+        localStorage.removeItem("token")
+        localStorage.removeItem("rol")
+        navigate("/")
+    }
 
     function handleEdit() {
         setEdit(!edit)
@@ -75,7 +83,7 @@ function ProfileData({ profile, onEdit }) {
                             {profile.email}
                         </Typography>
                         <Typography className="personalInfo">
-                            {profile.adress}
+                            {profile.adress ? profile.adress : "No address provided"}
                         </Typography>
                         <Box
                             sx={{
@@ -88,7 +96,7 @@ function ProfileData({ profile, onEdit }) {
                                 className="personalInfo"
                                 sx={{ width: "15em" }}
                             >
-                                {profile.phone}
+                                {profile.phone ? profile.phone : "No phone provided"}
                             </Typography>
                             <Button
                                 onClick={() => handleEdit()}
@@ -101,13 +109,25 @@ function ProfileData({ profile, onEdit }) {
                     </Box>
                     <Box id="buttonsCase">
                         <Box className="profileButtons">
-                            <Button variant="contained" id="suscription">
+                            <Button
+                                variant="contained"
+                                id="suscription"
+                                onClick={() => navigate("/suscription")}
+                            >
                                 Suscriptions
                             </Button>
-                            <Button variant="contained" id="calendar">
+                            <Button
+                                variant="contained"
+                                id="calendar"
+                                onClick={() => navigate("/calendar")}
+                            >
                                 Calendar
                             </Button>
-                            <Button variant="contained" id="logout">
+                            <Button
+                                variant="contained"
+                                id="logout"
+                                onClick={() => handleLogout()}
+                            >
                                 Logout
                             </Button>
                         </Box>
