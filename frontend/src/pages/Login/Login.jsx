@@ -13,11 +13,11 @@ import { login } from "../../services/authService"
 import { useState } from "react"
 import { Visibility, VisibilityOff } from "@mui/icons-material"
 
+
 function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [showPassword, setShowPassword] = useState(false)
-
 
     const navigate = useNavigate()
 
@@ -37,10 +37,12 @@ function Login() {
             localStorage.setItem('token', loginResponse.token)
             localStorage.setItem('rol', loginResponse.role)
             navigate('/profile')
+            window.location.reload()
         } catch (error) {
             console.log(error.message)
         }
     }
+
 
     return (
         <Box id="loginMain">
