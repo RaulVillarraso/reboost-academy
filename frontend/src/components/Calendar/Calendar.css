@@ -1,0 +1,58 @@
+
+
+#boton{
+    padding-right: 61vw;
+    padding-bottom: 2vh;
+}
+.fc-direction-ltr {
+ 
+    height: 75vh;
+    width: 70vw;}
+
+    #calendar2{
+    width: 29vw;}  
+    
+.pilates {
+    background-color: grey;
+    border: 2px solid red;
+}
+
+.yoga {
+    background-color: aqua;
+    border: 2px solid red;
+}
+
+
+.ciclo_indoor {
+    background-color: yellow;
+    border: 2px solid red;
+}
+
+.bodypump {
+    background-color: burlywood;
+    border: 2px solid red;
+}
+
+
+
+.bodycombat {
+    background-color: pink;
+    border: 2px solid red;
+}
+
+
+.bodybalance {
+    background-color: rgb(255, 153, 0);
+    border: 2px solid red;
+}
+
+
+.bailes_salon {
+    background-color: rgb(255, 0, 234);
+    border: 2px solid yellow;
+}
+
+.bailes_latinos {
+    background-color: rgb(138, 222, 135);
+    border: 2px solid rgb(89, 0, 255);
+}

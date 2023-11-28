@@ -18,6 +18,7 @@ function Profile() {
     async function getProfile() {
         const result = await getUserProfile()
         setProfile(result)
+        
     }
 
     async function getBookings(id) {

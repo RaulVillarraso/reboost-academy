@@ -1,3 +1,4 @@
+const Booking = require('../models/booking.model')
 const Clase = require('../models/clase.model')
 const Classroom = require('../models/classroom.model') 
 const Teacher = require('../models/teacher.model')
@@ -66,11 +67,13 @@ async function getOneClassroom_Clase_Teacher(req, res) {
             model: Clase,
             attributes: ['classname'],
             include: [
+            
               {
                 model: Teacher,
                 attributes: ['firstName', 'lastName'],
                 
               },
+             
             ],
           },
         ],
