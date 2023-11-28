@@ -37,7 +37,7 @@ function Login() {
             localStorage.setItem('token', loginResponse.token)
             localStorage.setItem('rol', loginResponse.role)
             navigate('/profile')
-            window.location.reload()
+            
         } catch (error) {
             console.log(error.message)
         }

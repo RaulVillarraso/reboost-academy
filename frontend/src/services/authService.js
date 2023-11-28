@@ -1,4 +1,4 @@
-import api from "./";
+import api from "./indexAuth";
 
 export async function signup(signupData){
     const { data } = await api.post('/auth/signup', signupData)
