@@ -29,11 +29,19 @@ export async function updateUser(id, dataUpdate){
 }
 
 export async function CreateUserBooking(booking){
-    const { data } = await api.post(`user/userbooking`, booking)
+    const { data } = await api.post(`user/userbooking`, booking, {
+        headers: {
+            authorization: localStorage.token,
+        },
+    })
     return data
 }
 export const getallUserBooking = async (id) => {
-    const { data } = await api.get(`/user/userbooking/${id}`)
+    const { data } = await api.get(`/user/userbooking/${id}`, {
+        headers: {
+            authorization: localStorage.token,
+        },
+    })
     return data
   
   }

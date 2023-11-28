@@ -15,7 +15,7 @@ function Signup() {
     const [showPassword, setShowPassword] = useState(false)
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
-    const [phone, setPhone] = useState(0)
+    const [phone, setPhone] = useState("")
     const [address, setAddress] = useState("")
 
     const navigate = useNavigate()
@@ -29,7 +29,9 @@ function Signup() {
     async function onSignup(){
         try {
             const signupResponse = await signup({email: email, password: password, firstName: firstName, lastName: lastName, phone: phone, adress: address, role: "client",})
-            navigate("/")
+            localStorage.setItem("token", signupResponse.token)
+            localStorage.setItem("rol", "Client")
+            navigate("/profile")
         } catch (error) {
             console.log(error.message)
         }
