@@ -34,3 +34,8 @@
     align-items: center;
     flex-wrap: wrap;
 }
+
+.imgComp {
+    width: 140px;
+    height: 140px;
+}

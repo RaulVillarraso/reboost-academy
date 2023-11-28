@@ -16,27 +16,21 @@ function Home() {
                         </Grid>
                         <Grid item xs={12} lg={4}>
                             <Box className="portraitText">
-                                <Typography
+                                {/* <Typography
                                     variant="subtitle1"
                                     sx={{ margin: "0 24px" }}
                                 >
                                     Reboost Academy
-                                </Typography>
+                                </Typography> */}
                                 <Typography
                                     variant="body1"
-                                    sx={{ margin: "0 24px" }}
+                                    sx={{ margin: "0 20px" }}
                                 >
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Mauris congue rhoncus
-                                    finibus. Suspendisse potenti. Ut lobortis
-                                    felis efficitur lectus pulvinar aliquet.
-                                    Etiam a odio eros. Praesent arcu nulla,
-                                    tincidunt nec velit vel, interdum consequat
-                                    massa. Suspendisse mollis purus ut nisi
-                                    molestie, sit amet rhoncus ligula vehicula.
-                                    Pellentesque mollis lacus et eleifend
-                                    bibendum. Donec vulputate mauris at tortor
-                                    tincidunt, vel euismod massa posuere.
+                                    ¡Bienvenido al Centro Deportivo Reboost Academy!
+
+En nuestro centro, nos enorgullece ser mucho más que un simple gimnasio: somos un lugar donde la pasión por el bienestar y el rendimiento se fusiona para crear una experiencia única. Ya sea que seas un atleta experimentado, estés dando tus primeros pasos hacia un estilo de vida más activo o simplemente busques un espacio acogedor para alcanzar tus metas, aquí encontrarás todo lo que necesitas.
+
+Nuestro compromiso es proporcionar instalaciones de última generación que se adapten a tus necesidades. Te ofrecemos el entorno perfecto para desafiarte a ti mismo y alcanzar nuevos niveles de rendimiento.
                                 </Typography>
                             </Box>
                         </Grid>
@@ -44,11 +38,11 @@ function Home() {
                 </Box>
             </Box>
             <Box className="imageList">
-                <img src="https://placehold.co/140" />
-                <img src="https://placehold.co/140" />
-                <img src="https://placehold.co/140" />
-                <img src="https://placehold.co/140" />
-                <img src="https://placehold.co/140" />
+                <img className="imgComp" src="./src/assets/home/1.jpg" />
+                <img className="imgComp" src="./src/assets/home/2.jpg" />
+                <img className="imgComp" src="./src/assets/home/3.jpg" />
+                <img className="imgComp" src="./src/assets/home/4.jpg" />
+                <img className="imgComp" src="./src/assets/home/5.jpg" />
             </Box>
         </>
     )

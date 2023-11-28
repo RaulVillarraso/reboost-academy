@@ -153,7 +153,7 @@ function Header() {
             </Box>
             <Box className="logoAndButtons">
                 <Paper className="logo">
-                    <img src="https://placehold.co/76x76" />
+                    <img className="logoImg" src="./src/assets/home/Logo2.jpg" />
                 </Paper>
                 <Link to='/clase'>
                 <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Classes</Button>
