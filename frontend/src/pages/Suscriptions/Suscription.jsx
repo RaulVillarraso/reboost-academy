@@ -1,5 +1,4 @@
 import "./Suscription.css"
-
 import {
     Box,
     Button,
@@ -18,6 +17,14 @@ import Header from "../Home/Header/Header"
 import { useEffect, useState } from "react"
 import { getAllSuscriptions } from "../../services/suscription"
 import { Link } from "react-router-dom"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+import Pay from "../../components/Pago/Pay"
+
+
+
 
 function Method() {
     const [suscriptions, setSuscriptions] = useState([])
@@ -26,7 +33,7 @@ function Method() {
         try {
             const result = await getAllSuscriptions()
             setSuscriptions(result)
-            console.log(result)
+            
         } catch (error) {
             console.error("Error fetching suscriptions:", error)
         }
@@ -44,6 +51,9 @@ function Method() {
     const handleMouseLeave = () => {
         setHoveredItem()
     }
+    var stripe = Stripe('pk_test_51OG1QQCXywJnPmP67inni0sCcd1DocJZaOJOnlhsMHKa9aAhnIsAjEbpWSusOFJWJjU5sEcWEgo8LDrZsUZryIlD002uLwEV1a');
+
+
 
     return (
         <div className="suscriptionpag">
@@ -92,7 +102,7 @@ function Method() {
                                             {suscription.suscription_Type}
                                         </h3>
                                         <p>{suscription.suscription_Description}</p>
-                                        <Link to={suscription.suscription_pay}>
+                                        <Link target="_blank" to={suscription.suscription_pay}>
                                             <Button variant="outlined">
                                                 Buy now
                                             </Button>
@@ -149,6 +159,10 @@ export default function Suscription() {
         <>
             <Container className="method">{Method()}</Container>
             <Header />
+            <div className="pago">
+
+            <Pay/>
+            </div>
         </>
     )
 }
