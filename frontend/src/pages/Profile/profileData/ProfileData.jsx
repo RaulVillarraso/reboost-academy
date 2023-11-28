@@ -83,7 +83,7 @@ function ProfileData({ profile, onEdit }) {
                             {profile.email}
                         </Typography>
                         <Typography className="personalInfo">
-                            {profile.adress}
+                            {profile.adress ? profile.adress : "No address provided"}
                         </Typography>
                         <Box
                             sx={{
@@ -96,7 +96,7 @@ function ProfileData({ profile, onEdit }) {
                                 className="personalInfo"
                                 sx={{ width: "15em" }}
                             >
-                                {profile.phone}
+                                {profile.phone ? profile.phone : "No phone provided"}
                             </Typography>
                             <Button
                                 onClick={() => handleEdit()}
