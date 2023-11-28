@@ -4,10 +4,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export default function MultiActionAreaCard(props) {
-    
-const { nameEvent ,dateStartEvent, dateEndEvent,classNameEvent,imageclass} = props;
+
+  const { nameEvent, dateStartEvent, dateEndEvent, classNameEvent, imageclass } = props;
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -21,27 +22,37 @@ const { nameEvent ,dateStartEvent, dateEndEvent,classNameEvent,imageclass} = pro
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {nameEvent}
-            
+
           </Typography>
-          
+
           <Typography variant="body2" color="text.secondary">
-           Empieza: {dateStartEvent}
-          
-           <br />
-            Termina: {dateEndEvent}
-            
+            Empieza: {dateStartEvent}
+
             <br />
-            { localStorage.getItem("rol") === "Admin" && (
-            <Typography gutterBottom variant="h8" component="div">
-            Clase : {classNameEvent}
-            </Typography>)}
+            Termina: {dateEndEvent}
+
+            <br />
+            {localStorage.getItem("rol") === "Admin" && (
+              <Typography gutterBottom variant="h8" component="div">
+                Clase : {classNameEvent}
+              </Typography>)}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          More info
-        </Button>
+        <Link
+          to="/clase"
+          
+        >
+          <Button
+            size="small"
+            color="primary"
+          >
+            More Info
+          </Button>
+        </Link>
+
+
       </CardActions>
     </Card>
   );

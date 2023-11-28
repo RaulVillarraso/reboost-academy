@@ -1,11 +1,12 @@
 import { useRef, useEffect, useState } from "react"
 import { Calendar } from "@fullcalendar/core"
+import logo from "../../assets/calendar/logo.png"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import interactionPlugin from "@fullcalendar/interaction"
 import bootstrap5Plugin from "@fullcalendar/bootstrap5"
 import "./Calendar.css"
 import listPlugin from "@fullcalendar/list"
-import { Await, useNavigate } from "react-router-dom"
+import { Await, Link, useNavigate } from "react-router-dom"
 import {
     convertirFecha,
     convertirFechaInversa,
@@ -41,6 +42,7 @@ import {
 } from "../../services/userService"
 import { bool } from "prop-types"
 import { red } from "@mui/material/colors"
+import Footer from "../footer/Footer"
 
 const MyCalendar = () => {
     const calendarRef2 = useRef(null)
@@ -69,11 +71,16 @@ const MyCalendar = () => {
     const [classroomTarget, setclassroomTarget] = useState("")
     const [classid, setclassid] = useState("")
     const [refresh6, setRefresh6] = useState(false)
+    const [refresh7, setRefresh7] = useState(false)
     const [offCanvasupdate, setOffCanvas] = useState(null)
     const [userid, setuserid] = useState(null)
     const [validate, setValidate] = useState(false)
     const [datauserbooking, setdatauserbooking] = useState("")
     const [imageclass, setimageclass] = useState("")
+    const [suscriptiondate, setsuscriptiondate] = useState(null)
+    const [suscriptionid, setsuscriptionid] = useState(null)
+    const [startdateformatted, setstartdateformatted] = useState("")
+    const [suscriptioncancel, setsuscriptioncancel] = useState(0)
     const calendarRef = useRef(null)
 
     const handleChange = (e) => {
@@ -93,7 +100,51 @@ const MyCalendar = () => {
         { label: "Bailes De Salón", value: "bailes_salon", value2: "7" },
         { label: "Bailes Latinos", value: "bailes_latinos", value2: "8" },
     ]
-console.log(dataeventen)
+
+    const VerifySuscription = () => {
+        const fechaOriginal = dateStartEvent
+        const partesFecha = fechaOriginal.split(" ")
+
+        const partesFechaFormateada = partesFecha[0].split("-")
+        const fecha = new Date(
+            partesFechaFormateada[2],
+            partesFechaFormateada[1] - 1,
+            partesFechaFormateada[0]
+        )
+
+        const hora = partesFecha[1]
+
+        const fechafinal = `${fecha.getFullYear()}-${
+            fecha.getMonth() + 1
+        }-${fecha.getDate()} ${hora}`
+        const fechafinal2 = new Date(fechafinal)
+        setstartdateformatted(fechafinal2)
+
+        if (suscriptionid === 1) {
+            const suscripton = new Date(suscriptiondate)
+            suscripton.setDate(suscripton.getDate() + 30)
+            setsuscriptioncancel(suscripton)
+        }
+        if (suscriptionid === 2) {
+            const suscripton = new Date(suscriptiondate)
+            suscripton.setDate(suscripton.getDate() + 60)
+            setsuscriptioncancel(suscripton)
+        }
+        if (suscriptionid === 3) {
+            const suscripton = new Date(suscriptiondate)
+            suscripton.setDate(suscripton.getDate() + 180)
+            setsuscriptioncancel(suscripton)
+        }
+        if (suscriptionid === 4) {
+            const suscripton = new Date(suscriptiondate)
+            suscripton.setDate(suscripton.getDate() + 360)
+            setsuscriptioncancel(suscripton)
+        }
+    }
+
+    console.log(suscriptioncancel)
+    console.log(startdateformatted)
+
     const handleBookingUserInfo = async () => {
         if (userid !== null) {
             const Apivalues = await getallUserBooking(userid)
@@ -118,7 +169,8 @@ console.log(dataeventen)
 
     async function getProfile() {
         const result = await getUserProfile()
-
+        setsuscriptiondate(result.createdSuscriptionAt)
+        setsuscriptionid(result.suscriptionId)
         setuserid(result.id)
     }
 
@@ -140,6 +192,7 @@ console.log(dataeventen)
         const response = await updateBooking(id, update)
         await LinkUserBookin()
         await handleBookingUserInfo()
+        setsuscriptionactivated(false)
         offCanvasupdate.hide()
     }
 
@@ -182,6 +235,7 @@ console.log(dataeventen)
             setupdatedata(newEvent)
 
             // Limpiar campos después de agregar el evento
+            setRefresh7(!refresh7)
             setEventTitle("")
             setStartDateTime(null)
             setEndDateTime(null)
@@ -224,14 +278,12 @@ console.log(dataeventen)
             setRefresh(false)
         }
         if (refresh3) {
-            setRefresh3(false)
-            UpdateSend()
-        
             handleApiInfo()
             getProfile()
+            VerifySuscription()
             handleApiClassrooms()
             handleOneBooking()
-            
+            setRefresh3(false)
         }
         if (refresh4) {
             setConfirmDelete(false)
@@ -252,7 +304,13 @@ console.log(dataeventen)
 
             setRefresh6(false)
         }
-    }, [refresh || refresh3 || refresh4 || refresh5 || refresh6])
+        if (refresh7) {
+            UpdateSend()
+            handleApiInfo()
+
+            setRefresh7(false)
+        }
+    }, [refresh || refresh3 || refresh4 || refresh5 || refresh6 || refresh7])
 
     const refreshfilter2 = () => {
         setRefresh5(!refresh5)
@@ -261,7 +319,7 @@ console.log(dataeventen)
     const refreshfilter = () => {
         setRefresh2(!refresh2)
     }
-console.log(refresh3)
+
     const prueba = () => {
         if (!buscador || buscador.length === 0) {
             return dataeventen
@@ -360,7 +418,7 @@ console.log(refresh3)
     }
 
     const evento = (arg) => {
-        setRefresh2(true)
+        setRefresh3(true)
         setshowinput("false")
         setValidate(false)
         const offCanvas = new bootstrap.Offcanvas(
@@ -483,16 +541,25 @@ console.log(refresh3)
                                     alignItems: "center",
                                     justifyContent: "center",
                                     height: "100vh",
-                                    paddingBottom: "15vh",
+                                    paddingBottom: "20vh",
                                 }}
                             >
                                 {localStorage.getItem("rol") === "Client" && (
                                     <div id="calendar2" ref={calendarRef2} />
                                 )}
 
-                                <Grid container spacing={0}>
+                                <Grid container spacing={1}>
                                     <Grid item sm={12}>
-                                        <img src="" alt="" />
+                                        <img
+                                            src={logo}
+                                            alt=""
+                                            height="380"
+                                            width="360"
+                                        />
+                                    </Grid>
+                                    <Grid item sm={12} spacing={8}>
+                                        <br />
+                                        <br />{" "}
                                     </Grid>
                                     {localStorage.getItem("rol") ===
                                         "Admin" && (
@@ -694,32 +761,58 @@ console.log(refresh3)
                                         </Typography>
                                     </Grid>
                                 )}
-                                {localStorage.getItem("rol") === "Client" && (
-                                    <Grid item sm={12}>
-                                        <Button
-                                            variant="contained"
-                                            sx={{}}
-                                            onClick={Updating}
-                                            disabled={
-                                                classroomTarget ===
-                                                    classroomCapacity ||
-                                                validate === true
-                                            }
-                                        >
-                                            Apuntarse a la clase
-                                        </Button>
-                                    </Grid>
-                                )}
+                                {localStorage.getItem("rol") === "Client" &&
+                                    suscriptioncancel > startdateformatted && (
+                                        <Grid item sm={12}>
+                                            <Button
+                                                variant="contained"
+                                                sx={{}}
+                                                onClick={Updating}
+                                                disabled={
+                                                    classroomTarget ===
+                                                        classroomCapacity ||
+                                                    validate === true
+                                                }
+                                            >
+                                                Apuntarse a la clase
+                                            </Button>
+                                        </Grid>
+                                    )}
 
                                 {validate === true && (
                                     <Grid item sm={12}>
-                                        <Typography 
+                                        <Typography
                                             sx={{ color: "warning.main" }}
                                         >
                                             Usted ya está apuntado a esta clase
                                         </Typography>
                                     </Grid>
                                 )}
+
+                                {localStorage.getItem("rol") === "Client" &&
+                                    suscriptioncancel < startdateformatted && (
+                                        <Grid item sm={12}>
+                                            <Typography
+                                                sx={{ color: "error.main" }}
+                                            >
+                                               Su subscripción no es válida
+                                            </Typography>
+                                            <Link
+                                                to="/suscription"
+                                                style={{
+                                                    textDecoration: "none",
+                                                    color: "black",
+                                                }}
+                                            >
+                                                <Button
+                                                    size="small"
+                                                    color="primary"
+                                                >
+                                                  Descubra Nuestros Planes
+                                                </Button>
+                                            </Link>
+                                        </Grid>
+                                    )}
 
                                 <Dialog
                                     open={confirmDelete}
