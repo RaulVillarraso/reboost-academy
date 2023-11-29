@@ -38,4 +38,13 @@
     height: 400px;
 }
 
+.datosPago {
+    position: absolute;
+    
+    top: 100px;
+    width: 400px;
+    height: 30px;
+    background-color: #e20000;
+}
+
 
