@@ -1,6 +1,13 @@
 #adminMenu{
-    margin-top: 7em;
     height: 3em;
+    padding-right: 8px;
     display: flex;
-    width: 75%;
+    align-self: flex-end;
+}
+
+#fade-button{
+    background: rgb(68, 68, 68);
+    background: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(0, 160, 119, 1) 90%);
+    color: #FFFFFF;
+    font-weight: 600;
 }

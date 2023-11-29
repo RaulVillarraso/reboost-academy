@@ -2,6 +2,7 @@
     width: 25em;
     height: 45em;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-image: url("https://www.creativefabrica.com/wp-content/uploads/2022/12/23/Common-Notebook-Sheet-Paper-Background-Illustration-54107338-1.png");
@@ -10,6 +11,11 @@
     padding-left: 2em;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
     
+}
+
+.addItem{
+    background: rgb(68, 68, 68);
+        background: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(210, 154, 0, 1) 90%);
 }
 
 .bookingsByUser {

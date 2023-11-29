@@ -9,7 +9,7 @@ import "./EditTeacher.css"
 import PropTypes from "prop-types"
 import { useState } from "react"
 
-function EditTeacher({ value, onConfirm, onCreate, onComplete }) {
+function EditTeacher({ value, onConfirm, onCreate, onComplete, handleClick }) {
     const [firstName, setFirstName] = useState(value.firstName)
     const [lastName, setLastName] = useState(value.lastName)
     const [email, setEmail] = useState(value.email)
@@ -81,7 +81,10 @@ function EditTeacher({ value, onConfirm, onCreate, onComplete }) {
             </CardContent>
             <CardActions>
                 <Button
-                    onClick={() => handleData()}
+                    onClick={() => {
+                        handleData()
+                        handleClick()
+                    }}
                     variant="contained"
                     size="small"
                 >
@@ -99,4 +102,5 @@ EditTeacher.propTypes = {
     onConfirm: PropTypes.func,
     onCreate: PropTypes.func,
     onComplete: PropTypes.func,
+    handleClick: PropTypes.func
 }

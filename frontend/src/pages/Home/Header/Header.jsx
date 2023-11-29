@@ -55,7 +55,7 @@ function Header() {
     const logout = () => {
         localStorage.removeItem("token")
         localStorage.removeItem("rol")
-        window.location.reload(false)
+        window.location.reload()
     }
 
     const switchStatement = (text) => {
