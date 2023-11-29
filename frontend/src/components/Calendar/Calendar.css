@@ -9,50 +9,166 @@
     height: 75vh;
     width: 70vw;}
 
+
+    .fc-scrollgrid {}
+
     #calendar2{
     width: 29vw;}  
     
-.pilates {
-    background-color: grey;
-    border: 2px solid red;
-}
+    .pilates {
+        background: linear-gradient(to right, #1a83f3, #9bcdf7);
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.9s;
+        width: 13vw;
+        font-size: 1vw;
 
-.yoga {
-    background-color: aqua;
-    border: 2px solid red;
-}
+      }
+
+      .pilates:hover {
+        background: white;
+        color: #007bff;
+        border: 2px solid #007bff;
+        transform: scale(1.02);
+      }
+
+      .yoga {
+        background: linear-gradient(to right, #ff00d4, #fccdf4);
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.9s;
+        width: 13vw;
+        font-size: 1vw;
+
+      }
+
+      .yoga:hover {
+        background: white;
+        color: #007bff;
+        border: 2px solid #ff00d4;
+        transform: scale(1.02);
+      }
 
 
-.ciclo_indoor {
-    background-color: yellow;
-    border: 2px solid red;
-}
 
-.bodypump {
-    background-color: burlywood;
-    border: 2px solid red;
-}
+      
+      .ciclo_indoor {
+        background: linear-gradient(to right,#6f00ff, #d6bcf7 );
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.9s;
+        width: 13vw;
+        font-size: 1vw;
 
+      }
 
-
-.bodycombat {
-    background-color: pink;
-    border: 2px solid red;
-}
-
-
-.bodybalance {
-    background-color: rgb(255, 153, 0);
-    border: 2px solid red;
-}
+      .ciclo_indoor:hover {
+        background: white;
+        color: #007bff;
+        border: 2px solid #6f00ff;
+        transform: scale(1.02);
+      }
 
 
-.bailes_salon {
-    background-color: rgb(255, 0, 234);
-    border: 2px solid yellow;
-}
 
-.bailes_latinos {
-    background-color: rgb(138, 222, 135);
-    border: 2px solid rgb(89, 0, 255);
-}
+
+      .bodypump {
+        background: linear-gradient(to right, #ff8800,#f5dfc6);
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.9s;
+        width: 13vw;
+        font-size: 1vw;
+
+      }
+
+      .bodypump:hover {
+        background: white;
+        color: #007bff;
+        border: 2px solid #ff8800;
+        transform: scale(1.02);
+      }
+
+      
+      .bodycombat {
+        background: linear-gradient(to right,#ff0800, #facac9 );
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.9s;
+        width: 13vw;
+        font-size: 1vw;
+
+      }
+
+      .bodycombat:hover {
+        background: white;
+        color: #007bff;
+        border: 2px solid #ff0800;
+        transform: scale(1.03);
+      }
+
+
+      .bodybalance {
+        background: linear-gradient(to right, #ffee00,#fcf7bb);
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.9s;
+        width: 13vw;
+        font-size: 1vw;
+
+      }
+
+      .bodybalance:hover {
+        background: white;
+        color: #007bff;
+        border: 2px solid #ffee00;
+        transform: scale(1.02);
+      }
+
+
+      .bailes_salon {
+        background: linear-gradient(to right,#00ffea, #d2f3f0 );
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.9s;
+        width: 13vw;
+        font-size: 1vw;
+
+      }
+
+      .bailes_salon:hover {
+        background: white;
+        color: #007bff;
+        border: 2px solid #00ffea;
+        transform: scale(1.02);
+      }
+
+
+
+
+
+
+      .bailes_latinos {
+        background: linear-gradient(to right,#73ff00 ,#e0fdc8 );
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.9s;
+        width: 13vw;
+        font-size: 1vw;
+
+      }
+
+      .bailes_latinos:hover {
+        background: white;
+        color: #007bff;
+        border: 2px solid #73ff00;
+        transform: scale(1.02);
+      }
