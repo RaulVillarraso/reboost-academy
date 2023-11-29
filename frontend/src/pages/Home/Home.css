@@ -19,11 +19,26 @@
 
 .portraitText{
     background-color: #E8E6E6;
+    border: 2px solid;
+    border-image: linear-gradient(to right, rgb(107, 116, 30),#ffd700, #ffd700);
+    border-image-slice: 1;
     width: 100%;
     height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition-duration: 2s;
+    
+}
+.portraitText::before {
+
+}
+
+.portraitText:hover {
+    border: 2px solid;
+    border-image: linear-gradient(to right, #ffd700, #ffd700, rgb(107, 116, 30),);
+    border-image-slice: 1;
+    transition-duration: 2s;  
 }
 
 .imageList{
@@ -39,3 +54,48 @@
     width: 140px;
     height: 140px;
 }
+
+/* .portraitText {
+
+    border: 20px ;
+    border-radius: 10px;
+    border-color: linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);
+    background: linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);
+    background-size: 250%;
+    background-position: left;
+    color: #000000;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition-duration: 1s;
+    overflow: hidden;
+  }
+  
+  .portraitText::before {
+    position: absolute;
+    color: #ffd277;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+    transition-duration: 1s;
+    background-color: rgba(255, 255, 255, 0.842);
+    background-size: 200%;
+  }
+  
+  .portraitText:hover {
+    background-position: right;
+    transition-duration: 1s;
+  }
+  
+  .portraitText:hover::before {
+    background-position: right;
+    transition-duration: 1s;
+  }
+  
+  .portraitText:active {
+    transform: scale(0.95);
+  } */
