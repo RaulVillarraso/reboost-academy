@@ -43,12 +43,11 @@ const router = createBrowserRouter([
                 path: "/profile",
                 element: <Profile />
             },
-            {
-                path: "/calendar",
-                element: <Calendar />
-            },
-        ],
-    },
+           
+        ],     
+    },{  path: "/calendar",
+                element: <Calendar />,}
+              
 ])
 
 export default router

@@ -7,6 +7,7 @@ function Root() {
   return (
       <div className="layout">
         <Outlet />  
+       
         <Footer />
       </div>
   )

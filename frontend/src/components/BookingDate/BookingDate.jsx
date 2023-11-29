@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export function convertirFecha(fechaStr) {
   const fechaOrigen = dayjs(fechaStr);
-  const fechaDestino = fechaOrigen.format("YYYY-MM-DDTHH:mm");
+  const fechaDestino = fechaOrigen.format("YYYY-MM-DD HH:mm");
    
    
   

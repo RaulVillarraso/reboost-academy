@@ -17,7 +17,7 @@ function Classpag() {
         try {
             const result = await getAllClases()
             setClasses(result)
-            console.log(result)
+           
         } catch (error) {
             console.error("Error fetching classes:", error)
         }
