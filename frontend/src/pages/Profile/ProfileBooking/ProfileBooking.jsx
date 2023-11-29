@@ -426,5 +426,5 @@ export default ProfileBooking
 ProfileBooking.propTypes = {
     bookings: PropTypes.object,
     adminOption: PropTypes.string,
-    onAdminOptions: PropTypes.func
+    onAdminOptions: PropTypes.func,
 }

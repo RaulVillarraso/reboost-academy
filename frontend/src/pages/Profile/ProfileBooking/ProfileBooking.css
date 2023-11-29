@@ -5,11 +5,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("https://www.creativefabrica.com/wp-content/uploads/2022/12/23/Common-Notebook-Sheet-Paper-Background-Illustration-54107338-1.png");
+/*     background-image: url("https://www.creativefabrica.com/wp-content/uploads/2022/12/23/Common-Notebook-Sheet-Paper-Background-Illustration-54107338-1.png");
     background-repeat: repeat;
-    background-size: contain;
-    padding-left: 2em;
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    background-size: contain; */
+    border-radius: 50px;
+        background: #e0e0e0;
+        box-shadow: 20px 20px 60px #bebebe,
+                    -20px -20px 60px #ffffff;
     
 }
 
