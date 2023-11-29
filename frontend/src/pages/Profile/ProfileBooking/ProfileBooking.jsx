@@ -74,16 +74,6 @@ function ProfileBooking({ bookings, adminOption, onAdminOptions }) {
         setOpen(false)
     }
 
-    const classColors = {
-        pilates: "#1a83f3",
-        yoga: "#ff00d4",
-        ciclo_indoor: "#9d5fee",
-        bodypump: "#ff8800",
-        bodycombat: "#ff0800",
-        bodybalance: "#ffee00",
-        bailes_salon: "#00ffea",
-        bailes_latinos: "#73ff00"
-    }
 
     const classFormated = {
         pilates: "Pilates",
@@ -113,10 +103,9 @@ function ProfileBooking({ bookings, adminOption, onAdminOptions }) {
                                 sx={{
                                     width: "100%",
                                     height: "3em",
-                                    background: `linear-gradient(315deg, rgba(238,246,254,0) 34%, ${
-                                        classColors[value.class.classname]
-                                    } 80%)`,
+                                    background: `linear-gradient(315deg, rgba(238,246,254,0) 34%, #ffffff 80%)`,
                                     borderRadius: "4px",
+                                    paddingLeft:"4px"
                                 }}
                                 primary={classFormated[value.class.classname]}
                                 secondary={
@@ -347,16 +336,15 @@ function ProfileBooking({ bookings, adminOption, onAdminOptions }) {
     }, [refresh])
 
     return (
+        <>
         <Box className="profileBooking">
-            {localStorage.getItem("rol") === "Admin" && (
-                <AdminMenu onAdminOptions={onAdminOptions} />
-            )}
-            {localStorage.getItem("rol") === "Client" && <Box id="inv"></Box>}
-            <Box className="bookingsByUser">
+            
+                {localStorage.rol === "Admin" && <AdminMenu onAdminOptions={onAdminOptions} />}
+            
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <Typography
-                            sx={{ mt: 4, mb: 2 }}
+                            sx={{ mt: 4, mb: 2}}
                             variant="h6"
                             component="div"
                         >
@@ -452,7 +440,7 @@ function ProfileBooking({ bookings, adminOption, onAdminOptions }) {
                     Item Deleted
                 </Alert>
             </Snackbar>
-        </Box>
+        </>
     )
 }
 
