@@ -74,23 +74,58 @@ function ProfileBooking({ bookings, adminOption, onAdminOptions }) {
         setOpen(false)
     }
 
+    const classColors = {
+        pilates: "#1a83f3",
+        yoga: "#ff00d4",
+        ciclo_indoor: "#9d5fee",
+        bodypump: "#ff8800",
+        bodycombat: "#ff0800",
+        bodybalance: "#ffee00",
+        bailes_salon: "#00ffea",
+        bailes_latinos: "#73ff00"
+    }
+
+    const classFormated = {
+        pilates: "Pilates",
+        yoga: "Yoga",
+        ciclo_indoor: "Ciclo Indoor",
+        bodypump: "Body Pump",
+        bodycombat: "Body Combat",
+        bodybalance: "Body Balance",
+        bailes_salon: "Bailes de Salón",
+        bailes_latinos: "Bailes Latinos",
+    }
+
+    
     function generate(adminOption) {
         if (adminOption === "Profile" && bookings.bookings) {
             return bookings.bookings.map((value, i) => {
                 const bookingDate = dayjs(value.start)
                 const dateFormat = bookingDate.format("DD/MM - HH:mm")
                 return (
-                    <ListItem key={i} sx={{ width: "100%" }}>
-                        <ListItemText
-                            sx={{ width: "100%" }}
-                            primary={value.class.classname}
-                            secondary={
-                                value.class.classroom.classroomname +
-                                " || " +
-                                dateFormat
-                            }
-                        />
-                    </ListItem>
+                        <ListItem 
+                            key={i}
+                            sx={{
+                                width: "100%",
+                            }}
+                        >
+                            <ListItemText
+                                sx={{
+                                    width: "100%",
+                                    height: "3em",
+                                    background: `linear-gradient(315deg, rgba(238,246,254,0) 34%, ${
+                                        classColors[value.class.classname]
+                                    } 80%)`,
+                                    borderRadius: "4px",
+                                }}
+                                primary={classFormated[value.class.classname]}
+                                secondary={
+                                    value.class.classroom.classroomname +
+                                    " || " +
+                                    dateFormat
+                                }
+                            />
+                        </ListItem>
                 )
             })
         } else if (adminOption === "Teachers") {
