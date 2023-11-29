@@ -31,27 +31,25 @@ const MyCheckoutForm = () => {
     event.preventDefault();
     const fetchedClientSecret = await fetchClientSecret();
     setClientSecret(fetchedClientSecret);
-
-    // Llama a la función para manejar el pago
     await handlePayment(stripe, elements);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* Componente de Stripe para ingresar los detalles de la tarjeta */}
+    
       <CardElement />
       <button type="submit">Pagar</button>
     </form>
   );
 };
 
-// Carga la clave pública de Stripe
+
 const stripePromise = loadStripe('pk_test_51OG1QQCXywJnPmP67inni0sCcd1DocJZaOJOnlhsMHKa9aAhnIsAjEbpWSusOFJWJjU5sEcWEgo8LDrZsUZryIlD002uLwEV1a');
 
 
 const Pay = () => (
   <Elements stripe={stripePromise}>
-    {/* Componente que contiene el formulario de pago */}
+   
     <MyCheckoutForm />
   </Elements>
 );

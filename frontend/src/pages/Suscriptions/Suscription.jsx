@@ -26,6 +26,7 @@ import Pay from "../../components/Pago/Pay"
 
 
 
+
 function Method() {
     const [suscriptions, setSuscriptions] = useState([])
 
@@ -103,7 +104,7 @@ function Method() {
                                         </h3>
                                         <p>{suscription.suscription_Description}</p>
                                         <Link target="_blank" to={suscription.suscription_pay}>
-                                            <Button variant="outlined">
+                                            <Button sx={{backgroundColor: "#444444", color: "#FCB900"}} variant="outlined">
                                                 Buy now
                                             </Button>
                                         </Link>
@@ -159,10 +160,6 @@ export default function Suscription() {
         <>
             <Container className="method">{Method()}</Container>
             <Header />
-            <div className="pago">
-
-            <Pay/>
-            </div>
         </>
     )
 }
