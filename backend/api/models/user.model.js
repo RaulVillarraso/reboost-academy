@@ -1,41 +1,50 @@
-const { sequelize } = require('../../database/index.js') 
-const { DataTypes } = require('sequelize')
+const { sequelize } = require("../../database/index.js");
+const { DataTypes } = require("sequelize");
 
-const User = sequelize.define('user', { 
-
+const User = sequelize.define(
+  "user",
+  {
     firstName: {
-        type: DataTypes.STRING,
+      type: DataTypes.STRING,
     },
 
     lastName: {
-        type: DataTypes.STRING,
+      type: DataTypes.STRING,
     },
 
     role: {
-        type: DataTypes.ENUM('Admin', 'Client'),
-        allowNull: false,
+      type: DataTypes.ENUM("Admin", "Client"),
+      allowNull: false,
     },
     email: {
-        type: DataTypes.STRING,
-        unique: true
+      type: DataTypes.STRING,
+      unique: true,
     },
 
     phone: {
-        type: DataTypes.INTEGER,
-        unique: true
+      type: DataTypes.INTEGER,
+      unique: true,
     },
 
     adress: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
     },
 
     password: {
-        type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: false,
     },
 
-},
-    { //opciones
-        updatedAt: false, 
-    })
+    profileImg: {
+      type: DataTypes.STRING,
+      unique: true,
+    },
+    createdSuscriptionAt: { type: DataTypes.STRING,},
+  },
+  {
+    //opciones
+    updatedAt: false,
+  }
+);
 
-module.exports = User
+module.exports = User;

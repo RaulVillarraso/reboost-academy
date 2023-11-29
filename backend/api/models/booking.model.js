@@ -3,16 +3,30 @@ const { DataTypes } = require('sequelize')
 
 const Booking = sequelize.define('booking', {  
 
-    bookingDate: {
-        type: DataTypes.DATEONLY,
-        
+    start: {
+        type: DataTypes.DATE, 
+        allowNull: false,
     },
-    bookingHour: {
-        type: DataTypes.TIME,
-        
-    }
+  
+    end: {
+        type: DataTypes.DATE, 
+        allowNull: false,
+    },
+
+    title: {
+        type: DataTypes.STRING, 
+        allowNull: false,
+    },
+    clase: {
+        type: DataTypes.STRING, 
+        allowNull: false,
+    },
+    targeted:{
+            type: DataTypes.INTEGER
+        },
+
 },
-    { //opciones
+    { 
         updatedAt: false, 
         timestamps: false,
     })

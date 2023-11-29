@@ -1,0 +1,32 @@
+.profileBooking {
+    width: 25em;
+    height: 45em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://www.creativefabrica.com/wp-content/uploads/2022/12/23/Common-Notebook-Sheet-Paper-Background-Illustration-54107338-1.png");
+    background-repeat: repeat;
+    background-size: contain;
+    padding-left: 2em;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    
+}
+
+.bookingsByUser {
+    height: 90%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 900px) {
+    .profileWrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profileBooking {
+        margin-top: 8px;
+        margin-bottom: 6em;
+    }
+}

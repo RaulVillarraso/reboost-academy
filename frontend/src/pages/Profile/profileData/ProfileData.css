@@ -1,0 +1,97 @@
+/* Caja datos de usuario */
+
+.profileData {
+    width: 25em;
+    height: 45em;
+    background-color: #f4f4f4;
+    /* border: 1px black solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.profileTop {
+    width: 23em;
+    height: 5em;
+    display: flex;
+    align-items: center;
+}
+
+#profileTitle {
+    width: 20em;
+    text-align: center;
+    background-color: #FFFFFF;
+    margin-left: 24px;
+}
+
+.profileInfo {
+    width: 20em;
+    height: 20em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.personalInfo {
+    background-color: #FFFFFF;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+#buttonsCase {
+    display: flex;
+    justify-content: center;
+}
+
+.profileButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 12em;
+    width: 15em
+}
+
+.dataCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 60em;
+}
+
+#suscription {
+    background-color: #444444;
+    color: #FFFFFF
+}
+
+#calendar {
+    background-color: #636363;
+    color: #FFFFFF
+}
+
+#edit {
+    background-color: #444444;
+    color: #FFFFFF
+}
+
+#logout {
+    background-color: #828282;
+    color: #FFFFFF;
+}
+
+#suscription:hover {
+    background-color: #d29a00;
+}
+
+#calendar:hover {
+    background-color: #d29a00;
+}
+
+#edit:hover {
+    background-color: #d29a00;
+}
+
+#logout:hover {
+    background-color: rgb(165, 15, 45);
+}

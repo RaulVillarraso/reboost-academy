@@ -1,0 +1,21 @@
+#root {
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  #mycalendar {
+    padding: 1vh;
+    display: flex;
+   
+    justify-content: center;
+    align-content:center;
+  }
+
+  #position{
+    position: absolute;
+top: 8vh;
+  }
+
+
+ 

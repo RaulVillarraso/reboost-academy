@@ -13,7 +13,6 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    Avatar,
 } from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
@@ -24,19 +23,26 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn"
 import LoginIcon from "@mui/icons-material/Login"
 import PersonAddIcon from "@mui/icons-material/PersonAdd"
 import LogoutIcon from "@mui/icons-material/Logout"
+import {getUserProfile} from "../../../services/userService"
 import "./Header.css"
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import ProfileMenu from "../../../components/HeaderButtonless/ProfileMenu/ProfileMenu"
 
 const drawerWidth = 240
 
 function Header() {
     const theme = useTheme()
     const [open, setOpen] = useState(false)
-    const [menuDisplay, setMenuDisplay] = useState(true)
+    const [profile, setProfile] = useState({})
     const guest = ["Classes", "Staff", "Suscriptions", "Login", "Signup",]
     const account = ["Classes", "Staff", "Suscriptions", "Logout"]
     const array = localStorage.token ? account : guest
+    
+    async function getProfile() {
+        const result = await getUserProfile()
+        setProfile(result)
+    }
 
     const handleDrawerOpen = () => {
         setOpen(true)
@@ -74,6 +80,10 @@ function Header() {
         }
     }
 
+    useEffect(() => {
+        getProfile()
+    },[])
+
     return (
         <Box className="header">
             <Box className="menuIcon">
@@ -110,6 +120,7 @@ function Header() {
                     </IconButton>
 
                     <Divider />
+                    <Box id="drawerLogo"></Box>
                     <List>
                         {array.map((text, index) => (
                             <Link
@@ -120,7 +131,14 @@ function Header() {
                                     color: "black",
                                 }}
                             >
-                                <ListItem disablePadding onClick={text === "Logout" ? () => logout() : null}>
+                                <ListItem
+                                    disablePadding
+                                    onClick={
+                                        text === "Logout"
+                                            ? () => logout()
+                                            : null
+                                    }
+                                >
                                     <ListItemButton>
                                         <ListItemIcon>
                                             {switchStatement(text)}
@@ -135,11 +153,17 @@ function Header() {
             </Box>
             <Box className="logoAndButtons">
                 <Paper className="logo">
-                    <img src="https://placehold.co/76x76" />
+                    <img className="logoImg" src="./src/assets/home/Logo2.jpg" />
                 </Paper>
-                <Button variant="contained">Classes</Button>
-                <Button variant="contained">Staff</Button>
-                <Button variant="contained">Suscription</Button>
+                <Link to='/clase'>
+                <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Classes</Button>
+                </Link>
+                <Link to='/staff'>
+                <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Staff</Button>
+                </Link>
+                <Link to='/suscription'>
+                <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Suscription</Button>
+                </Link>
             </Box>
             <Link
                 to="/"
@@ -152,7 +176,7 @@ function Header() {
             {!localStorage.token ? (
                 <Box className="register">
                     <Link to="/login">
-                        <Button variant="contained" id="login">
+                        <Button  variant="contained" id="login">
                             Login
                         </Button>
                     </Link>
@@ -163,50 +187,15 @@ function Header() {
                     </Link>
                 </Box>
             ) : (
-                <Box 
+                <Box
                     sx={{
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
                         width: "10em",
-                    }}>
-                    <Avatar 
-                        className= "profilePic"
-                        alt="profile pic"
-                        src=""
-                        sx={{ position: "absolute" }}
-                        onClick={() => setMenuDisplay(!menuDisplay)}
-                    />
-                    <Box
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                        }}
-                    >
-                        <List
-                            sx={{
-                                backgroundColor: "background.paper",
-                                borderRadius: "10px",
-                                marginTop: "10em",
-                                boxShadow: "2px 2px 2px 1px rgba(0, 0, 0, 0.2)",
-                                display: menuDisplay ? "none" : null,
-                            }}
-                        >
-                            <ListItem disablePadding>
-                                <ListItemButton>
-                                    <ListItemText primary="Profile" />
-                                </ListItemButton>
-                            </ListItem>
-                            <ListItem disablePadding>
-                                <ListItemButton>
-                                    <ListItemText
-                                        onClick={() => logout()}
-                                        primary="Logout"
-                                    />
-                                </ListItemButton>
-                            </ListItem>
-                        </List>
-                    </Box>
+                    }}
+                >
+                    <ProfileMenu profile={profile}/>
                 </Box>
             )}
         </Box>
