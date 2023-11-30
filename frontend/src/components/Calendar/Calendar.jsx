@@ -357,7 +357,7 @@ const MyCalendar = () => {
     const refreshfilter = () => {
         setRefresh2(!refresh2)
     }
-console.log(userid)
+
     const prueba = () => {
         if (!buscador || buscador.length === 0) {
             return dataeventen
@@ -515,7 +515,7 @@ console.log(userid)
             offCanvasupdate.hide()
         }
     }
-
+   
     return (
         <div id="center">
             <div id="boton">
