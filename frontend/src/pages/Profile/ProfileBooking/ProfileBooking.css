@@ -2,14 +2,25 @@
     width: 25em;
     height: 45em;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background-image: url("https://www.creativefabrica.com/wp-content/uploads/2022/12/23/Common-Notebook-Sheet-Paper-Background-Illustration-54107338-1.png");
+    border:3px solid #444444;
+    background-image: url("https://images.pexels.com/photos/669576/pexels-photo-669576.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
     background-repeat: repeat;
-    background-size: contain;
-    padding-left: 2em;
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    background-size: cover;
+    background-position: right;
+    background-color: rgba(255,255,255,0.4);
+    background-blend-mode: lighten;
+    /* background: #444444; */
+    border-radius: 50px;
+    box-shadow: 20px 20px 60px #bebebe,
+                -20px -20px 60px #ffffff;
     
+}
+
+.addItem{
+    background: rgb(68, 68, 68);
+        background: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(210, 154, 0, 1) 90%);
 }
 
 .bookingsByUser {
@@ -29,4 +40,10 @@
         margin-top: 8px;
         margin-bottom: 6em;
     }
+}
+
+.logoBooking{
+    height: 20em;
+    width: 20em;
+    margin-top: 3em;
 }

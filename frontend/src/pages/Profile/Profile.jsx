@@ -6,7 +6,6 @@ import HeaderButtonless from "../../components/HeaderButtonless/HeaderButtonless
 import ProfileData from "./profileData/ProfileData"
 import ProfileBooking from "./ProfileBooking/ProfileBooking"
 import { Box } from "@mui/material"
-import AdminMenu from "./AdminMenu/AdminMenu"
 import PropTypes from "prop-types"
 
 function Profile() {
@@ -46,15 +45,11 @@ function Profile() {
         <>
             <HeaderButtonless profile={profile} />
             <Box className="profileContainer">
-                {localStorage.getItem("rol") === "Admin" && (
-                    <AdminMenu onAdminOptions={onAdminOptions} />
-                )}
-                {localStorage.getItem("rol") === "Client" && (
-                    <Box id="inv"></Box>
-                )}
+                
                 <Box className="profileWrapper">
                     <ProfileData profile={profile} onEdit={handleRefresh} />
                     <ProfileBooking
+                        onAdminOptions={onAdminOptions}
                         bookings={bookings}
                         adminOption={adminOption}
                     />

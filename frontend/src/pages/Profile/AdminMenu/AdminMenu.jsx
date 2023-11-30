@@ -1,7 +1,7 @@
 import { useState } from "react"
 import PropTypes from "prop-types"
 import "./AdminMenu.css"
-import { Button, Fade, Menu, MenuItem } from "@mui/material"
+import { Fade, Menu, MenuItem } from "@mui/material"
 
 function AdminMenu({ onAdminOptions }) {
     const [anchorEl, setAnchorEl] = useState(null)
@@ -17,16 +17,12 @@ function AdminMenu({ onAdminOptions }) {
 
     return (
         <div id="adminMenu">
-            <Button
-                id="fade-button"
-                aria-controls={open ? "fade-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
+            <button
                 onClick={handleClick}
-                variant="contained"
+                className="Btn"
             >
                 Admin Options
-            </Button>
+            </button>
             <Menu
                 id="fade-menu"
                 MenuListProps={{
@@ -37,9 +33,15 @@ function AdminMenu({ onAdminOptions }) {
                 onClose={handleClose}
                 TransitionComponent={Fade}
             >
-                <MenuItem value="Profile" onClick={onAdminOptions}>Profile</MenuItem>
-                <MenuItem value="Teachers" onClick={onAdminOptions}>Teachers</MenuItem>
-                <MenuItem value="Suscriptions" onClick={onAdminOptions}>Suscriptions</MenuItem>
+                <MenuItem value="Profile" onClick={onAdminOptions}>
+                    Profile
+                </MenuItem>
+                <MenuItem value="Teachers" onClick={onAdminOptions}>
+                    Teachers
+                </MenuItem>
+                <MenuItem value="Suscriptions" onClick={onAdminOptions}>
+                    Suscriptions
+                </MenuItem>
             </Menu>
         </div>
     )
