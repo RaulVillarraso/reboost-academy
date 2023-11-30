@@ -3,9 +3,9 @@ Bootcamp project. Out idea is to provide a web App that lets a Sport Center to m
 
 # TEAM
 
-- Daniel Vega - https://github.com/DanielVegaSuarez
-- Adrian Dieppa - https://github.com/adrianaadd
-- Raúl Villarraso - https://github.com/RaulVillarraso
+- Daniel Vega Suarez - https://github.com/DanielVegaSuarez
+- Adrian Angulo Dieppa - https://github.com/adrianaadd
+- Raúl Villarraso Morales - https://github.com/RaulVillarraso
 
 # Tech
 
