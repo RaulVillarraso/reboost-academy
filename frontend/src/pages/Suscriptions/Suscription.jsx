@@ -22,6 +22,7 @@ import ReactDOM from 'react-dom';
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import Pay from "../../components/Pago/Pay"
+import DatosPago from "../../components/Pago/Webhook"
 
 
 
@@ -160,6 +161,10 @@ export default function Suscription() {
         <>
             <Container className="method">{Method()}</Container>
             <Header />
+        <div className="datosPago">
+
+            <DatosPago/>
+        </div>
         </>
     )
 }

@@ -42,7 +42,7 @@ function Signup() {
             <HeaderButtonless />
             <Box className="bodySignup">
                 <Box className="signupImage">
-                    <img src="https://placehold.co/400" />
+                    <img src="./src/assets/signup/1.jpg" />
                 </Box>
                 <Box className="signupForm">
                     <Box className="signupTitle">
