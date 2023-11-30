@@ -93,11 +93,12 @@ function Login() {
                     </Box>
                     <Box className="loginButtons">
                         <Button
+                            id="loginButton"
                             variant="contained"
                             onClick={() => onLogin()}
                             sx={{
                                 backgroundColor: "#FCB900",
-                                color: "#FFFFFF",
+                                color: "#444444",
                                 borderRadius: "15px",
                                 width: "8em",
                                 marginBottom: "16px",

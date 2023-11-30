@@ -202,7 +202,7 @@ function Header() {
             </Box>
             <Box className="logoAndButtons" style={{ width:"33vw"}} >
                 <Paper className="logo">
-                    <img className="logoImg" src="./src/assets/home/Logo2.jpg" />
+                    <img className="logoImg" src="./src/assets/calendar/logo.png" />
                 </Paper>
                 <Link to='/clase' style={{textDecoration: "none"}}>
                 <Button  sx={{...buttonStyles,...boxStyles}} variant="contained">Classes</Button>

@@ -345,7 +345,7 @@ function ProfileBooking({ bookings, adminOption, onAdminOptions }) {
         <Box className="profileBooking">
             
                 {localStorage.rol === "Admin" && <AdminMenu onAdminOptions={onAdminOptions} />}
-            
+                
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <Typography
@@ -359,6 +359,7 @@ function ProfileBooking({ bookings, adminOption, onAdminOptions }) {
                                 ? "You don't have an active suscription"
                                 : "Welcome Admin!"}
                         </Typography>
+                        {localStorage.rol === "Admin" && adminOption === "Profile" ? <img className="logoBooking" src="./src/assets/calendar/logo.png"/> : null}
                         <List>
                             {edit ? (
                                 <EditTeacher
