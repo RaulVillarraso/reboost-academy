@@ -39,7 +39,9 @@ const User = sequelize.define(
       type: DataTypes.STRING,
       unique: true,
     },
-    createdSuscriptionAt: { type: DataTypes.STRING,},
+    createdSuscriptionAt: { type: DataTypes.STRING, },
+    Exp: { type: DataTypes.INTEGER, },
+    Level: { type: DataTypes.INTEGER, },
   },
   {
     //opciones
