@@ -45,3 +45,22 @@ export const getallUserBooking = async (id) => {
     return data
   
   }
+  export async function DeleteUserBooking(booking) {
+    try {
+        const { data } = await api.delete(`user/userbooking/delete`, {
+            headers: {
+                authorization: localStorage.token,
+            },
+            data: {
+                userId: booking.userId,
+                bookingId: booking.bookingId,
+            },
+        });
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error(error);
+        throw error; 
+    }
+}
+
