@@ -39,6 +39,7 @@ function ProfileMenu({ profile }) {
                     alignItems: "center",
                     textAlign: "center",
                     paddingRight: "2em",
+
                 }}
             >
                 <Tooltip title="Account settings">
@@ -51,7 +52,7 @@ function ProfileMenu({ profile }) {
                         aria-expanded={open ? "true" : undefined}
                     >
                         <Avatar
-                            sx={{ width: 32, height: 32 }}
+                            sx={{ width: 49, height: 49 }}
                             src={profile.profileImg}
                         ></Avatar>
                     </IconButton>
