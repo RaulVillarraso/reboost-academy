@@ -122,6 +122,7 @@ function ProfileBooking({ bookings, adminOption, onAdminOptions }) {
                 <Grid key={i} container spacing={2}>
                     <Grid item xs={12}>
                         <ListItem
+                            sx={{background: "rgba(255,255,255,0.8)", marginBottom:"8px"}}
                             secondaryAction={
                                 !edit ? (
                                     <IconButton
@@ -169,6 +170,10 @@ function ProfileBooking({ bookings, adminOption, onAdminOptions }) {
                 <Grid key={i} container spacing={2}>
                     <Grid item xs={12}>
                         <ListItem
+                            sx={{
+                                background: "rgba(255,255,255,0.8)",
+                                marginBottom: "8px",
+                            }}
                             secondaryAction={
                                 <IconButton
                                     onClick={() => {

@@ -5,11 +5,11 @@
     flex-direction: column;
     align-items: center;
     border:3px solid #444444;
-    background-image: url("https://img.freepik.com/foto-gratis/pesas-ejercicio-mancuernas-hierro-placas-extra_1423-223.jpg?w=1380&t=st=1701291841~exp=1701292441~hmac=64d3b106f4dbd781ebd36ab6e214d49b4c6974385406ceb3a7520dc5e0f05f78");
+    background-image: url("https://images.pexels.com/photos/669576/pexels-photo-669576.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
     background-repeat: repeat;
     background-size: cover;
-    background-position: center;
-    background-color: rgba(255,255,255,0.6);
+    background-position: right;
+    background-color: rgba(255,255,255,0.4);
     background-blend-mode: lighten;
     /* background: #444444; */
     border-radius: 50px;
