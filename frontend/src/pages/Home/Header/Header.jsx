@@ -211,7 +211,7 @@ function Header() {
                 <Button sx={{...buttonStyles,...boxStyles}} variant="contained">Staff</Button>
                 </Link>
                 <Link to='/suscription'style={{textDecoration: "none"}}>
-                <Button sx={{...buttonStyles,...boxStyles}} variant="contained">Suscription</Button>
+                <Button sx={{...buttonStyles,...boxStyles}} variant="contained">Subscription</Button>
                 </Link>
             </Box>
             

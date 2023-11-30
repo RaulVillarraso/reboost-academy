@@ -114,7 +114,7 @@ function ProfileData({ profile, onEdit }) {
                                 id="suscription"
                                 onClick={() => navigate("/suscription")}
                             >
-                                Suscriptions
+                                Subscriptions
                             </Button>
                             <Button
                                 variant="contained"
