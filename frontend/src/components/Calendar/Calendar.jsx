@@ -386,9 +386,17 @@ console.log(userid)
                 weekends: false,
                 events: prueba(),
                 eventColor: "green",
+               
 
                 eventClick: evento,
                 dateClick: handleDateClick,
+                eventContent: function (arg) {
+                    return {
+                        html: `<div style="color: black;"> ${arg.event.title.toLocaleUpperCase()}</div>`,
+                    };
+                },
+
+
             })
 
             calendar2.render()
@@ -575,6 +583,7 @@ console.log(userid)
                 <div class="offcanvas-body">
                     {showinput === "true" && clickedDate && (
                         <div>
+                        
                             <Box
                                 sx={{
                                     display: "flex",
@@ -584,9 +593,15 @@ console.log(userid)
                                     height: "100vh",
                                     paddingBottom: "20vh",
                                 }}
+                                
                             >
                                 {localStorage.getItem("rol") === "Client" && (
-                                    <div id="calendar2" ref={calendarRef2} />
+                                   
+                                      
+                                    
+                                    <div id="calendar2" ref={calendarRef2} />   
+                                   
+                                
                                 )}
 
                                 <Grid container spacing={1}>
@@ -664,6 +679,7 @@ console.log(userid)
                                                 label="Clase del evento"
                                                 value={eventClassName}
                                                 onChange={handleChange}
+                                                style={{ display:"block"  }}
                                             >
                                                 {options.map((option) => (
                                                     <MenuItem

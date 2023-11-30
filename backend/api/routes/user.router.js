@@ -9,6 +9,7 @@ const {
   getBookedClasses,
   getUserProfile,
   getUserSuscription,
+  deleteUserBooking
 } = require("../controllers/user.controller");
 const { checkAuth, checkAdmin } = require("../middleware");
 
@@ -22,6 +23,7 @@ router.get("/:id", checkAuth, checkAdmin, getOneUser);
 router.get("/booking/:id", checkAuth, getBookedClasses);
 router.post("/", checkAuth, checkAdmin, createUser); 
 router.post("/userbooking", checkAuth, checkAdmin, createUserBooking); 
+router.delete("/userbooking/delete", deleteUserBooking);
 router.put("/:id", checkAuth, updateUser); 
 router.delete("/:id", checkAuth, checkAdmin, deleteUser);  
 

@@ -48,14 +48,9 @@
 
 
 
-
-
-
-
-
-
 #calendar2 {
-  width: 29vw;
+  margin-top: 2vw;
+  width: 20vw;
 }
 
 .pilates {
@@ -157,7 +152,7 @@
 
 
 .bodybalance {
-  background: linear-gradient(to right, #ffee00, #fcf7bb);
+  background: linear-gradient(to right, #ada202, #fcf7bb);
   color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -176,7 +171,7 @@
 
 
 .bailes_salon {
-  background: linear-gradient(to right, #00ffea, #d2f3f0);
+  background: linear-gradient(to right, #03d3c2, #d2f3f0);
   color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -194,12 +189,8 @@
 }
 
 
-
-
-
-
 .bailes_latinos {
-  background: linear-gradient(to right, #73ff00, #e0fdc8);
+  background: linear-gradient(to right, #60d401, #e0fdc8);
   color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

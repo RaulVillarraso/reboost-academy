@@ -90,6 +90,31 @@ async function deleteUser(req, res) {
     }
 }
 
+async function deleteUserBooking(req, res) {
+    const { userId, bookingId } = req.body;
+
+    try {
+        
+        const user_booking = await User_booking.findOne({
+            where: {
+                userId: userId,
+                bookingId: bookingId,
+            },
+        });
+
+        if (user_booking) {
+            await user_booking.destroy();
+            res.status(200).send('User booking deleted');
+        } else {
+            res.status(404).send('User booking not found');
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+}
+
+
+
 async function getBookedClasses(req, res) {
     try {
         const user = await User.findOne({
@@ -157,4 +182,5 @@ module.exports = {
   getBookedClasses,
   getUserProfile,
   getUserSuscription,
+  deleteUserBooking
 };
