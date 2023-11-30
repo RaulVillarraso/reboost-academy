@@ -6,7 +6,7 @@ router.get('/', checkAuth,  getAllBookings)
 router.get("/:id", checkAuth, getOneBooking);
 router.get('/clase/classroom/:id', checkAuth, getClassesAndTeachersForBookingDate)
 router.post("/",  checkAuth, checkAdmin,  createBooking);
-router.put("/:id",  checkAuth, checkAdmin, updateBooking);
+router.put("/:id",  checkAuth, updateBooking);
 router.delete("/:id",  checkAuth, checkAdmin, deleteBooking);
 
 

@@ -64,7 +64,7 @@ async function createUser(req, res) {
 async function createUserBooking(req, res) {
     try {
         const user_booking = await User_booking.create(req.body)
-        res.status(200).send('User created sucessfully')
+        res.status(200).send("Booked successfully");
     } catch (error) {
         res.status(500).send(error.message)
     }

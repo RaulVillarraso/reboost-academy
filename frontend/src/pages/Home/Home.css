@@ -16,10 +16,6 @@
         display: none;
     }
 }
-
-
-
-
 .imageList{
     margin-top: 4em;
     width: 100vw;
@@ -59,11 +55,14 @@
   
   .portraitText::before {
     position: absolute;
-    content: "¡Bienvenido al Centro Deportivo Reboost Academy! En nuestro centro, nos enorgullece ser mucho más que un simple gimnasio: somos un lugar donde la pasión por el bienestar y el rendimiento se fusiona para crear una experiencia única. Ya sea que seas un atleta experimentado, estés dando tus primeros pasos hacia un estilo de vida más activo o simplemente busques un espacio acogedor para alcanzar tus metas, aquí encontrarás todo lo que necesitas. Nuestro compromiso es proporcionar instalaciones de última generación que se adapten a tus necesidades. Te ofrecemos el entorno perfecto para desafiarte a ti mismo y alcanzar nuevos niveles de rendimiento.";
+
+    content: "Welcome to Reboost Academy Sport Centre ! In our centre, we are proud to be more than a simple gym, we are a place where the passion for welfare and performance combine to provide an unique experience. No matter if you ara an experienced athlete or if you are simply looking for a nice place to achieve your goals, here you'll find all you need. Our commitment is to provide you next-gen logistics able to adapt to your needs. We offer you a perfect enviroment to challenge yourself and achieve new levels of performance.";
+
     color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 16px;
     width: 98%;
     height: 98%;
     border-radius: 8px;
