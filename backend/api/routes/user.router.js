@@ -17,13 +17,13 @@ const router = require('express').Router()
 
 router.get("/profile", checkAuth, getUserProfile);
 router.get("/suscription", checkAuth, getUserSuscription)
-router.get("/", checkAuth, checkAdmin, getAllUsers); 
-router.get("/userbooking/:id", checkAuth, checkAdmin, getAllUsersBookings); 
-router.get("/:id", checkAuth, checkAdmin, getOneUser);
+router.get("/", checkAuth, getAllUsers); 
+router.get("/userbooking/:id", checkAuth, getAllUsersBookings); 
+router.get("/:id", checkAuth, getOneUser);
 router.get("/booking/:id", checkAuth, getBookedClasses);
-router.post("/", checkAuth, checkAdmin, createUser); 
-router.post("/userbooking", checkAuth, checkAdmin, createUserBooking); 
-router.delete("/userbooking/delete", deleteUserBooking);
+router.post("/", checkAuth, createUser); 
+router.post("/userbooking", checkAuth, createUserBooking); 
+router.delete("/userbooking/delete", checkAuth, deleteUserBooking);
 router.put("/:id", checkAuth, updateUser); 
 router.delete("/:id", checkAuth, checkAdmin, deleteUser);  
 
