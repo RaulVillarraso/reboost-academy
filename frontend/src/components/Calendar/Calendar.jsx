@@ -679,7 +679,7 @@ const MyCalendar = () => {
                                                 label="Clase del evento"
                                                 value={eventClassName}
                                                 onChange={handleChange}
-                                                style={{ display:"block"  }}
+                                                style={{   }}
                                             >
                                                 {options.map((option) => (
                                                     <MenuItem
