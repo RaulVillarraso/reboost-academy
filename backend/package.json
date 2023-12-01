@@ -1,6 +1,6 @@
 {
   "engines": {
-    "node": ">=18.18.0"
+    "node": ">=21.3.0"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
