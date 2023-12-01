@@ -3,7 +3,7 @@ const { checkAuth, checkAdmin } = require("../middleware");
 
 const router = require('express').Router() 
 
-router.get("/", checkAuth, getAllClases); 
+router.get("/", getAllClases); 
 router.get("/:id", checkAuth, checkAdmin, getOneClases);
 router.get("/count/:id", checkAuth, checkAdmin, countClases); 
 
