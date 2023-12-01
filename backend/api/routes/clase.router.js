@@ -4,8 +4,8 @@ const { checkAuth, checkAdmin } = require("../middleware");
 const router = require('express').Router() 
 
 router.get("/", getAllClases); 
-router.get("/:id", checkAuth, checkAdmin, getOneClases);
-router.get("/count/:id", checkAuth, checkAdmin, countClases); 
+router.get("/:id", getOneClases);
+router.get("/count/:id", countClases); 
 
 router.post("/", checkAuth, checkAdmin, createClases); 
 router.put("/:id", checkAuth, checkAdmin, updateClases); 
