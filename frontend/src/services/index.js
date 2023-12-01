@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://reboost-academy.onrender.com/",
+    baseURL: "https://reboost-academy.onrender.com/api",
 })
 
 export default api
