@@ -79,9 +79,9 @@ function ProfileBooking({ bookings, adminOption, onAdminOptions }) {
         pilates: "Pilates",
         yoga: "Yoga",
         ciclo_indoor: "Ciclo Indoor",
-        bodypump: "Body Pump",
-        bodycombat: "Body Combat",
-        bodybalance: "Body Balance",
+        body_pump: "Body Pump",
+        body_combat: "Body Combat",
+        body_balance: "Body Balance",
         bailes_salon: "Bailes de Salón",
         bailes_latinos: "Bailes Latinos",
     }

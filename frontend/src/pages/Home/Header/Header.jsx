@@ -85,7 +85,7 @@ function Header() {
     const [open, setOpen] = useState(false)
     const [profile, setProfile] = useState({})
     const guest = ["Classes", "Staff", "Suscriptions", "Login", "Signup",]
-    const account = ["Classes", "Staff", "Suscriptions", "Logout"]
+    const account = ["Clase", "Staff", "Suscription", "Logout"]
     const array = localStorage.token ? account : guest
     
     async function getProfile() {
