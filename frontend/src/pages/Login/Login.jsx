@@ -48,7 +48,7 @@ function Login() {
         <Box id="loginMain">
             <HeaderButtonless />
             <Box className="bodyLogin">
-                <img src="https://placehold.co/175x432" />
+                <img src="./src/assets/login/1.jpg" />
                 <Box className="loginForm">
                     <Box className="loginTitle">
                         <Typography variant="h4">Login</Typography>
@@ -93,11 +93,12 @@ function Login() {
                     </Box>
                     <Box className="loginButtons">
                         <Button
+                            id="loginButton"
                             variant="contained"
                             onClick={() => onLogin()}
                             sx={{
                                 backgroundColor: "#FCB900",
-                                color: "#FFFFFF",
+                                color: "#444444",
                                 borderRadius: "15px",
                                 width: "8em",
                                 marginBottom: "16px",
@@ -111,7 +112,7 @@ function Login() {
                         </Typography>
                     </Box>
                 </Box>
-                <img src="https://placehold.co/175x432" />
+                <img src="./src/assets/login/2.jpg" />
             </Box>
         </Box>
     )

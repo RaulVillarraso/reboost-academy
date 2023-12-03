@@ -37,6 +37,7 @@ import {
 
 import {
     CreateUserBooking,
+    DeleteUserBooking,
     getUserProfile,
     getallUserBooking,
 } from "../../services/userService"
@@ -46,6 +47,8 @@ import Footer from "../footer/Footer"
 
 const MyCalendar = () => {
     const calendarRef2 = useRef(null)
+
+    const [showSelect, setShowSelect] = useState(false)
     const [confirmDelete, setConfirmDelete] = useState(false)
     const [eventid, setEventid] = useState("")
     const [dataeventen, setDataEventen] = useState([])
@@ -81,6 +84,7 @@ const MyCalendar = () => {
     const [suscriptionid, setsuscriptionid] = useState(null)
     const [startdateformatted, setstartdateformatted] = useState("")
     const [suscriptioncancel, setsuscriptioncancel] = useState(0)
+    const [refresh8, setRefresh8] = useState(false)
     const calendarRef = useRef(null)
 
     const handleChange = (e) => {
@@ -142,8 +146,7 @@ const MyCalendar = () => {
         }
     }
 
-    console.log(suscriptioncancel)
-    console.log(startdateformatted)
+ 
 
     const handleBookingUserInfo = async () => {
         if (userid !== null) {
@@ -195,6 +198,24 @@ const MyCalendar = () => {
         setsuscriptionactivated(false)
         offCanvasupdate.hide()
     }
+
+    async function SendDeletetarget() {
+        const update = { targeted: classroomTarget - 1 }
+        const response = await updateBooking(id, update)
+        await UnLinkUserBookin()
+        await handleBookingUserInfo()
+        setsuscriptionactivated(false)
+        offCanvasupdate.hide()
+    }
+
+    async function UnLinkUserBookin() {
+        const body = { userId: userid, bookingId: id }
+
+        const response = await DeleteUserBooking(body)
+    }
+
+
+
 
     const handleApiInfo = async () => {
         const Apivalues = await handlebooking()
@@ -252,7 +273,14 @@ const MyCalendar = () => {
 
     async function Updating() {
         setRefresh6(!refresh6)
+        offCanvasupdate.hide()
     }
+
+    async function deleteUserBook() {
+        setRefresh8(!refresh8)
+        offCanvasupdate.hide()
+    }
+
 
     async function Delete() {
         setRefresh4(!refresh4)
@@ -310,7 +338,17 @@ const MyCalendar = () => {
 
             setRefresh7(false)
         }
-    }, [refresh || refresh3 || refresh4 || refresh5 || refresh6 || refresh7])
+
+        if (refresh8) {
+            handleApiInfo()
+            SendDeletetarget()
+          
+            handleApiInfo()
+
+            setRefresh8(false)
+        }
+
+    }, [refresh || refresh3 || refresh4 || refresh5 || refresh6 || refresh7 || refresh8])
 
     const refreshfilter2 = () => {
         setRefresh5(!refresh5)
@@ -325,9 +363,6 @@ const MyCalendar = () => {
             return dataeventen
         } else {
             return dataeventen.filter((event) => event.className === buscador)
-            /* const filteredEvents = dataeventen.filter(event =>
-        event.className.toLowerCase().includes(buscador)
-      ); */
         }
     }
     useEffect(() => {
@@ -351,16 +386,27 @@ const MyCalendar = () => {
                 weekends: false,
                 events: prueba(),
                 eventColor: "green",
+               
 
                 eventClick: evento,
                 dateClick: handleDateClick,
+                eventContent: function (arg) {
+                    return {
+                        html: `<div style="color: black;"> ${arg.event.title.toLocaleUpperCase()}</div>`,
+                    };
+                },
+
+
             })
 
             calendar2.render()
+
         }
     }, [dataeventen || refresh5])
 
     useEffect(() => {
+
+     
         if (calendarRef.current) {
             const calendar = new Calendar(calendarRef.current, {
                 plugins: [
@@ -370,29 +416,31 @@ const MyCalendar = () => {
                     listPlugin,
                 ],
                 customButtons: {
-                    myCustomButton: {
-                        text: "custom!",
+                    mydaybutton: {
+                        text: "today!",
                         click: function () {
-                            alert("clicked the custom button!")
+                            calendar.gotoDate(new Date())
+                        },
+                    },
+
+                    myCustomButton: {
+                        text: "Filtre sus clases!",
+                        click: function () {
+                            setShowSelect(!showSelect)
+                            setRefresh2(!refresh2)
                         },
                     },
                 },
+
                 themeSystem: "bootstrap5",
                 initialView: "dayGridMonth",
                 headerToolbar: {
-                    left: "prev,next,today,myCustomButton",
+                    left: "prev,next,myCustomButton",
                     center: "title",
-                    right: "dayGridMonth,listWeek",
+                    right: "dayGridMonth,listWeek,mydaybutton",
                 },
                 editable: true,
                 selectable: true,
-                eventLimit: true, // If you set a number it will hide the itens
-                views: {
-                    dayGridMonth: {
-                        eventLimit: true, // adjust to 6 only for timeGridWeek/timeGridDay
-                    },
-                },
-                eventLimitText: "More",
                 weekends: false,
                 events: prueba(),
                 eventColor: "green",
@@ -400,7 +448,10 @@ const MyCalendar = () => {
                 eventClick: evento,
                 dateClick: handleDateClick,
             })
+        
+            
             calendar.render()
+            handleBookingUserInfo()
         }
     }, [dataeventen])
 
@@ -464,50 +515,48 @@ const MyCalendar = () => {
             offCanvasupdate.hide()
         }
     }
-
+   
     return (
         <div id="center">
-            <div>
+            <div id="boton">
+                <Select
+                    label="Clase del evento"
+                    value={buscador}
+                    onChange={(e) => setbuscador(e.target.value)}
+                    style={{ display: showSelect ? "block" : "none" }}
+                >
+                    <MenuItem onClick={refreshfilter} value="pilates">
+                        Pilates
+                    </MenuItem>
+                    <MenuItem onClick={refreshfilter} value="yoga">
+                        Yoga
+                    </MenuItem>
+                    <MenuItem onClick={refreshfilter} value="ciclo_indoor">
+                        Ciclo Indoor
+                    </MenuItem>
+                    <MenuItem onClick={refreshfilter} value="bodypump">
+                        Body Pump
+                    </MenuItem>
+                    <MenuItem onClick={refreshfilter} value="bodycombat">
+                        Body Combat
+                    </MenuItem>
+                    <MenuItem onClick={refreshfilter} value="bodybalance">
+                        Body Balance
+                    </MenuItem>
+                    <MenuItem onClick={refreshfilter} value="bailes_salon">
+                        Bailes De Salón
+                    </MenuItem>
+                    <MenuItem onClick={refreshfilter} value="bailes_latinos">
+                        Bailes Latinos
+                    </MenuItem>
+                    <MenuItem onClick={refreshfilter} value="">
+                        Todo
+                    </MenuItem>
+                </Select>
+
                 <br />
-                <div id="boton">
-                    <Select
-                        label="Clase del evento"
-                        value={buscador}
-                        onChange={(e) => setbuscador(e.target.value)}
-                    >
-                        <MenuItem onClick={refreshfilter} value="pilates">
-                            Pilates
-                        </MenuItem>
-                        <MenuItem onClick={refreshfilter} value="yoga">
-                            Yoga
-                        </MenuItem>
-                        <MenuItem onClick={refreshfilter} value="ciclo_indoor">
-                            Ciclo Indoor
-                        </MenuItem>
-                        <MenuItem onClick={refreshfilter} value="bodypump">
-                            Body Pump
-                        </MenuItem>
-                        <MenuItem onClick={refreshfilter} value="bodycombat">
-                            Body Combat
-                        </MenuItem>
-                        <MenuItem onClick={refreshfilter} value="bodybalance">
-                            Body Balance
-                        </MenuItem>
-                        <MenuItem onClick={refreshfilter} value="bailes_salon">
-                            Bailes De Salón
-                        </MenuItem>
-                        <MenuItem
-                            onClick={refreshfilter}
-                            value="bailes_latinos"
-                        >
-                            Bailes Latinos
-                        </MenuItem>
-                        <MenuItem onClick={refreshfilter} value="">
-                            Todo
-                        </MenuItem>
-                    </Select>
-                </div>
-                <div ref={calendarRef} />
+
+                <div id="back" ref={calendarRef} />
             </div>
 
             <div
@@ -534,6 +583,7 @@ const MyCalendar = () => {
                 <div class="offcanvas-body">
                     {showinput === "true" && clickedDate && (
                         <div>
+                        
                             <Box
                                 sx={{
                                     display: "flex",
@@ -543,9 +593,15 @@ const MyCalendar = () => {
                                     height: "100vh",
                                     paddingBottom: "20vh",
                                 }}
+                                
                             >
                                 {localStorage.getItem("rol") === "Client" && (
-                                    <div id="calendar2" ref={calendarRef2} />
+                                   
+                                      
+                                    
+                                    <div id="calendar2" ref={calendarRef2} />   
+                                   
+                                
                                 )}
 
                                 <Grid container spacing={1}>
@@ -623,6 +679,7 @@ const MyCalendar = () => {
                                                 label="Clase del evento"
                                                 value={eventClassName}
                                                 onChange={handleChange}
+                                                style={{   }}
                                             >
                                                 {options.map((option) => (
                                                     <MenuItem
@@ -784,7 +841,19 @@ const MyCalendar = () => {
                                         <Typography
                                             sx={{ color: "warning.main" }}
                                         >
+                                            <br />
                                             Usted ya está apuntado a esta clase
+                                            
+                                            <Button
+                                                variant="contained"
+                                                sx={{
+                                                    backgroundColor:
+                                                        "error.main",
+                                                }}
+                                                onClick={deleteUserBook}
+                                            >
+                                                Cancelar reserva
+                                            </Button>
                                         </Typography>
                                     </Grid>
                                 )}
@@ -795,7 +864,8 @@ const MyCalendar = () => {
                                             <Typography
                                                 sx={{ color: "error.main" }}
                                             >
-                                               Su subscripción no es válida
+                                                <br />
+                                                Su subscripción no es válida
                                             </Typography>
                                             <Link
                                                 to="/suscription"
@@ -808,7 +878,8 @@ const MyCalendar = () => {
                                                     size="small"
                                                     color="primary"
                                                 >
-                                                  Descubra Nuestros Planes
+                                                    <br />
+                                                    Descubra Nuestros Planes
                                                 </Button>
                                             </Link>
                                         </Grid>

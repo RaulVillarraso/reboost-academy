@@ -11,17 +11,32 @@ import {
 } from "@mui/material"
 import PropTypes from "prop-types"
 import "./ProfileBooking.css"
-import { useEffect, useState } from "react"
+import { forwardRef, useEffect, useState } from "react"
 import dayjs from "dayjs"
 import { getUserSuscription } from "../../../services/userService"
 import DeleteIcon from "@mui/icons-material/Delete"
 import EditIcon from "@mui/icons-material/Edit"
-import { deleteTeacher, getTeacher, getTeachers, postTeacher, updateTeacher } from "../../../services/teacherService"
-import { deleteSuscription, getAllSuscriptions, getSuscriptionById, postSuscription, updateSuscription } from "../../../services/suscriptionService"
+import {
+    deleteTeacher,
+    getTeacher,
+    getTeachers,
+    postTeacher,
+    updateTeacher,
+} from "../../../services/teacherService"
+import {
+    deleteSuscription,
+    getAllSuscriptions,
+    getSuscriptionById,
+    postSuscription,
+    updateSuscription,
+} from "../../../services/suscriptionService"
 import EditTeacher from "./EditTeacher/EditTeacher"
 import EditSuscription from "./EditSuscription/EditSuscription"
+import Snackbar from "@mui/material/Snackbar"
+import MuiAlert from "@mui/material/Alert"
+import AdminMenu from "../AdminMenu/AdminMenu"
 
-function ProfileBooking({ bookings, adminOption }) {
+function ProfileBooking({ bookings, adminOption, onAdminOptions }) {
     const [suscription, setSuscription] = useState("")
     const [suscriptionList, setSuscriptionList] = useState([])
     const [suscriptionSelec, setSuscriptionSelec] = useState({})
@@ -30,24 +45,76 @@ function ProfileBooking({ bookings, adminOption }) {
     const [edit, setEdit] = useState(false)
     const [editSus, setEditSus] = useState(false)
     const [refresh, setRefresh] = useState(true)
+    const [open, setOpen] = useState(false)
+    const [openDel, setOpenDel] = useState(false)
 
+    const handleDelete = () => {
+        setOpenDel(true)
+    }
+
+    const handleCloseDel = (event, reason) => {
+        if (reason === "clickaway") {
+            return
+        }
+        setOpenDel(false)
+    }
+
+    const Alert = forwardRef(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
+    })
+
+    const handleClick = () => {
+        setOpen(true)
+    }
+
+    const handleClose = (event, reason) => {
+        if (reason === "clickaway") {
+            return
+        }
+        setOpen(false)
+    }
+
+
+    const classFormated = {
+        pilates: "Pilates",
+        yoga: "Yoga",
+        ciclo_indoor: "Ciclo Indoor",
+        body_pump: "Body Pump",
+        body_combat: "Body Combat",
+        body_balance: "Body Balance",
+        bailes_salon: "Bailes de Salón",
+        bailes_latinos: "Bailes Latinos",
+    }
+
+    
     function generate(adminOption) {
         if (adminOption === "Profile" && bookings.bookings) {
             return bookings.bookings.map((value, i) => {
                 const bookingDate = dayjs(value.start)
                 const dateFormat = bookingDate.format("DD/MM - HH:mm")
                 return (
-                    <ListItem key={i} sx={{ width: "100%" }}>
-                        <ListItemText
-                            sx={{ width: "100%" }}
-                            primary={value.class.classname}
-                            secondary={
-                                value.class.classroom.classroomname +
-                                " || " +
-                                dateFormat
-                            }
-                        />
-                    </ListItem>
+                        <ListItem 
+                            key={i}
+                            sx={{
+                                width: "100%",
+                            }}
+                        >
+                            <ListItemText
+                                sx={{
+                                    width: "100%",
+                                    height: "3em",
+                                    background: `linear-gradient(315deg, rgba(238,246,254,0) 34%, #ffffff 80%)`,
+                                    borderRadius: "4px",
+                                    paddingLeft:"4px"
+                                }}
+                                primary={classFormated[value.class.classname]}
+                                secondary={
+                                    value.class.classroom.classroomname +
+                                    " || " +
+                                    dateFormat
+                                }
+                            />
+                        </ListItem>
                 )
             })
         } else if (adminOption === "Teachers") {
@@ -55,10 +122,14 @@ function ProfileBooking({ bookings, adminOption }) {
                 <Grid key={i} container spacing={2}>
                     <Grid item xs={12}>
                         <ListItem
+                            sx={{background: "rgba(255,255,255,0.8)", marginBottom:"8px"}}
                             secondaryAction={
                                 !edit ? (
                                     <IconButton
-                                        onClick={() => removeTeacher(value.id)}
+                                        onClick={() => {
+                                            removeTeacher(value.id)
+                                            handleDelete()
+                                        }}
                                         edge="end"
                                         aria-label="delete"
                                     >
@@ -68,7 +139,7 @@ function ProfileBooking({ bookings, adminOption }) {
                             }
                         >
                             <ListItemAvatar>
-                                {(
+                                {
                                     <IconButton
                                         onClick={() => getOneTeacher(value.id)}
                                         edge="start"
@@ -76,7 +147,7 @@ function ProfileBooking({ bookings, adminOption }) {
                                     >
                                         <EditIcon />
                                     </IconButton>
-                                )}
+                                }
                             </ListItemAvatar>
                             <ListItemText
                                 primary={
@@ -99,9 +170,16 @@ function ProfileBooking({ bookings, adminOption }) {
                 <Grid key={i} container spacing={2}>
                     <Grid item xs={12}>
                         <ListItem
+                            sx={{
+                                background: "rgba(255,255,255,0.8)",
+                                marginBottom: "8px",
+                            }}
                             secondaryAction={
                                 <IconButton
-                                    onClick={() => removeSuscription(value.id)}
+                                    onClick={() => {
+                                        removeSuscription(value.id)
+                                        handleDelete()
+                                    }}
                                     edge="end"
                                     aria-label="delete"
                                 >
@@ -137,10 +215,9 @@ function ProfileBooking({ bookings, adminOption }) {
         } catch (error) {
             console.log(error)
         }
-        
     }
 
-    async function getOneTeacher(id){
+    async function getOneTeacher(id) {
         try {
             const result = await getTeacher(id)
             setTeacher(result)
@@ -150,7 +227,7 @@ function ProfileBooking({ bookings, adminOption }) {
         }
     }
 
-    async function createTeacher(body){
+    async function createTeacher(body) {
         try {
             await postTeacher(body)
             setEdit(!edit)
@@ -160,7 +237,14 @@ function ProfileBooking({ bookings, adminOption }) {
         }
     }
 
-    async function editTeacher(id, firstName, lastName, email, specialization, phone) {
+    async function editTeacher(
+        id,
+        firstName,
+        lastName,
+        email,
+        specialization,
+        phone
+    ) {
         try {
             const edited = {
                 firstName: firstName,
@@ -177,7 +261,7 @@ function ProfileBooking({ bookings, adminOption }) {
         }
     }
 
-    async function removeTeacher(id){
+    async function removeTeacher(id) {
         try {
             await deleteTeacher(id)
             setRefresh(!refresh)
@@ -206,7 +290,7 @@ function ProfileBooking({ bookings, adminOption }) {
         }
     }
 
-    async function getOneSuscription(id){
+    async function getOneSuscription(id) {
         try {
             const result = await getSuscriptionById(id)
             setSuscriptionSelec(result)
@@ -236,7 +320,7 @@ function ProfileBooking({ bookings, adminOption }) {
         }
     }
 
-    async function removeSuscription(id){
+    async function removeSuscription(id) {
         try {
             await deleteSuscription(id)
             setRefresh(!refresh)
@@ -254,15 +338,18 @@ function ProfileBooking({ bookings, adminOption }) {
     useEffect(() => {
         getTeacherList()
         getSuscriptionList()
-    },[refresh])
+    }, [refresh])
 
     return (
+        <>
         <Box className="profileBooking">
-            <Box className="bookingsByUser">
+            
+                {localStorage.rol === "Admin" && <AdminMenu onAdminOptions={onAdminOptions} />}
+                
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <Typography
-                            sx={{ mt: 4, mb: 2 }}
+                            sx={{ mt: 4, mb: 2}}
                             variant="h6"
                             component="div"
                         >
@@ -272,6 +359,7 @@ function ProfileBooking({ bookings, adminOption }) {
                                 ? "You don't have an active suscription"
                                 : "Welcome Admin!"}
                         </Typography>
+                        {localStorage.rol === "Admin" && adminOption === "Profile" ? <img className="logoBooking" src="./src/assets/calendar/logo.png"/> : null}
                         <List>
                             {edit ? (
                                 <EditTeacher
@@ -294,6 +382,7 @@ function ProfileBooking({ bookings, adminOption }) {
                                         )
                                     }
                                     onCreate={(body) => createTeacher(body)}
+                                    handleClick={handleClick}
                                 />
                             ) : editSus ? (
                                 <EditSuscription
@@ -303,6 +392,7 @@ function ProfileBooking({ bookings, adminOption }) {
                                         editSuscription(id, body)
                                     }
                                     onCreate={(body) => createSuscription(body)}
+                                    handleClick={handleClick}
                                 />
                             ) : bookings.bookings ? (
                                 generate(adminOption)
@@ -311,6 +401,7 @@ function ProfileBooking({ bookings, adminOption }) {
                         {adminOption === "Teachers" ? (
                             <Button
                                 onClick={() => setEdit(!edit)}
+                                className="addItem"
                                 variant="contained"
                             >
                                 {edit ? "Cancel" : "Add Teacher"}
@@ -318,15 +409,44 @@ function ProfileBooking({ bookings, adminOption }) {
                         ) : adminOption === "Suscriptions" ? (
                             <Button
                                 onClick={() => setEditSus(!editSus)}
+                                className="addItem"
                                 variant="contained"
                             >
                                 {editSus ? "Cancel" : "Add Suscription"}
                             </Button>
-                        ):null}
+                        ) : null}
                     </Grid>
                 </Grid>
             </Box>
-        </Box>
+            <Snackbar
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                open={open}
+                autoHideDuration={4000}
+                onClose={handleClose}
+            >
+                <Alert
+                    onClose={handleClose}
+                    severity="success"
+                    sx={{ width: "100%" }}
+                >
+                    Action Completed!
+                </Alert>
+            </Snackbar>
+            <Snackbar
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                open={openDel}
+                autoHideDuration={4000}
+                onClose={handleClose}
+            >
+                <Alert
+                    onClose={handleCloseDel}
+                    severity="error"
+                    sx={{ width: "100%" }}
+                >
+                    Item Deleted
+                </Alert>
+            </Snackbar>
+        </>
     )
 }
 
@@ -335,4 +455,5 @@ export default ProfileBooking
 ProfileBooking.propTypes = {
     bookings: PropTypes.object,
     adminOption: PropTypes.string,
+    onAdminOptions: PropTypes.func,
 }

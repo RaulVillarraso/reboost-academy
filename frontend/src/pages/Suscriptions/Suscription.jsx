@@ -19,10 +19,6 @@ import { getAllSuscriptions } from "../../services/suscription"
 import { Link } from "react-router-dom"
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Elements} from '@stripe/react-stripe-js';
-import {loadStripe} from '@stripe/stripe-js';
-import Pay from "../../components/Pago/Pay"
-
 
 
 
@@ -52,8 +48,7 @@ function Method() {
     const handleMouseLeave = () => {
         setHoveredItem()
     }
-    var stripe = Stripe('pk_test_51OG1QQCXywJnPmP67inni0sCcd1DocJZaOJOnlhsMHKa9aAhnIsAjEbpWSusOFJWJjU5sEcWEgo8LDrZsUZryIlD002uLwEV1a');
-
+    
 
 
     return (

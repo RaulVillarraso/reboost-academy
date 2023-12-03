@@ -26,11 +26,7 @@ function Home() {
                                     variant="body1"
                                     sx={{ margin: "0 20px" }}
                                 >
-                                    ¡Bienvenido al Centro Deportivo Reboost Academy!
-
-En nuestro centro, nos enorgullece ser mucho más que un simple gimnasio: somos un lugar donde la pasión por el bienestar y el rendimiento se fusiona para crear una experiencia única. Ya sea que seas un atleta experimentado, estés dando tus primeros pasos hacia un estilo de vida más activo o simplemente busques un espacio acogedor para alcanzar tus metas, aquí encontrarás todo lo que necesitas.
-
-Nuestro compromiso es proporcionar instalaciones de última generación que se adapten a tus necesidades. Te ofrecemos el entorno perfecto para desafiarte a ti mismo y alcanzar nuevos niveles de rendimiento.
+                                    
                                 </Typography>
                             </Box>
                         </Grid>

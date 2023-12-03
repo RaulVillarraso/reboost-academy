@@ -1,3 +1,4 @@
+
 import {
     Box,
     Button,
@@ -31,12 +32,60 @@ import ProfileMenu from "../../../components/HeaderButtonless/ProfileMenu/Profil
 
 const drawerWidth = 240
 
+const buttonStyles = {
+    display: 'flex',
+};
+
+const boxStyles = {
+    width: '6vw',
+    height: '40px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '0.7vw',
+    fontWeight: 800,
+    color: 'black',
+    transition: 'all 0.8s',
+    cursor: 'pointer',
+    position: 'relative',
+    background: '#FCB900',
+    overflow: 'hidden',
+    '&:before': {
+        color: 'white',
+        content: '"view"',
+        position: 'absolute',
+        top: 0,
+        background: '#0f0f0f',
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transform: 'translateY(100%)',
+        transition: 'transform 0.4s',
+    },
+   
+    '&:hover:before': {
+        transform: 'translateY(0)',
+        color: 'white',
+    },
+};
+
+
+
+
+
+
+
+
+
+
 function Header() {
     const theme = useTheme()
     const [open, setOpen] = useState(false)
     const [profile, setProfile] = useState({})
     const guest = ["Classes", "Staff", "Suscriptions", "Login", "Signup",]
-    const account = ["Classes", "Staff", "Suscriptions", "Logout"]
+    const account = ["Clase", "Staff", "Suscription", "Logout"]
     const array = localStorage.token ? account : guest
     
     async function getProfile() {
@@ -55,7 +104,7 @@ function Header() {
     const logout = () => {
         localStorage.removeItem("token")
         localStorage.removeItem("rol")
-        window.location.reload(false)
+        window.location.reload()
     }
 
     const switchStatement = (text) => {
@@ -151,30 +200,31 @@ function Header() {
                     </List>
                 </Drawer>
             </Box>
-            <Box className="logoAndButtons">
+            <Box className="logoAndButtons" style={{ width:"33vw"}} >
                 <Paper className="logo">
-                    <img className="logoImg" src="./src/assets/home/Logo2.jpg" />
+                    <img className="logoImg" src="./src/assets/calendar/logo.png" />
                 </Paper>
-                <Link to='/clase'>
-                <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Classes</Button>
+                <Link to='/clase' style={{textDecoration: "none"}}>
+                <Button  sx={{...buttonStyles,...boxStyles}} variant="contained">Classes</Button>
                 </Link>
-                <Link to='/staff'>
-                <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Staff</Button>
+                <Link to='/staff'style={{textDecoration: "none"}}>
+                <Button sx={{...buttonStyles,...boxStyles}} variant="contained">Staff</Button>
                 </Link>
-                <Link to='/suscription'>
-                <Button sx={{backgroundColor: "#FCB900"}} variant="contained">Suscription</Button>
+                <Link to='/suscription'style={{textDecoration: "none"}}>
+                <Button sx={{...buttonStyles,...boxStyles}} variant="contained">Subscription</Button>
                 </Link>
             </Box>
+            
             <Link
                 to="/"
-                style={{ textDecoration: "none", alignSelf: "center" }}
+                style={{ textDecoration: "none", alignSelf: "center" ,margin:"0,auto" }}
             >
-                <Box className="title">
+                <Box className="title" style={{ width:"33vw"  }}>
                     <Typography variant="h3">Reboost Academy</Typography>
                 </Box>
             </Link>
             {!localStorage.token ? (
-                <Box className="register">
+                <Box className="register" style={{ width:"33vw" }}>
                     <Link to="/login">
                         <Button  variant="contained" id="login">
                             Login
@@ -187,15 +237,15 @@ function Header() {
                     </Link>
                 </Box>
             ) : (
-                <Box
+                <Box style={{  }}
                     sx={{
                         display: "flex",
-                        justifyContent: "center",
+                        justifyContent: "flex-end",
                         alignItems: "center",
-                        width: "10em",
+                        width:"33vw"
                     }}
                 >
-                    <ProfileMenu profile={profile}/>
+                    <ProfileMenu profile={profile} />
                 </Box>
             )}
         </Box>

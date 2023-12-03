@@ -5,7 +5,7 @@
     display: flex;
     position: absolute;
     top: 0;
-    justify-content: space-between;
+    
 }
 
 .logoImg {
@@ -71,9 +71,9 @@
 }
 
 #drawerLogo{
-    height: 100px;
-    width: 100px;
-    background-image: url("../../../assets/home/Logo2.jpg");
+    height: 10em;
+    width: 10em;
+    background-image: url("./src/assets/calendar/logo.png");
     background-repeat: no-repeat;
     background-size: contain;
     margin: 8px auto;
