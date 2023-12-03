@@ -684,7 +684,7 @@ const MyCalendar = () => {
                                                 {options.map((option) => (
                                                     <MenuItem
                                                         key={option.value}
-                                                        value={option}
+                                                        value={option.value}
                                                     >
                                                         {option.label}
                                                     </MenuItem>
