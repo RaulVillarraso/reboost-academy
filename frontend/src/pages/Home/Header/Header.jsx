@@ -24,7 +24,7 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn"
 import LoginIcon from "@mui/icons-material/Login"
 import PersonAddIcon from "@mui/icons-material/PersonAdd"
 import LogoutIcon from "@mui/icons-material/Logout"
-import {getUserProfile} from "../../../services/userService"
+import { getUserProfile } from "../../../services/userService"
 import "./Header.css"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -42,14 +42,16 @@ const boxStyles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: '0.7vw',
-    fontWeight: 800,
-    color: 'black',
+    fontSize: '0.62vw',
     transition: 'all 0.8s',
     cursor: 'pointer',
     position: 'relative',
-    background: '#FCB900',
+    background: 'linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(252, 185, 0, 1) 90%);',
+    border: "1px solid #FCB900",
+    color: 'white',
+    fontWeight: 600,
     overflow: 'hidden',
+    
     '&:before': {
         color: 'white',
         content: '"view"',
@@ -64,7 +66,7 @@ const boxStyles = {
         transform: 'translateY(100%)',
         transition: 'transform 0.4s',
     },
-   
+
     '&:hover:before': {
         transform: 'translateY(0)',
         color: 'white',
@@ -87,7 +89,7 @@ function Header() {
     const guest = ["Classes", "Staff", "Suscriptions", "Login", "Signup",]
     const account = ["Clase", "Staff", "Suscription", "Logout"]
     const array = localStorage.token ? account : guest
-    
+
     async function getProfile() {
         const result = await getUserProfile()
         setProfile(result)
@@ -131,7 +133,7 @@ function Header() {
 
     useEffect(() => {
         getProfile()
-    },[])
+    }, [])
 
     return (
         <Box className="header">
@@ -200,33 +202,33 @@ function Header() {
                     </List>
                 </Drawer>
             </Box>
-            <Box className="logoAndButtons" style={{ width:"33vw"}} >
+            <Box className="logoAndButtons" style={{ width: "33vw" }} >
                 <Paper className="logo">
                     <img className="logoImg" src="./src/assets/calendar/logo.png" />
                 </Paper>
-                <Link to='/clase' style={{textDecoration: "none"}}>
-                <Button  sx={{...buttonStyles,...boxStyles}} variant="contained">Classes</Button>
+                <Link to='/clase' style={{ textDecoration: "none" }}>
+                    <Button sx={{ ...buttonStyles, ...boxStyles }} variant="contained">Classes</Button>
                 </Link>
-                <Link to='/staff'style={{textDecoration: "none"}}>
-                <Button sx={{...buttonStyles,...boxStyles}} variant="contained">Staff</Button>
+                <Link to='/staff' style={{ textDecoration: "none" }}>
+                    <Button sx={{ ...buttonStyles, ...boxStyles }} variant="contained">Staff</Button>
                 </Link>
-                <Link to='/suscription'style={{textDecoration: "none"}}>
-                <Button sx={{...buttonStyles,...boxStyles}} variant="contained">Subscription</Button>
+                <Link to='/suscription' style={{ textDecoration: "none" }}>
+                    <Button sx={{ ...buttonStyles, ...boxStyles }} variant="contained">Subscription</Button>
                 </Link>
             </Box>
-            
+
             <Link
                 to="/"
-                style={{ textDecoration: "none", alignSelf: "center" ,margin:"0,auto" }}
+                style={{ textDecoration: "none", alignSelf: "center", margin: "0,auto" }}
             >
-                <Box className="title" style={{ width:"33vw"  }}>
+                <Box className="title" style={{ width: "33vw" }}>
                     <Typography variant="h3">Reboost Academy</Typography>
                 </Box>
             </Link>
             {!localStorage.token ? (
-                <Box className="register" style={{ width:"33vw" }}>
+                <Box className="register" style={{ width: "33vw" }}>
                     <Link to="/login">
-                        <Button  variant="contained" id="login">
+                        <Button variant="contained" id="login">
                             Login
                         </Button>
                     </Link>
@@ -237,12 +239,12 @@ function Header() {
                     </Link>
                 </Box>
             ) : (
-                <Box style={{  }}
+                <Box style={{}}
                     sx={{
                         display: "flex",
                         justifyContent: "flex-end",
                         alignItems: "center",
-                        width:"33vw"
+                        width: "33vw"
                     }}
                 >
                     <ProfileMenu profile={profile} />
