@@ -698,6 +698,7 @@ const MyCalendar = () => {
                                             <br />
                                             <Button
                                                 variant="contained"
+                                                className="calendarYell"
                                                 onClick={handleAddEvent}
                                             >
                                                 Agregar Evento
@@ -793,6 +794,7 @@ const MyCalendar = () => {
 
                                         <Button
                                             variant="contained"
+                                            className="calendarYell"
                                             onClick={UpdateApiInfo}
                                         >
                                             Editar Evento
@@ -803,7 +805,8 @@ const MyCalendar = () => {
                                     <Grid item sm={12}>
                                         <Button
                                             variant="contained"
-                                            sx={{ bgcolor: "error.main" }}
+                                            className="calendarRed"
+                                            sx={{ }}
                                             onClick={handleConfirmDelete}
                                         >
                                             Eliminar Evento
@@ -823,6 +826,7 @@ const MyCalendar = () => {
                                         <Grid item sm={12}>
                                             <Button
                                                 variant="contained"
+                                                className="calendarYell"
                                                 sx={{}}
                                                 onClick={Updating}
                                                 disabled={
@@ -846,10 +850,8 @@ const MyCalendar = () => {
                                             
                                             <Button
                                                 variant="contained"
-                                                sx={{
-                                                    backgroundColor:
-                                                        "error.main",
-                                                }}
+                                                sx={{}}
+                                                className="calendarRed"
                                                 onClick={deleteUserBook}
                                             >
                                                 Cancelar reserva
@@ -904,12 +906,14 @@ const MyCalendar = () => {
                                     <DialogActions>
                                         <Button
                                             onClick={handleCancelDelete}
+                                            className="calendarYell"
                                             autoFocus
                                         >
                                             Cancelar
                                         </Button>
                                         <Button
                                             onClick={handleDelete}
+                                            className="calendarRed"
                                             variant="contained"
                                             sx={{ bgcolor: "error.main" }}
                                         >

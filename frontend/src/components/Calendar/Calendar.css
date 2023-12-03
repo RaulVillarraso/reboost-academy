@@ -203,3 +203,11 @@
   border: 2px solid #73ff00;
   transform: scale(1.02);
 }
+
+.calendarYell{
+  background-color: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(252, 185, 0, 1) 90%);
+}
+
+.calendarRed{
+  background-color: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, #f44336  90%) ;
+}
