@@ -70,7 +70,7 @@ function Method() {
                                 }}
                                 component=""
                             >
-                                WE SUSCRIPTIONS !!
+                                OUR SUSCRIPTIONS !!
                             </ListSubheader>
                         </ImageListItem>
                         {suscriptions.map((suscription, index) => (
