@@ -201,9 +201,14 @@ function Header() {
                 </Drawer>
             </Box>
             <Box className="logoAndButtons" style={{ width:"33vw"}} >
-                <Paper className="logo">
-                    <img className="logoImg" src="./src/assets/calendar/logo.png" />
-                </Paper>
+                <Link
+                    to="/"
+                    style={{ textDecoration: "none", alignSelf: "center" ,margin:"0,auto" }}
+                >
+                    <Paper className="logo">
+                        <img className="logoImg" src="./src/assets/calendar/logo.png" />
+                    </Paper>
+                </Link>
                 <Link to='/clase' style={{textDecoration: "none"}}>
                 <Button  sx={{...buttonStyles,...boxStyles}} variant="contained">Classes</Button>
                 </Link>
@@ -214,15 +219,9 @@ function Header() {
                 <Button sx={{...buttonStyles,...boxStyles}} variant="contained">Subscription</Button>
                 </Link>
             </Box>
-            
-            <Link
-                to="/"
-                style={{ textDecoration: "none", alignSelf: "center" ,margin:"0,auto" }}
-            >
                 <Box className="title" style={{ width:"33vw"  }}>
-                    <Typography variant="h3">Reboost Academy</Typography>
+                    
                 </Box>
-            </Link>
             {!localStorage.token ? (
                 <Box className="register" style={{ width:"33vw" }}>
                     <Link to="/login">
