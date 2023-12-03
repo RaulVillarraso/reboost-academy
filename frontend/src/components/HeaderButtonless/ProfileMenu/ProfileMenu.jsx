@@ -52,7 +52,7 @@ function ProfileMenu({ profile }) {
                         aria-expanded={open ? "true" : undefined}
                     >
                         <Avatar
-                            sx={{ width: 49, height: 49 }}
+                            sx={{ width: 55, height: 55 }}
                             src={profile.profileImg}
                         ></Avatar>
                     </IconButton>
