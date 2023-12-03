@@ -42,7 +42,7 @@ function TitlebarImageList() {
                                 }}
                                 component="text"
                             >
-                                WE STAFF !!
+                                OUR STAFF !!
                             </ListSubheader>
                         </ImageListItem>
                         {itemData.map((item, index) => (

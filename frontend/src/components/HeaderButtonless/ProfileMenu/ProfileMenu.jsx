@@ -45,14 +45,14 @@ function ProfileMenu({ profile }) {
                 <Tooltip title="Account settings">
                     <IconButton
                         onClick={handleClick}
-                        size="small"
+                        size="large"
                         sx={{ ml: 2 }}
                         aria-controls={open ? "account-menu" : undefined}
                         aria-haspopup="true"
                         aria-expanded={open ? "true" : undefined}
                     >
                         <Avatar
-                            sx={{ width: 49, height: 49 }}
+                            sx={{ width: 70, height: 70 }}
                             src={profile.profileImg}
                         ></Avatar>
                     </IconButton>

@@ -701,6 +701,7 @@ const MyCalendar = () => {
                                             <br />
                                             <Button
                                                 variant="contained"
+                                                className="calendarYell"
                                                 onClick={handleAddEvent}
                                             >
                                                 Agregar Evento
@@ -796,7 +797,9 @@ const MyCalendar = () => {
 
                                         <Button
                                             variant="contained"
+                                            className="calendarYell"
                                             onClick={UpdateApiInfo}
+                                            sx={{border: "2px solid rgba(252, 185, 0, 1)"}}
                                         >
                                             Editar Evento
                                         </Button>
@@ -806,7 +809,8 @@ const MyCalendar = () => {
                                     <Grid item sm={12}>
                                         <Button
                                             variant="contained"
-                                            sx={{ bgcolor: "error.main" }}
+                                            className="calendarRed"
+                                            sx={{border: "2px solid #f44336"}}
                                             onClick={handleConfirmDelete}
                                         >
                                             Eliminar Evento
@@ -826,7 +830,8 @@ const MyCalendar = () => {
                                         <Grid item sm={12}>
                                             <Button
                                                 variant="contained"
-                                                sx={{}}
+                                                className="calendarYell"
+                                                sx={{border: "2px solid rgba(252, 185, 0, 1)"}}
                                                 onClick={Updating}
                                                 disabled={
                                                     classroomTarget ===
@@ -849,10 +854,8 @@ const MyCalendar = () => {
                                             
                                             <Button
                                                 variant="contained"
-                                                sx={{
-                                                    backgroundColor:
-                                                        "error.main",
-                                                }}
+                                                sx={{border: "2px solid #f44336"}}
+                                                className="calendarRed"
                                                 onClick={deleteUserBook}
                                             >
                                                 Cancelar reserva
@@ -907,14 +910,17 @@ const MyCalendar = () => {
                                     <DialogActions>
                                         <Button
                                             onClick={handleCancelDelete}
+                                            className="calendarYell"
+                                            sx={{border: "2px solid rgba(252, 185, 0, 1)", color: "#ffffff"}}
                                             autoFocus
                                         >
                                             Cancelar
                                         </Button>
                                         <Button
                                             onClick={handleDelete}
+                                            className="calendarRed"
                                             variant="contained"
-                                            sx={{ bgcolor: "error.main" }}
+                                            sx={{ border: "2px solid #f44336" }}
                                         >
                                             Sí, eliminar
                                         </Button>

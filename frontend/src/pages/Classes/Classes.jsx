@@ -57,7 +57,7 @@ function Classpag() {
                                     }}
                                     
                                 >
-                                    WE CLASSES !!
+                                    OUR CLASSES !!
                                 </ListSubheader>
                             </ImageListItem>
                             {classes.map((clase, index) => (

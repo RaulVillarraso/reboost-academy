@@ -10,7 +10,6 @@
 }
 
 
-
 .fc-daygrid-day-frame {
   background-color: #f4f4f4;
   border: 1px outset;
@@ -203,4 +202,16 @@
   color: #007bff;
   border: 2px solid #73ff00;
   transform: scale(1.02);
+}
+
+.calendarYell{
+  background: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(252, 185, 0, 1) 90%);
+  color: #ffffff;
+  border: 2px solid rgba(252, 185, 0, 1);
+}
+
+.calendarRed{
+  background: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, #f44336  90%);
+  color: #ffffff;
+  border: 2px solid #f44336;
 }
