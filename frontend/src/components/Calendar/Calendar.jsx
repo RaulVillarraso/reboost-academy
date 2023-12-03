@@ -89,7 +89,7 @@ const MyCalendar = () => {
 
     const handleChange = (e) => {
         const selectedOption = e.target.value
-        setEventClassName(selectedOption)
+        setEventClassName(selectedOption.value)
         setEventid(selectedOption.value2)
     }
 
