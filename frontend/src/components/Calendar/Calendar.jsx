@@ -807,7 +807,7 @@ const MyCalendar = () => {
                                         <Button
                                             variant="contained"
                                             className="calendarRed"
-                                            sx={{border: "2px solid rgba(252, 185, 0, 1)"}}
+                                            sx={{border: "2px solid #f44336"}}
                                             onClick={handleConfirmDelete}
                                         >
                                             Eliminar Evento
@@ -908,7 +908,7 @@ const MyCalendar = () => {
                                         <Button
                                             onClick={handleCancelDelete}
                                             className="calendarYell"
-                                            sx={{border: "2px solid rgba(252, 185, 0, 1)"}}
+                                            sx={{border: "2px solid rgba(252, 185, 0, 1)", color: "#ffffff"}}
                                             autoFocus
                                         >
                                             Cancelar
