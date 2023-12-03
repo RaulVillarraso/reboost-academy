@@ -56,7 +56,7 @@ const MyCalendar = () => {
     const [eventTitle, setEventTitle] = useState("")
     const [startDateTime, setStartDateTime] = useState("")
     const [endDateTime, setEndDateTime] = useState(null)
-    const [eventClassName, setEventClassName] = useState("Clase no seleccionada")
+    const [eventClassName, setEventClassName] = useState("")
     const [refresh, setRefresh] = useState(false)
     const [refresh2, setRefresh2] = useState(false)
     const [showinput, setshowinput] = useState("")
