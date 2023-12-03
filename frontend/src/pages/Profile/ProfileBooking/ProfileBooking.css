@@ -19,6 +19,7 @@
 }
 
 .addItem{
+    font-weight: 800;
     background: rgb(68, 68, 68);
         background: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(210, 154, 0, 1) 90%);
 }

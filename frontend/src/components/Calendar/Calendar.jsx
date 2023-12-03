@@ -56,7 +56,7 @@ const MyCalendar = () => {
     const [eventTitle, setEventTitle] = useState("")
     const [startDateTime, setStartDateTime] = useState("")
     const [endDateTime, setEndDateTime] = useState(null)
-    const [eventClassName, setEventClassName] = useState("")
+    const [eventClassName, setEventClassName] = useState("Clase no seleccionada")
     const [refresh, setRefresh] = useState(false)
     const [refresh2, setRefresh2] = useState(false)
     const [showinput, setshowinput] = useState("")
@@ -89,12 +89,12 @@ const MyCalendar = () => {
 
     const handleChange = (e) => {
         const selectedOption = e.target.value
-        setEventClassName(selectedOption.value)
+        setEventClassName(selectedOption)
         setEventid(selectedOption.value2)
     }
 
     const options = [
-        { label: "Sin clase", value: "", value2: "" },
+        { label: "Clase no seleccionada", value: "Clase no seleccionada", value2: "" },
         { label: "Pilates", value: "pilates", value2: "2" },
         { label: "Yoga", value: "yoga", value2: "1" },
         { label: "Ciclo Indoor", value: "ciclo_indoor", value2: "3" },
@@ -685,12 +685,15 @@ const MyCalendar = () => {
                                                 {options.map((option) => (
                                                     <MenuItem
                                                         key={option.value}
-                                                        value={option}
+                                                        value={option.value}
                                                     >
                                                         {option.label}
                                                     </MenuItem>
                                                 ))}
                                             </Select>
+
+                     
+
                                         </Grid>
                                     )}
                                     {localStorage.getItem("rol") ===
@@ -753,7 +756,7 @@ const MyCalendar = () => {
                                             {options.map((option) => (
                                                 <MenuItem
                                                     key={option.value}
-                                                    value={option}
+                                                    value={option.value}
                                                 >
                                                     {option.label}
                                                 </MenuItem>

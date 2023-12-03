@@ -54,7 +54,12 @@
 }
 
 #signup{
-    background-color: #00A077;
+    color: #FFFFFF;
+    border: 2px solid  rgba(0,160,119,1); 
+     background: rgb(68, 68, 68);
+    
+    font-weight: 600;
+    background: linear-gradient(315deg, rgb(62, 62, 62) 90%, rgba(0,160,119,1) 90%);
     margin-right:16px; 
 }
 
@@ -66,6 +71,11 @@
     background-color: #FCB900;
     color: black;
     margin-right:8px; 
+    color: #FFFFFF;
+    border: 2px solid rgba(252, 185, 0, 1); 
+     background: rgb(68, 68, 68);
+    background: linear-gradient(315deg, rgb(62, 62, 62) 90%, rgba(252, 185, 0, 1) 90%);
+    font-weight: 600;
 }
 
 #login:hover{

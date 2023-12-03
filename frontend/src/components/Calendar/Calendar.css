@@ -18,20 +18,20 @@
 
 
 .btn-primary {
-  background: #444444;
-  background: linear-gradient(315deg, #444444 90%, rgba(210, 154, 0, 1) 90%);
-  /* Cambia #ff0000 por el color que desees */
-  border: 2px solid #FCB900;
-  /* Cambia #ff0000 por el color que desees */
+  color: #FFFFFF;
+    border: 2px solid rgba(252, 185, 0, 1); 
+     background: rgb(68, 68, 68);
+    background: linear-gradient(315deg, rgb(62, 62, 62) 90%, rgba(252, 185, 0, 1) 90%);
+    font-weight: 600;
 }
 
 
 
 .btn-primary:hover {
   background-color: #FCB900;
-  /* Cambia #00ff00 por el color que desees */
+ 
   border: none
-    /* Cambia #00ff00 por el color que desees */
+   
 }
 
 .btn-primary:active,

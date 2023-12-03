@@ -10,6 +10,7 @@
     border-radius: 50px;
     box-shadow: 20px 20px 60px #bebebe,
                 -20px -20px 60px #ffffff;
+
 }
 
 .profileTop {
@@ -77,13 +78,16 @@
     background: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(252, 185, 0, 1) 90%);
     color: #FFFFFF;
     border: 2px solid rgba(252, 185, 0, 1);
+    font-weight: 600;
 }
 
 #calendar {
-    background: rgb(68, 68, 68);
-    background: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(252, 185, 0, 1) 90%);
+  
     color: #FFFFFF;
-    border: 2px solid rgba(252, 185, 0, 1);
+    border: 2px solid rgba(252, 185, 0, 1); 
+     background: rgb(68, 68, 68);
+    background: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(252, 185, 0, 1) 90%);
+    font-weight: 600;
 }
 
 #edit {
@@ -94,8 +98,10 @@
 }   
 
 #logout {
-    background: rgb(68, 68, 68);
-    background: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(240, 109, 104, 1) 90%);
+  
     color: #FFFFFF;
     border: 2px solid rgba(240, 109, 104, 1);
+     background: rgb(68, 68, 68);
+    background: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(240, 109, 104, 1) 90%);
+    font-weight: 600;
 }
