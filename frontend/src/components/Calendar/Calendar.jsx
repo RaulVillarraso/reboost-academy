@@ -847,8 +847,8 @@ const MyCalendar = () => {
                                             <Button
                                                 variant="contained"
                                                 sx={{
-                                                    backgroundColor: "linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, error.main 90%);",
-                                                    border: "2px solid error.main"
+                                                    backgroundColor: "linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, #f44336 90%);",
+                                                    border: "2px solid #f44336"
                                                 }}
                                                 onClick={deleteUserBook}
                                             >
@@ -911,7 +911,7 @@ const MyCalendar = () => {
                                         <Button
                                             onClick={handleDelete}
                                             variant="contained"
-                                            sx={{ bgcolor: "linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, error.main 90%);", border: "2px solid error.main" }}
+                                            sx={{ bgcolor: "linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, #f44336 90%);", border: "2px solid #f44336" }}
                                         >
                                             Sí, eliminar
                                         </Button>
