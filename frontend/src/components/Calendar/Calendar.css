@@ -205,9 +205,11 @@
 }
 
 .calendarYell{
-  background-color: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(252, 185, 0, 1) 90%);
+  background-color: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(252, 185, 0, 1) 10%);
+  border: 2px solid rgba(252, 185, 0, 1);
 }
 
 .calendarRed{
-  background-color: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, #f44336  90%) ;
+  background-color: linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, #f44336  10%) ;
+  border: 2px solid #f44336;
 }

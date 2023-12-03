@@ -915,7 +915,7 @@ const MyCalendar = () => {
                                             onClick={handleDelete}
                                             className="calendarRed"
                                             variant="contained"
-                                            sx={{ bgcolor: "error.main" }}
+                                            sx={{ }}
                                         >
                                             Sí, eliminar
                                         </Button>
