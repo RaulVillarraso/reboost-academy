@@ -676,6 +676,7 @@ const MyCalendar = () => {
                                             <br />
 
                                             <Select
+                                                labelId="ClaseEvento"
                                                 label="Clase del evento"
                                                 value={eventClassName}
                                                 onChange={handleChange}

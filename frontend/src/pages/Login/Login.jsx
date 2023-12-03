@@ -97,8 +97,8 @@ function Login() {
                             variant="contained"
                             onClick={() => onLogin()}
                             sx={{
-                                backgroundColor: "#FCB900",
-                                color: "#444444",
+                                color: "#ffffff",
+                                border:"2px solid rgba(252, 185, 0, 1)",
                                 borderRadius: "15px",
                                 width: "8em",
                                 marginBottom: "16px",
