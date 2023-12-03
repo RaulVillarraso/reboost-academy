@@ -94,7 +94,7 @@ const MyCalendar = () => {
     }
 
     const options = [
-        { label: "Clase no seleccionada", value: "Clase no seleccionada", value2: "" },
+        { label: "Todo", value: "", value2: "" },
         { label: "Pilates", value: "pilates", value2: "2" },
         { label: "Yoga", value: "yoga", value2: "1" },
         { label: "Ciclo Indoor", value: "ciclo_indoor", value2: "3" },
