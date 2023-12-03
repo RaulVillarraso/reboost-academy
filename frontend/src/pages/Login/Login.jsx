@@ -100,7 +100,7 @@ function Login() {
                                 color: "#ffffff",
                                 background: "linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(252, 185, 0, 1) 90%)",
                                 border:"2px solid rgba(252, 185, 0, 1)",
-                                borderRadius: "15px",
+                                borderRadius: "4px",
                                 width: "8em",
                                 marginBottom: "16px",
                             }}
