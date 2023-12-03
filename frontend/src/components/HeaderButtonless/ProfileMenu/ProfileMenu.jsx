@@ -45,7 +45,7 @@ function ProfileMenu({ profile }) {
                 <Tooltip title="Account settings">
                     <IconButton
                         onClick={handleClick}
-                        size="medium"
+                        size="large"
                         sx={{ ml: 2 }}
                         aria-controls={open ? "account-menu" : undefined}
                         aria-haspopup="true"
