@@ -823,7 +823,7 @@ const MyCalendar = () => {
                                         <Grid item sm={12}>
                                             <Button
                                                 variant="contained"
-                                                sx={{backgroundColor: "linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, rgba(252, 185, 0, 1) 90%);", border: "2px solid rgba(252, 185, 0, 1"}}
+                                                sx={{}}
                                                 onClick={Updating}
                                                 disabled={
                                                     classroomTarget ===
@@ -847,8 +847,8 @@ const MyCalendar = () => {
                                             <Button
                                                 variant="contained"
                                                 sx={{
-                                                    backgroundColor: "linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, #f44336 90%);",
-                                                    border: "2px solid #f44336"
+                                                    backgroundColor:
+                                                        "error.main",
                                                 }}
                                                 onClick={deleteUserBook}
                                             >
@@ -911,7 +911,7 @@ const MyCalendar = () => {
                                         <Button
                                             onClick={handleDelete}
                                             variant="contained"
-                                            sx={{ bgcolor: "linear-gradient(315deg, rgba(68, 68, 68, 1) 90%, #f44336 90%);", border: "2px solid #f44336" }}
+                                            sx={{ bgcolor: "error.main" }}
                                         >
                                             Sí, eliminar
                                         </Button>
